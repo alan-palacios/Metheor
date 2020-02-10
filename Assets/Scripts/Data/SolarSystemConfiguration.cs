@@ -16,6 +16,8 @@ public struct SolarSystemData
           public bool generateCollider;
           public GameObject [] suns;
           public GameObject [] planets;
+          public GameObject orbit;
+          public GameObject light;
 
           public int minNumOfPlanets;
           public int maxNumOfPlanets;
@@ -29,4 +31,7 @@ public struct SolarSystemData
 
           public float SunMinScale;
           public float SunMaxScale;
+
+          public float PlanetsMinVelocity;
+          public float PlanetsMaxVelocity;
 }

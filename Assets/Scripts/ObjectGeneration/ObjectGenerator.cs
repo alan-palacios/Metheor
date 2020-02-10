@@ -73,7 +73,7 @@ public static class ObjectGenerator
 
 
                                                                       Vector3 angles = new Vector3( 0, Random.Range(0, 36)*10, 0);
-                                                                      objetos[i][j] = GameObject.Instantiate(objectPlaced, new Vector3(  xCoord, heightCoord  ,yCoord)  , Quaternion.Euler(angles), parent ) as GameObject;
+                                                                      objetos[i][j] = GameObject.Instantiate(objectPlaced, new Vector3(  xCoord, heightCoord  ,yCoord)  , Quaternion.identity, parent ) as GameObject;
                                                             }
                                                   }
                                         }
@@ -167,7 +167,7 @@ public static class ObjectGenerator
                                                                                 //                                        objectPlacingList.objectsSettings[i].offsetHeight;
                                                                                 Vector3 angles = new Vector3(0,0,0);
                                                                                 angles.y = Random.Range(0, 6)*60;
-                                                                                objetos[i][j] = GameObject.Instantiate(objectPlaced, new Vector3(  xCoord, heightCoord  ,yCoord)  , Quaternion.Euler(angles), parentObj.transform ) as GameObject;
+                                                                                objetos[i][j] = GameObject.Instantiate(objectPlaced, new Vector3(  xCoord, heightCoord  ,yCoord)  , Quaternion.identity, parentObj.transform ) as GameObject;
                                                                       }
                                                             }
                                                   }

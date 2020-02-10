@@ -45,7 +45,7 @@ public class Chunk
                     background = GameObject.Instantiate(background) as GameObject;
                     background.transform.SetParent( chunkGameObject.transform, false);
                     background.transform.localScale*= (float)chunkSize/10;
-                    //background.transform.position = Vector3.zero;
+                    background.transform.position = new Vector3(position.x, -0.1f, position.y);
 
 
                     this.maxViewDst = maxViewDst;
