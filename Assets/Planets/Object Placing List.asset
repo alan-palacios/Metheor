@@ -16,7 +16,7 @@ MonoBehaviour:
   objectsSettings:
   - nombre: Planet
     generationMode: 0
-    radius: 7
+    radius: 15
     rejectionSamples: 8
     typeOfStelarObject: 0
     solarSystemParent: {fileID: 0}

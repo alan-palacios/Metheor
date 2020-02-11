@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -14,24 +15,36 @@ public class PlayerMove : MonoBehaviour
     public Text scoreText;
     private Vector3 newCameraRot;
     private GameObject  cameraChild;
+    private GameObject  restartButton;
     private GameObject  meteoriteModel;
     private int score =0;
 
     void Start()
     {
+          Application.targetFrameRate = 60;
           rb = GetComponent<Rigidbody>();
           UpdateScore ();
           cameraChild = transform.GetChild(1).gameObject;
           meteoriteModel = transform.GetChild(0).gameObject;
+          restartButton = cameraChild.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
     }
 
     void FixedUpdate(){
-              Input.gyro.enabled = true;
-              float initialOrientationX = Input.gyro.rotationRateUnbiased.x;
-              float initialOrientationY = Input.gyro.rotationRateUnbiased.y;
+              //Input.gyro.enabled = true;
+              //float initialOrientationX = Input.gyro.gravity.x;
+              //float initialOrientationY = Input.gyro.gravity.y;
+              //Vector2 cameraRot = new Vector2( initialOrientationX, initialOrientationY );
+              Vector2 cameraRot = new Vector2( Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") );
 
-              Vector2 cameraRot = new Vector2( initialOrientationX, initialOrientationY );
-              //Vector2 cameraRot = new Vector2( Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") );
+              if (Input.touchCount >0) {
+                        Touch touch = Input.GetTouch(0);
+                        if (touch.position.x < Screen.width/2) {
+                               cameraRot = new Vector3(-1,0,0);
+                        }else if (touch.position.x > Screen.width/2) {
+                               cameraRot = new Vector3(1,0,0);
+                        }
+              }
+
               newCameraRot = new Vector3( 0, cameraRot.normalized.x*rotationSpeed, 0);
               transform.eulerAngles = transform.eulerAngles + newCameraRot;
 
@@ -53,6 +66,8 @@ public class PlayerMove : MonoBehaviour
         //Ouput the Collision to the console
         if (transform.localScale.x<=collision.gameObject.transform.localScale.x) {
                   UpdateScore("You lost");
+                  Time.timeScale = 0;
+                  restartButton.SetActive(true);
                   //UnityEditor.EditorApplication.isPlaying = false;
         }else{
                   score++;
@@ -66,6 +81,12 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    void RestartGame()
+    {
+              Time.timeScale = 1;
+             restartButton.SetActive(true);
+              SceneManager.LoadScene("MainScene");
+    }
     void UpdateScore ()
     {
         scoreText.text = "Score: " + score.ToString ();
@@ -73,6 +94,6 @@ public class PlayerMove : MonoBehaviour
 
     void UpdateScore (string txt)
     {
-        scoreText.text = "Score: " + txt;
+        scoreText.text =  txt;
     }
 }
