@@ -41,7 +41,7 @@ public class SolarSystem : MonoBehaviour
                               planets[i].planet.transform.localScale = Vector3.one*Mathf.Floor (newScale / 0.1f)*0.1f;
 
                               planets[i].dstFromSun = dstFromSun;
-                              float velocity = Random.Range(solarSystemConfiguration.solarSystemData.PlanetsMinVelocity,solarSystemConfiguration.solarSystemData.PlanetsMaxVelocity);
+                              float velocity = Random.Range(solarSystemConfiguration.solarSystemData.PlanetsMinVelocity, solarSystemConfiguration.solarSystemData.PlanetsMaxVelocity);
                               if (Random.value > 0.5f) {
                                         velocity*=-1;
                               }
@@ -65,17 +65,6 @@ public class SolarSystem : MonoBehaviour
                               //if (planets[i].planet != null) {
                                         planets[i].planet.transform.RotateAround (sun.transform.position, Vector3.up, planets[i].velocity * Time.deltaTime);
                               //}
-
-                              //var desiredPosition = (planets[i].planet.transform.position - sun.transform.position).normalized * planets[i].dstFromSun + sun.transform.position;
-                              //planets[i].planet.transform.position = Vector3.MoveTowards(planets[i].planet.transform.position, desiredPosition, Time.deltaTime * 5f);
-
-                              /*Vector3 relativePos = (sun.transform.position)  - planets[i].planet.transform.position;
-                              Quaternion rotation = Quaternion.LookRotation(relativePos);
-
-                              Quaternion current = planets[i].planet.transform.localRotation;
-
-                              planets[i].planet.transform.localRotation = Quaternion.Slerp(current, rotation, Time.deltaTime);
-                              planets[i].planet.transform.Translate(0, 0, planets[i].dstFromSun * Time.deltaTime);*/
 
                     }
           }

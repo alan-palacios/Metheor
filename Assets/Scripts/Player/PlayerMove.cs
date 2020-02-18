@@ -8,7 +8,7 @@ public class PlayerMove : MonoBehaviour
 {
     // Start is called before the first frame update
     private Rigidbody rb;
-    public int moveSpeed;
+    public float moveSpeed;
     public int rotationSpeed;
     public int modelRotationSpeed;
     public float incremmentOfScale;
@@ -27,6 +27,7 @@ public class PlayerMove : MonoBehaviour
           cameraChild = transform.GetChild(1).gameObject;
           meteoriteModel = transform.GetChild(0).gameObject;
           restartButton = cameraChild.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
+          cameraChild.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject.GetComponent<Button>().onClick.AddListener(RestartGame);
     }
 
     void FixedUpdate(){
@@ -48,8 +49,11 @@ public class PlayerMove : MonoBehaviour
               newCameraRot = new Vector3( 0, cameraRot.normalized.x*rotationSpeed, 0);
               transform.eulerAngles = transform.eulerAngles + newCameraRot;
 
-              Vector3 direction =  transform.forward.normalized;
-              rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+              Vector3 direction =  transform.forward;
+              Debug.Log(direction);
+              transform.Translate(direction * moveSpeed* Time.fixedDeltaTime, Space.World );
+              //rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+
 
    }
 
@@ -63,22 +67,38 @@ public class PlayerMove : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        //Ouput the Collision to the console
-        if (transform.localScale.x<=collision.gameObject.transform.localScale.x) {
-                  UpdateScore("You lost");
-                  Time.timeScale = 0;
-                  restartButton.SetActive(true);
-                  //UnityEditor.EditorApplication.isPlaying = false;
-        }else{
-                  score++;
-                  float newScale = collision.gameObject.transform.localScale.x/incremmentOfScale;
-                  transform.localScale+= new Vector3(newScale, newScale, newScale);
-                  UpdateScore();
-                  if( collision.gameObject.transform.parent.gameObject.GetComponent<SolarSystem>()!=null){
-                            collision.gameObject.transform.parent.gameObject.GetComponent<SolarSystem>().BorrarPlaneta(collision.gameObject);
-                  }
-                  Destroy(collision.gameObject);
-        }
+              GameObject planet = collision.gameObject;
+              //father of the complete and fract planet
+              GameObject GroupOfPlanets = planet.transform.parent.gameObject;
+
+              //father solar system with all the types of planet
+              GameObject GroupSolarSystem = GroupOfPlanets.transform.parent.gameObject;
+
+              bool completePlanet=false;
+              if( GroupSolarSystem.GetComponent<SolarSystem>()!=null){
+                        completePlanet = true;
+             }
+
+             if (completePlanet) {
+                       //Ouput the Collision to the console
+                      if (transform.localScale.x<=GroupOfPlanets.transform.localScale.x) {
+                                UpdateScore("You lost");
+                                Time.timeScale = 0;
+                                restartButton.SetActive(true);
+                                //UnityEditor.EditorApplication.isPlaying = false;
+                      }else{
+                                score++;
+                                float newScale = GroupOfPlanets.transform.localScale.x/incremmentOfScale;
+                                transform.localScale+= new Vector3(newScale, newScale, newScale);
+                                UpdateScore();
+                                planet.SetActive(false);
+                                GroupOfPlanets.transform.GetChild(1).gameObject.SetActive(true);
+                                //GroupSolarSystem.GetComponent<SolarSystem>().BorrarPlaneta(GroupOfPlanets);
+
+                                //Destroy(collision.gameObject);
+                      }
+             }
+
     }
 
     void RestartGame()

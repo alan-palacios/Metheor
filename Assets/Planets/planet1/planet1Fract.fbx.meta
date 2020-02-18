@@ -1,0 +1,199 @@
+fileFormatVersion: 2
+guid: 24bd8d1bc4cd54a469777abc8a9b315a
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Icosphere.007_cell.051
+    100002: Icosphere.007_cell.052
+    100004: Icosphere.007_cell.053
+    100006: Icosphere.007_cell.054
+    100008: Icosphere.007_cell.055
+    100010: Icosphere.007_cell.056
+    100012: Icosphere.007_cell.057
+    100014: Icosphere.007_cell.058
+    100016: Icosphere.007_cell.059
+    100018: Icosphere.007_cell.060
+    100020: Icosphere.007_cell.061
+    100022: Icosphere.007_cell.062
+    100024: Icosphere.007_cell.063
+    100026: Icosphere.007_cell.064
+    100028: Icosphere.007_cell.065
+    100030: Icosphere.007_cell.066
+    100032: Icosphere.007_cell.067
+    100034: Icosphere.007_cell.068
+    100036: Icosphere.007_cell.069
+    100038: Icosphere.007_cell.070
+    100040: //RootNode
+    400000: Icosphere.007_cell.051
+    400002: Icosphere.007_cell.052
+    400004: Icosphere.007_cell.053
+    400006: Icosphere.007_cell.054
+    400008: Icosphere.007_cell.055
+    400010: Icosphere.007_cell.056
+    400012: Icosphere.007_cell.057
+    400014: Icosphere.007_cell.058
+    400016: Icosphere.007_cell.059
+    400018: Icosphere.007_cell.060
+    400020: Icosphere.007_cell.061
+    400022: Icosphere.007_cell.062
+    400024: Icosphere.007_cell.063
+    400026: Icosphere.007_cell.064
+    400028: Icosphere.007_cell.065
+    400030: Icosphere.007_cell.066
+    400032: Icosphere.007_cell.067
+    400034: Icosphere.007_cell.068
+    400036: Icosphere.007_cell.069
+    400038: Icosphere.007_cell.070
+    400040: //RootNode
+    2100000: Material.008
+    2300000: Icosphere.007_cell.051
+    2300002: Icosphere.007_cell.052
+    2300004: Icosphere.007_cell.053
+    2300006: Icosphere.007_cell.054
+    2300008: Icosphere.007_cell.055
+    2300010: Icosphere.007_cell.056
+    2300012: Icosphere.007_cell.057
+    2300014: Icosphere.007_cell.058
+    2300016: Icosphere.007_cell.059
+    2300018: Icosphere.007_cell.060
+    2300020: Icosphere.007_cell.061
+    2300022: Icosphere.007_cell.062
+    2300024: Icosphere.007_cell.063
+    2300026: Icosphere.007_cell.064
+    2300028: Icosphere.007_cell.065
+    2300030: Icosphere.007_cell.066
+    2300032: Icosphere.007_cell.067
+    2300034: Icosphere.007_cell.068
+    2300036: Icosphere.007_cell.069
+    2300038: Icosphere.007_cell.070
+    3300000: Icosphere.007_cell.051
+    3300002: Icosphere.007_cell.052
+    3300004: Icosphere.007_cell.053
+    3300006: Icosphere.007_cell.054
+    3300008: Icosphere.007_cell.055
+    3300010: Icosphere.007_cell.056
+    3300012: Icosphere.007_cell.057
+    3300014: Icosphere.007_cell.058
+    3300016: Icosphere.007_cell.059
+    3300018: Icosphere.007_cell.060
+    3300020: Icosphere.007_cell.061
+    3300022: Icosphere.007_cell.062
+    3300024: Icosphere.007_cell.063
+    3300026: Icosphere.007_cell.064
+    3300028: Icosphere.007_cell.065
+    3300030: Icosphere.007_cell.066
+    3300032: Icosphere.007_cell.067
+    3300034: Icosphere.007_cell.068
+    3300036: Icosphere.007_cell.069
+    3300038: Icosphere.007_cell.070
+    4300000: Icosphere.007_cell.051
+    4300002: Icosphere.007_cell.052
+    4300004: Icosphere.007_cell.053
+    4300006: Icosphere.007_cell.054
+    4300008: Icosphere.007_cell.055
+    4300010: Icosphere.007_cell.056
+    4300012: Icosphere.007_cell.057
+    4300014: Icosphere.007_cell.058
+    4300016: Icosphere.007_cell.059
+    4300018: Icosphere.007_cell.060
+    4300020: Icosphere.007_cell.061
+    4300022: Icosphere.007_cell.062
+    4300024: Icosphere.007_cell.063
+    4300026: Icosphere.007_cell.064
+    4300028: Icosphere.007_cell.065
+    4300030: Icosphere.007_cell.066
+    4300032: Icosphere.007_cell.067
+    4300034: Icosphere.007_cell.068
+    4300036: Icosphere.007_cell.069
+    4300038: Icosphere.007_cell.070
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.008
+    second: {fileID: 2100000, guid: 39f6d6825cac00c43bb49331c5f01686, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

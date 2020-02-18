@@ -22,10 +22,10 @@ MonoBehaviour:
     solarSystemParent: {fileID: 0}
     generateCollider: 1
     modelos:
-    - {fileID: 257180077520769246, guid: 84570321378b03f42a799be478870b52, type: 3}
+    - {fileID: 7036128716210877085, guid: e1451d271255b4f40942657247057a2c, type: 3}
     randomScale: 1
     minScale: 0.5
-    maxScale: 1
+    maxScale: 2
     startHeight: 0
     endHeight: 0
     offsetHeight: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
     materiales: []
   - nombre: SolarSystem
     generationMode: 0
-    radius: 15
+    radius: 17
     rejectionSamples: 8
     typeOfStelarObject: 1
     solarSystemParent: {fileID: 881523598912456800, guid: 98e004fdd18df2e4fa50149162dcc155,
