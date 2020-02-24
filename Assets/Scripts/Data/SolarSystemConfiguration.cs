@@ -32,6 +32,8 @@ public struct SolarSystemData
           public float SunMinScale;
           public float SunMaxScale;
 
-          public float PlanetsMinVelocity;
-          public float PlanetsMaxVelocity;
+          public float PlanetsMinTVelocity;
+          public float PlanetsMaxTVelocity;
+          public float PlanetsMinRVelocity;
+          public float PlanetsMaxRVelocity;
 }

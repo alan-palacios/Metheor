@@ -8,7 +8,7 @@ PlayerSettings:
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 2
+  defaultScreenOrientation: 0
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -61,10 +61,10 @@ PlayerSettings:
   allowedAutorotateToLandscapeLeft: 1
   useOSAutorotation: 1
   use32BitDisplayBuffer: 1
-  preserveFramebufferAlpha: 1
+  preserveFramebufferAlpha: 0
   disableDepthAndStencilBuffers: 0
   androidStartInFullscreen: 1
-  androidRenderOutsideSafeArea: 0
+  androidRenderOutsideSafeArea: 1
   androidBlitType: 2
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
@@ -148,7 +148,7 @@ PlayerSettings:
       v2Signing: 0
     enable360StereoCapture: 0
   protectGraphicsMemory: 0
-  enableFrameTimingStats: 1
+  enableFrameTimingStats: 0
   useHDRDisplay: 0
   m_ColorGamuts: 0000000003000000
   targetPixelDensity: 30

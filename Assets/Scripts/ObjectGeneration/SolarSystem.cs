@@ -33,7 +33,7 @@ public class SolarSystem : MonoBehaviour
                               float rndAngle = Random.Range (0,2*Mathf.PI);
 
                               Vector3 position = new Vector3( dstFromSun * Mathf.Cos(rndAngle), 0, dstFromSun * Mathf.Sin(rndAngle) );
-                              angles = new Vector3( 0, Random.Range(0, 36)*10, 0);
+                              angles = new Vector3( Random.Range(0, 36)*10, Random.Range(0, 36)*10, Random.Range(0, 36)*10);
 
                               planets[i].planet = GameObject.Instantiate( planetPlaced, position, Quaternion.Euler(angles) ) as GameObject;
                               planets[i].planet.transform.SetParent( transform, false);
@@ -41,11 +41,19 @@ public class SolarSystem : MonoBehaviour
                               planets[i].planet.transform.localScale = Vector3.one*Mathf.Floor (newScale / 0.1f)*0.1f;
 
                               planets[i].dstFromSun = dstFromSun;
-                              float velocity = Random.Range(solarSystemConfiguration.solarSystemData.PlanetsMinVelocity, solarSystemConfiguration.solarSystemData.PlanetsMaxVelocity);
+
+                              float trasVelocity = Random.Range(solarSystemConfiguration.solarSystemData.PlanetsMinTVelocity, solarSystemConfiguration.solarSystemData.PlanetsMaxTVelocity);
                               if (Random.value > 0.5f) {
-                                        velocity*=-1;
+                                        trasVelocity*=-1;
                               }
-                              planets[i].velocity = velocity;
+                              planets[i].trasVelocity = trasVelocity;
+
+                              float rotVelocity = Random.Range(solarSystemConfiguration.solarSystemData.PlanetsMinRVelocity, solarSystemConfiguration.solarSystemData.PlanetsMaxRVelocity);
+                              if (Random.value > 0.5f) {
+                                        rotVelocity*=-1;
+                              }
+                              planets[i].rotVelocity = rotVelocity;
+
                               planets[i].angle = rndAngle;
 
                               GameObject orbit = GameObject.Instantiate( solarSystemConfiguration.solarSystemData.orbit) as GameObject;
@@ -63,10 +71,29 @@ public class SolarSystem : MonoBehaviour
                     for (int i=0; i<planets.Length; i++) {
 
                               //if (planets[i].planet != null) {
-                                        planets[i].planet.transform.RotateAround (sun.transform.position, Vector3.up, planets[i].velocity * Time.deltaTime);
+                                        planets[i].planet.transform.RotateAround (sun.transform.position, Vector3.up, planets[i].trasVelocity * Time.deltaTime);
+                                        planets[i].planet.transform.Rotate (0,planets[i].rotVelocity,0, Space.World);
                               //}
 
                     }
+          }
+
+          public IEnumerator DestruirPlaneta(GameObject GroupOfPlanets){
+              GameObject planetFract = GroupOfPlanets.transform.GetChild(1).gameObject;
+              Vector3 disminucionEscala = new Vector3( 0.1f, 0.1f, 0.1f);
+              float timeBetwenChange = 0.15f;
+
+              while(planetFract.transform.GetChild(0).gameObject.transform.localScale.x>0){
+
+                        for(int i = 0; i < planetFract.transform.childCount; i++){
+                                   GameObject g = planetFract.transform.GetChild(i).gameObject;
+                                   g.transform.localScale -= disminucionEscala;
+                         }
+                    yield return new WaitForSeconds(timeBetwenChange);
+
+              }
+              BorrarPlaneta(GroupOfPlanets);
+              Destroy(GroupOfPlanets);
           }
 
           public void BorrarPlaneta(GameObject planet){
@@ -87,6 +114,7 @@ public class SolarSystem : MonoBehaviour
 struct Planet{
           public GameObject planet;
           public float dstFromSun;
-          public float velocity;
+          public float trasVelocity;
+          public float rotVelocity;
           public float angle;
 }

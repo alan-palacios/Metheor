@@ -33,16 +33,32 @@ MonoBehaviour:
     materiales: []
   - nombre: SolarSystem
     generationMode: 0
-    radius: 17
-    rejectionSamples: 8
+    radius: 22
+    rejectionSamples: 12
     typeOfStelarObject: 1
     solarSystemParent: {fileID: 881523598912456800, guid: 98e004fdd18df2e4fa50149162dcc155,
       type: 3}
     generateCollider: 1
-    modelos:
-    - {fileID: 257180077520769246, guid: 84570321378b03f42a799be478870b52, type: 3}
+    modelos: []
     randomScale: 1
     minScale: 0.5
+    maxScale: 1
+    startHeight: 0
+    endHeight: 0
+    offsetHeight: 0
+    randomMaterial: 0
+    materiales: []
+  - nombre: Asteroids
+    generationMode: 0
+    radius: 20
+    rejectionSamples: 8
+    typeOfStelarObject: 0
+    solarSystemParent: {fileID: 0}
+    generateCollider: 1
+    modelos:
+    - {fileID: 3606275224673147834, guid: afc55b822baa52849944715e0c347505, type: 3}
+    randomScale: 1
+    minScale: 0.7
     maxScale: 1
     startHeight: 0
     endHeight: 0

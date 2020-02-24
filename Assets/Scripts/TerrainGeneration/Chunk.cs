@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Chunk
 {
-          GameObject [][] objetos;
+          //GameObject [][] objetos;
           public GameObject background;
           GameObject displayedObjectsParent;
           public GameObject chunkGameObject;
@@ -87,7 +87,7 @@ public class Chunk
                                                   displayedObjectsParent.SetActive(true);
                                                   //el valor de los objetos y waterObj no se altera, tiene que pasarse con ref
                                                   if (!objectsGenerated) {
-                                                            ObjectGenerator.GenerateObjectsInGame(objetos, objectPlacingList, chunkSize,  displayedObjectsParent, coord, viewer.localScale.x );
+                                                            ObjectGenerator.GenerateObjectsInGame(objectPlacingList, chunkSize,  displayedObjectsParent, coord, viewer.localScale.x );
                                                             objectsGenerated=true;
                                                   }
                                         }

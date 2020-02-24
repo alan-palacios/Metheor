@@ -92,9 +92,9 @@ public static class ObjectGenerator
 
           }
 
-          public static void GenerateObjectsInGame(  GameObject[][] objetos, ObjectPlacingList objectPlacingList,
+          public static void GenerateObjectsInGame(   ObjectPlacingList objectPlacingList,
                      float chunkSize,  GameObject parentObj, Vector2 coord, float localScale){
-
+                               GameObject [][] objetos;
                               int longLista = objectPlacingList.objectsSettings.Length;
                               if (longLista>0) {
                                         objetos = new GameObject[longLista][];
