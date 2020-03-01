@@ -13,7 +13,6 @@ public class SolarSystem : MonoBehaviour
           void Start(){
 
                     //Instantiating sun
-                    List<Vector3> drawPoints = new List<Vector3>();
                     int sunModelsCount = solarSystemConfiguration.solarSystemData.suns.Length;
                     int planetsModelsCount = solarSystemConfiguration.solarSystemData.planets.Length;
                     GameObject sunPlaced = solarSystemConfiguration.solarSystemData.suns[Random.Range(0,sunModelsCount)];
@@ -58,11 +57,11 @@ public class SolarSystem : MonoBehaviour
 
                               GameObject orbit = GameObject.Instantiate( solarSystemConfiguration.solarSystemData.orbit) as GameObject;
                               orbit.transform.SetParent( transform, false);
-                              orbit.DrawCircle(dstFromSun, 0.05f);
+                              orbit.DrawCircle(dstFromSun, 0.2f, solarSystemConfiguration.solarSystemData.orbitMaterials[i%3]);
 
                     }
-                    GameObject light = GameObject.Instantiate( solarSystemConfiguration.solarSystemData.light) as GameObject;
-                    light.transform.SetParent( transform, false);
+                    //GameObject light = GameObject.Instantiate( solarSystemConfiguration.solarSystemData.light) as GameObject;
+                    //light.transform.SetParent( transform, false);
           }
 
           void Update(){

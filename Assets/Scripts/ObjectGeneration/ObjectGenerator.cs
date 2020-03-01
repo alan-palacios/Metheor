@@ -28,7 +28,7 @@ public static class ObjectGenerator
                                                   objetos[i]= new GameObject[points.Count];
 
                                                   for (int j=0; j<objetos[i].Length; j++) {
-                                                            if(objectPlacingList.objectsSettings[i].typeOfStelarObject == ObjectData.TypeOfStelarObject.Planet){
+                                                            /*if(objectPlacingList.objectsSettings[i].typeOfStelarObject == ObjectData.TypeOfStelarObject.Planet){
                                                                       int modelsCount = objectPlacingList.objectsSettings[i].modelos.Length;
 
                                                                       GameObject objectPlaced = objectPlacingList.objectsSettings[i].modelos[Random.Range(0,modelsCount)];
@@ -56,12 +56,28 @@ public static class ObjectGenerator
 
                                                                                 objetos[i][j].transform.localScale = Vector3.one*Mathf.Floor (newScale / 0.1f)*0.1f;
                                                                       }
+                                                            }*/
+
+                                                            if(objectPlacingList.objectsSettings[i].typeOfStelarObject == ObjectData.TypeOfStelarObject.Asteroids){
+
+                                                                      GameObject objectPlaced = objectPlacingList.objectsSettings[i].objectParent;
+
+                                                                      float xCoord = -chunkSize/2+points[j].x;
+                                                                      float yCoord = -chunkSize/2+points[j].y;
+                                                                      float heightCoord = 0;
+                                                                      objetos[i][j] = GameObject.Instantiate(objectPlaced, new Vector3(  xCoord, heightCoord  ,yCoord)  , Quaternion.identity, parent ) as GameObject;
+                                                            }
+                                                            if(objectPlacingList.objectsSettings[i].typeOfStelarObject == ObjectData.TypeOfStelarObject.SingleAstroObject){
+                                                                      GameObject objectPlaced = objectPlacingList.objectsSettings[i].objectParent;
+
+                                                                      float xCoord = -chunkSize/2+points[j].x;
+                                                                      float yCoord = -chunkSize/2+points[j].y;
+                                                                      float heightCoord = 0;
+                                                                      objetos[i][j] = GameObject.Instantiate(objectPlaced, new Vector3(  xCoord, heightCoord  ,yCoord)  , Quaternion.identity, parent ) as GameObject;
                                                             }
                                                             if(objectPlacingList.objectsSettings[i].typeOfStelarObject == ObjectData.TypeOfStelarObject.SolarSystem){
 
-                                                                      GameObject objectPlaced = objectPlacingList.objectsSettings[i].solarSystemParent;
-
-                                                                      MeshFilter viewedModelFilter = objectPlaced.GetComponent<MeshFilter>();
+                                                                      GameObject objectPlaced = objectPlacingList.objectsSettings[i].objectParent;
 
                                                                       float xCoord = -chunkSize/2+points[j].x;
                                                                       float yCoord = -chunkSize/2+points[j].y;
@@ -70,9 +86,6 @@ public static class ObjectGenerator
                                                                       //float heightCoord = heightValues[ (int)points[j].x, (int)points[j].y ] +
                                                                       //                                        viewedModelFilter.sharedMesh.bounds.size.y*objectPlaced.transform.localScale.y/2 -
                                                                       //                                        objectPlacingList.objectsSettings[i].offsetHeight;
-
-
-                                                                      Vector3 angles = new Vector3( 0, Random.Range(0, 36)*10, 0);
                                                                       objetos[i][j] = GameObject.Instantiate(objectPlaced, new Vector3(  xCoord, heightCoord  ,yCoord)  , Quaternion.identity, parent ) as GameObject;
                                                             }
                                                   }
@@ -119,7 +132,7 @@ public static class ObjectGenerator
                                                             objetos[i]= new GameObject[points.Count];
 
                                                             for (int j=0; j<objetos[i].Length; j++) {
-                                                                      if(objectPlacingList.objectsSettings[i].typeOfStelarObject == ObjectData.TypeOfStelarObject.Planet){
+                                                                      /*if(objectPlacingList.objectsSettings[i].typeOfStelarObject == ObjectData.TypeOfStelarObject.Planet){
                                                                                 int modelsCount = objectPlacingList.objectsSettings[i].modelos.Length;
 
                                                                                 GameObject objectPlaced = objectPlacingList.objectsSettings[i].modelos[Random.Range(0,modelsCount)];
@@ -134,9 +147,7 @@ public static class ObjectGenerator
 
                                                                                 objetos[i][j] = GameObject.Instantiate(objectPlaced, new Vector3(  xCoord, heightCoord  ,yCoord)  , Quaternion.Euler(angles), parentObj.transform) as GameObject;
 
-                                                                                /*Vector3 newScale = objetos[i][j].transform.localScale;
-                                                                                newScale *= 1.6f;
-                                                                                objetos[i][j].transform.localScale = newScale;*/
+
                                                                                 if (objectPlacingList.objectsSettings[i].randomMaterial) {
                                                                                           int materialCount = objectPlacingList.objectsSettings[i].materiales.Length;
                                                                                           Renderer objRenderer = objetos[i][j].GetComponent<Renderer>();
@@ -151,12 +162,26 @@ public static class ObjectGenerator
                                                                                           MeshCollider meshCollider = objetos[i][j].AddComponent<MeshCollider>();
                                                                                           meshCollider.enabled = false;
                                                                                 }
+                                                                      }*/
+                                                                      if(objectPlacingList.objectsSettings[i].typeOfStelarObject == ObjectData.TypeOfStelarObject.Asteroids){
+                                                                                GameObject objectPlaced = objectPlacingList.objectsSettings[i].objectParent;
+
+                                                                                float xCoord =  coord.x*chunkSize-chunkSize/2+points[j].x;
+                                                                                float yCoord = coord.y*chunkSize-chunkSize/2+points[j].y;
+                                                                                float heightCoord = 0;
+                                                                                objetos[i][j] = GameObject.Instantiate(objectPlaced, new Vector3(  xCoord, heightCoord  ,yCoord)  , Quaternion.identity, parentObj.transform ) as GameObject;
+                                                                      }
+                                                                      if(objectPlacingList.objectsSettings[i].typeOfStelarObject == ObjectData.TypeOfStelarObject.SingleAstroObject){
+                                                                                GameObject objectPlaced = objectPlacingList.objectsSettings[i].objectParent;
+
+                                                                                float xCoord =  coord.x*chunkSize-chunkSize/2+points[j].x;
+                                                                                float yCoord = coord.y*chunkSize-chunkSize/2+points[j].y;
+                                                                                float heightCoord = 0;
+                                                                                objetos[i][j] = GameObject.Instantiate(objectPlaced, new Vector3(  xCoord, heightCoord  ,yCoord)  , Quaternion.identity, parentObj.transform ) as GameObject;
                                                                       }
                                                                       if(objectPlacingList.objectsSettings[i].typeOfStelarObject == ObjectData.TypeOfStelarObject.SolarSystem){
 
-                                                                                GameObject objectPlaced = objectPlacingList.objectsSettings[i].solarSystemParent;
-
-                                                                                MeshFilter viewedModelFilter = objectPlaced.GetComponent<MeshFilter>();
+                                                                                GameObject objectPlaced = objectPlacingList.objectsSettings[i].objectParent;
 
                                                                                 float xCoord =  coord.x*chunkSize-chunkSize/2+points[j].x;
                                                                                 float yCoord = coord.y*chunkSize-chunkSize/2+points[j].y;

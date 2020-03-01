@@ -14,54 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoUpdate: 1
   objectsSettings:
-  - nombre: Planet
+  - nombre: Spike Rock
     generationMode: 0
+    typeOfStelarObject: 3
+    objectParent: {fileID: 3836171514278267402, guid: e03250a3edfa9404d96e71b3b5272c7b,
+      type: 3}
     radius: 15
     rejectionSamples: 8
-    typeOfStelarObject: 0
-    solarSystemParent: {fileID: 0}
-    generateCollider: 1
-    modelos:
-    - {fileID: 7036128716210877085, guid: e1451d271255b4f40942657247057a2c, type: 3}
-    randomScale: 1
-    minScale: 0.5
-    maxScale: 2
-    startHeight: 0
-    endHeight: 0
-    offsetHeight: 0
-    randomMaterial: 0
-    materiales: []
   - nombre: SolarSystem
     generationMode: 0
+    typeOfStelarObject: 1
+    objectParent: {fileID: 881523598912456800, guid: 98e004fdd18df2e4fa50149162dcc155,
+      type: 3}
     radius: 22
     rejectionSamples: 12
-    typeOfStelarObject: 1
-    solarSystemParent: {fileID: 881523598912456800, guid: 98e004fdd18df2e4fa50149162dcc155,
-      type: 3}
-    generateCollider: 1
-    modelos: []
-    randomScale: 1
-    minScale: 0.5
-    maxScale: 1
-    startHeight: 0
-    endHeight: 0
-    offsetHeight: 0
-    randomMaterial: 0
-    materiales: []
   - nombre: Asteroids
     generationMode: 0
+    typeOfStelarObject: 2
+    objectParent: {fileID: 4431244805808537972, guid: c9cc59cf849ba5f4c9504d38c38b0d6f,
+      type: 3}
     radius: 20
     rejectionSamples: 8
-    typeOfStelarObject: 0
-    solarSystemParent: {fileID: 0}
-    generateCollider: 1
-    modelos:
-    - {fileID: 3606275224673147834, guid: afc55b822baa52849944715e0c347505, type: 3}
-    randomScale: 1
-    minScale: 0.7
-    maxScale: 1
-    startHeight: 0
-    endHeight: 0
-    offsetHeight: 0
-    randomMaterial: 0
-    materiales: []

@@ -8,36 +8,25 @@ public class ObjectPlacingList : UpdatableData
     public ObjectData [] objectsSettings;
 }
 
-
 [System.Serializable]
 public struct ObjectData
 {
           public string nombre;
+          //type of generation
           public enum GenerationMode { PDS};
           public GenerationMode generationMode;
+          //type of object
+          public enum TypeOfStelarObject { Planet, SolarSystem, Asteroids, SingleAstroObject};
+          public TypeOfStelarObject typeOfStelarObject;
 
+          public GameObject objectParent;
           //PDS mode settings
           public float radius;
           public int rejectionSamples;
 
-          //type of object
-          public enum TypeOfStelarObject { Planet, SolarSystem};
-          public TypeOfStelarObject typeOfStelarObject;
-          public GameObject solarSystemParent;
-
-          //Noise mode settings
-          public bool generateCollider;
-          public GameObject [] modelos;
-
-          public bool randomScale;
+          /*public bool randomScale;
           public float minScale;
-          public float maxScale;
+          public float maxScale;*/
 
-          public float startHeight;
-          public float endHeight;
-          public float offsetHeight;
-
-          public bool randomMaterial;
-          public Material [] materiales;
 
 }

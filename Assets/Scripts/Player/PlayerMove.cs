@@ -45,7 +45,7 @@ public class PlayerMove : MonoBehaviour
           restartButton.GetComponent<Button>().onClick.AddListener(RestartGame);
           pauseButton.GetComponent<Button>().onClick.AddListener(PauseGame);
           inGameRestartButton.GetComponent<Button>().onClick.AddListener(RestartGame);
-          
+
           maxWidthScreenController = Screen.width/4;
     }
 
@@ -101,10 +101,10 @@ public class PlayerMove : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-              GameObject planet = collision.gameObject;
-             if (planet.tag == "CompletePlanet"){
+              GameObject objColl = collision.gameObject;
+             if (objColl.tag == "CompletePlanet"){
                        //father of the complete and fract planet
-                       GameObject GroupOfPlanets = planet.transform.parent.gameObject;
+                       GameObject GroupOfPlanets = objColl.transform.parent.gameObject;
                        //father solar system with all the types of planet
                        GameObject GroupSolarSystem = GroupOfPlanets.transform.parent.gameObject;
                        //Ouput the Collision to the console
@@ -116,15 +116,25 @@ public class PlayerMove : MonoBehaviour
                       }else{
 
                                 StartCoroutine( EstablecerVelocidadOriginal(impulseVelocityAdded) );
-                                score++;
+                                score+=GroupSolarSystem.GetComponent<SolarSystem>().solarSystemConfiguration.solarSystemData.scoreGived;
                                 float newScale = GroupOfPlanets.transform.localScale.x/incremmentOfScale;
                                 transform.localScale+= new Vector3(newScale, newScale, newScale);
                                 UpdateScore();
-                                planet.SetActive(false);
+                                objColl.SetActive(false);
                                 GroupOfPlanets.transform.GetChild(1).gameObject.SetActive(true);
                                 StartCoroutine( GroupSolarSystem.GetComponent<SolarSystem>().DestruirPlaneta(GroupOfPlanets) );
 
                       }
+             }
+             else if (objColl.tag == "Asteroid"){
+                       //StartCoroutine( EstablecerVelocidadOriginal(impulseVelocityAdded) );
+                       GameObject GroupOfAsteroids = objColl.transform.parent.gameObject;
+                      //StartCoroutine( EstablecerVelocidadOriginal(impulseVelocityAdded) );
+                      score+=GroupOfAsteroids.GetComponent<Asteroids>().asteroidsConfiguration.scoreGived;
+                      float newScale = 1/GroupOfAsteroids.GetComponent<Asteroids>().asteroidsConfiguration.incremmentOfScale;
+                      transform.localScale+= new Vector3(newScale, newScale, newScale);
+                      UpdateScore();
+                      StartCoroutine( GroupOfAsteroids.GetComponent<Asteroids>().DestruirAsteroide(objColl) );
              }
 
     }

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2916a6763977724ebad9b1552fcafa8, type: 3}
+  m_Name: Asteroids Configuration
+  m_EditorClassIdentifier: 
+  autoUpdate: 1
+  asteroidsModels:
+  - {fileID: 3595914864320931283, guid: dd1e024a9df2bc64097d02b7651b4748, type: 3}
+  - {fileID: 5801232621038623103, guid: 73e83aad5e0422848aee4e727b9abb97, type: 3}
+  - {fileID: 5386869650110301852, guid: fb87b7c3c7657e44c9ea95d58e7d9650, type: 3}
+  - {fileID: 6033457356555393770, guid: 8d6e5e2d0b98a3649a93891d2d8aa318, type: 3}
+  - {fileID: 7465188350290204140, guid: 45b407b298a9bb449841e7ca0cd611cc, type: 3}
+  - {fileID: 6663555785073907190, guid: 1734c5b03539f4f48a58d7b6cb57891d, type: 3}
+  - {fileID: 2974340720077000597, guid: 56e9506411b4e754186a6e7c8db2c34c, type: 3}
+  - {fileID: 5444673969180045236, guid: 1273f2234bad6f6468b903226020c12a, type: 3}
+  - {fileID: 641178031750182196, guid: 70ebaacb3466c2e43a771cd51434c7a6, type: 3}
+  - {fileID: 315903848272722222, guid: 82aa8c5f0d52987449b51dc3b5f6bba3, type: 3}
+  materials: {fileID: 0}
+  scoreGived: 1
+  incremmentOfScale: 30
+  minNumOfAsteroids: 10
+  maxNumOfAsteroids: 18
+  AsteroidsMinScale: 1
+  AsteroidsMaxScale: 1.8
+  maxDst: 4
+  minDst: 0

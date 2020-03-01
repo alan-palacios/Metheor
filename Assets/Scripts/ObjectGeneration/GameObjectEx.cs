@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class GameObjectEx
 {
-    public static void DrawCircle(this GameObject container, float radius, float lineWidth)
+    public static void DrawCircle(this GameObject container, float radius, float lineWidth, Material material)
     {
         var segments = 360;
         var line = container.GetComponent<LineRenderer>();
@@ -23,6 +23,7 @@ public static class GameObjectEx
         }
 
         line.SetPositions(points);
+        line.material = material;
     }
 
 }

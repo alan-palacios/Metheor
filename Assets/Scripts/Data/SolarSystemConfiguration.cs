@@ -18,7 +18,8 @@ public struct SolarSystemData
           public GameObject [] planets;
           public GameObject orbit;
           public GameObject light;
-
+          public Material [] orbitMaterials;
+          public int scoreGived;          
           public int minNumOfPlanets;
           public int maxNumOfPlanets;
 
