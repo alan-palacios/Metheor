@@ -5,14 +5,16 @@ using UnityEngine;
 public static class ObjectGenerator
 {
           public static void GenerateObjectsInPreview(ref GameObject[][] objetos, ObjectPlacingList objectPlacingList,
-                     float chunkSize,  Transform parent){
+                     float chunkSize,  Transform parent, int score){
                     int longLista = objectPlacingList.objectsSettings.Length;
                     if (longLista>0) {
                               objetos = new GameObject[longLista][];
 
                               for (int i=0; i<longLista; i++) {
 
-                                        if(objectPlacingList.objectsSettings[i].generationMode == ObjectData.GenerationMode.PDS){
+                                        if(objectPlacingList.objectsSettings[i].generationMode == ObjectData.GenerationMode.PDS &&
+                                                  score >= objectPlacingList.objectsSettings[i].minScoreToAppear &&
+                                                  score <= objectPlacingList.objectsSettings[i].maxScoreToAppear ){
                                                   List <Vector2> originalPoints = PoissonDiscSampling.GeneratePoints(objectPlacingList.objectsSettings[i].radius,
                                                             new Vector2( chunkSize, chunkSize), objectPlacingList.objectsSettings[i].rejectionSamples );
 
@@ -106,7 +108,7 @@ public static class ObjectGenerator
           }
 
           public static void GenerateObjectsInGame(   ObjectPlacingList objectPlacingList,
-                     float chunkSize,  GameObject parentObj, Vector2 coord, float localScale){
+                     float chunkSize,  GameObject parentObj, Vector2 coord, float localScale, int score){
                                GameObject [][] objetos;
                               int longLista = objectPlacingList.objectsSettings.Length;
                               if (longLista>0) {
@@ -114,7 +116,9 @@ public static class ObjectGenerator
 
                                         for (int i=0; i<longLista; i++) {
 
-                                                  if(objectPlacingList.objectsSettings[i].generationMode == ObjectData.GenerationMode.PDS){
+                                                  if(objectPlacingList.objectsSettings[i].generationMode == ObjectData.GenerationMode.PDS &&
+                                                            score >= objectPlacingList.objectsSettings[i].minScoreToAppear &&
+                                                            score <= objectPlacingList.objectsSettings[i].maxScoreToAppear ){
 
 
                                                             List <Vector2> originalPoints = PoissonDiscSampling.GeneratePoints(objectPlacingList.objectsSettings[i].radius,

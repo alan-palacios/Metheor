@@ -20,8 +20,9 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - Vector1_8B0FC7D: 0.06
+    - Vector1_8B0FC7D: 0.07
     - Vector1_B3B4FA51: -7.36
     m_Colors:
+    - Color_250A95A5: {r: 0.23696156, g: 0.39684305, b: 0.6698113, a: 0}
     - Color_9E6F05E7: {r: 0.6567283, g: 0.73548895, b: 0.8867924, a: 0}
-    - Color_B680DF97: {r: 0.04013884, g: 0.044789053, b: 0.20754719, a: 0}
+    - Color_B680DF97: {r: 0.08235294, g: 0.10588236, b: 0.19607845, a: 0}

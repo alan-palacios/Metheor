@@ -22,12 +22,17 @@ public class TerrainGenerator : MonoBehaviour {
 
 	Dictionary<Vector2, Chunk> chunkDictionary = new Dictionary<Vector2, Chunk>();
 	List<Chunk> visibleChunks = new List<Chunk>();
-	public ObjectPlacingList objectPlacingList;
+
+	public ObjectPlacingList objectPlacingListOriginal;
+	ObjectPlacingList objectPlacingList;
+
+	public PlayerMove playerScript;
 	public GameObject background;
 
 	void Start() {
-
-		//chunkSize = biomesList.biomes[0].meshSettings.chunkSize;//-1
+		objectPlacingList = ScriptableObject.CreateInstance<ObjectPlacingList>();
+		objectPlacingList.objectsSettings = (ObjectData[]) objectPlacingListOriginal.objectsSettings.Clone();
+		playerScript.objPlacingList = objectPlacingList;
 		chunksVisibleInViewDst = Mathf.RoundToInt(maxViewDst / chunkSize);
 
 		UpdateVisibleChunks();

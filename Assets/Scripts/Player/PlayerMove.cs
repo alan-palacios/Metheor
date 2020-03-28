@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class PlayerMove : MonoBehaviour
 {
     // Start is called before the first frame update
+    public ObjectPlacingList objPlacingList;
+
     private Rigidbody rb;
     float originalSpeed;
     float maxWidthScreenController;
@@ -25,7 +27,7 @@ public class PlayerMove : MonoBehaviour
     public GameObject  pauseButton;
     public GameObject  inGameRestartButton;
     private GameObject  meteoriteModel;
-    private int score =0;
+    public int score =0;
     private bool paused=false;
     void Start()
     {
@@ -118,7 +120,7 @@ public class PlayerMove : MonoBehaviour
                                 StartCoroutine( EstablecerVelocidadOriginal(impulseVelocityAdded) );
                                 score+=GroupSolarSystem.GetComponent<SolarSystem>().solarSystemConfiguration.solarSystemData.scoreGived;
                                 float newScale = GroupOfPlanets.transform.localScale.x/incremmentOfScale;
-                                transform.localScale+= new Vector3(newScale, newScale, newScale);
+                                //transform.localScale+= new Vector3(newScale, newScale, newScale);
                                 UpdateScore();
                                 objColl.SetActive(false);
                                 GroupOfPlanets.transform.GetChild(1).gameObject.SetActive(true);
@@ -132,10 +134,41 @@ public class PlayerMove : MonoBehaviour
                       //StartCoroutine( EstablecerVelocidadOriginal(impulseVelocityAdded) );
                       score+=GroupOfAsteroids.GetComponent<Asteroids>().asteroidsConfiguration.scoreGived;
                       float newScale = 1/GroupOfAsteroids.GetComponent<Asteroids>().asteroidsConfiguration.incremmentOfScale;
-                      transform.localScale+= new Vector3(newScale, newScale, newScale);
+                      //transform.localScale+= new Vector3(newScale, newScale, newScale);
                       UpdateScore();
                       StartCoroutine( GroupOfAsteroids.GetComponent<Asteroids>().DestruirAsteroide(objColl) );
              }
+             else if (objColl.tag == "Satellite"){
+
+                       GameObject GroupOfSatellite = objColl.transform.parent.gameObject;
+                       GameObject MasterParent = GroupOfSatellite.transform.parent.gameObject;
+
+                       for(int i = 0; i < GroupOfSatellite.transform.childCount; i++){
+                                  GameObject g = GroupOfSatellite.transform.GetChild(i).gameObject;
+                                  g.GetComponent<Rigidbody>().isKinematic = false;
+                        }
+
+                      score+=MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived;
+                      float newScale = 1/MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.decremmentOfScale;
+                      UpdateScore();
+                      StartCoroutine( MasterParent.GetComponent<SingleAstroObject>().DestruirObjeto(objColl) );
+             }
+             else if (objColl.tag == "Astronaut"){
+
+                       GameObject GroupOfSatellite = objColl;
+                       GameObject MasterParent = GroupOfSatellite.transform.parent.gameObject;
+
+                      score+=MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived;
+                      objPlacingList.objectsSettings[5].radius+= objPlacingList.objectsSettings[5].radiusDecremment;
+                      //MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scaleDec+=scaleDec;
+                      //transform.localScale+= new Vector3(newScale, newScale, newScale);
+                      UpdateScore();
+                      StartCoroutine( MasterParent.GetComponent<SingleAstroObject>().DestruirObjeto(objColl) );
+            }else if (objColl.tag == "MeteorEnemy"){
+                       UpdateScore("You lost");
+                       Time.timeScale = 0;
+                       restartButton.SetActive(true);
+            }
 
     }
 

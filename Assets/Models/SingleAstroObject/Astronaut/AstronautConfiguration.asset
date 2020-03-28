@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b2dfefd54237b4ab940d661e99ca03, type: 3}
+  m_Name: AstronautConfiguration
+  m_EditorClassIdentifier: 
+  autoUpdate: 1
+  generateCollider: 1
+  models:
+  - {fileID: 753771638694384330, guid: 90a1bd753d00e4a47bdf5c5fe58695f3, type: 3}
+  - {fileID: 1976866493285527393, guid: 56feaf94ae783b948b549f7ed328db36, type: 3}
+  - {fileID: 3525759859310701289, guid: ab73b25dd1f63a7438d3861666390d3f, type: 3}
+  - {fileID: 3909529090976609432, guid: c32aa65e64f016243a8bd715786e122e, type: 3}
+  - {fileID: 7730449658787718443, guid: 8c6473b03b16fc94eb4a792f34cc617e, type: 3}
+  - {fileID: 7302656226960050654, guid: 47e050608d167f04293ecef3f4b073a1, type: 3}
+  - {fileID: 7682187188091529407, guid: dfc9afff34de93b47bca4205044cc120, type: 3}
+  - {fileID: 1483658986386671357, guid: ecd461e075ea8764fa92ae1afdbb6048, type: 3}
+  materials:
+  - {fileID: 2100000, guid: 9725d04e044b10242b2b41269cc937ae, type: 2}
+  - {fileID: 2100000, guid: e744dad57a0d49d489fce50b9557d65a, type: 2}
+  - {fileID: 2100000, guid: d5015d571045f83408c91f5458d435e6, type: 2}
+  - {fileID: 2100000, guid: e106784c1576e0146b0232d2f7d3bd7b, type: 2}
+  - {fileID: 2100000, guid: b379b3f48f58d7e478f0829b94d9e706, type: 2}
+  randomScale: 1
+  minScale: 0.9
+  maxScale: 1.3
+  zRotation: 90
+  scoreGived: 1
+  decremmentOfScale: 0.01
+  hasImpulse: 1
+  impulsePower: 1

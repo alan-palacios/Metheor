@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\Data\UpdatableData.cs" />
      <Compile Include="Assets\Scripts\ObjectGeneration\Asteroids.cs" />
      <Compile Include="Assets\Scripts\ObjectGeneration\GameObjectEx.cs" />
+     <Compile Include="Assets\Scripts\ObjectGeneration\Meteor.cs" />
      <Compile Include="Assets\Scripts\ObjectGeneration\ObjectGenerator.cs" />
      <Compile Include="Assets\Scripts\ObjectGeneration\PoissonDiscSampling.cs" />
      <Compile Include="Assets\Scripts\ObjectGeneration\SingleAstroObject.cs" />

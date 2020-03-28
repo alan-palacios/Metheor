@@ -13,6 +13,7 @@ public class MapPreview : MonoBehaviour {
 
 	public bool autoUpdate;
 	public int chunkSize;
+	public int actualScore;
 
 	public void DrawMapInEditor() {
 		if (drawMode == DrawMode.Map) {
@@ -28,7 +29,7 @@ public class MapPreview : MonoBehaviour {
 
 		displayedObjectsParent = new GameObject("Displayed Objects Parent");
 		displayedObjectsParent.transform.parent = transform;
-		ObjectGenerator.GenerateObjectsInPreview(ref objetos, objectPlacingList, chunkSize,  displayedObjectsParent.transform );
+		ObjectGenerator.GenerateObjectsInPreview(ref objetos, objectPlacingList, chunkSize,  displayedObjectsParent.transform, actualScore );
 
 		displayedObjectsParent.gameObject.SetActive(true);
 	}

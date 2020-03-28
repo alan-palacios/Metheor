@@ -25,7 +25,7 @@ public class Asteroids : MonoBehaviour
                         asteroids[i] = GameObject.Instantiate( asteroidPlaced, position, Quaternion.Euler(angles) ) as GameObject;
                         asteroids[i].transform.SetParent( transform, false);
                         float newScale = Random.Range( asteroidsConfiguration.AsteroidsMinScale, asteroidsConfiguration.AsteroidsMaxScale );
-                        asteroids[i].transform.localScale = Vector3.one*Mathf.Floor (newScale / 0.1f)*0.1f;                        
+                        asteroids[i].transform.localScale = Vector3.one*Mathf.Floor (newScale / 0.1f)*0.1f;
 
               }
 
@@ -36,7 +36,7 @@ public class Asteroids : MonoBehaviour
        Vector3 disminucionEscala = new Vector3( 0.1f, 0.1f, 0.1f);
        float timeBetwenChange = 0.1f;
 
-       while(asteroid.transform.localScale.x>0){
+       while(asteroid!=null && asteroid.transform.localScale.x>0){
               asteroid.transform.localScale -= disminucionEscala;
               yield return new WaitForSeconds(timeBetwenChange);
 

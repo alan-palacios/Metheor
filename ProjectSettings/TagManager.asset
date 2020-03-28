@@ -6,6 +6,9 @@ TagManager:
   tags:
   - CompletePlanet
   - Asteroid
+  - Satellite
+  - Astronaut
+  - MeteorEnemy
   layers:
   - Default
   - TransparentFX

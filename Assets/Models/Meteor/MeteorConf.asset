@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b2dfefd54237b4ab940d661e99ca03, type: 3}
+  m_Name: MeteorConf
+  m_EditorClassIdentifier: 
+  autoUpdate: 1
+  generateCollider: 1
+  models:
+  - {fileID: 3723160643459047414, guid: 01c94f01ec441834b84073f2e9fd68aa, type: 3}
+  materials: []
+  randomScale: 1
+  minScale: 2.5
+  maxScale: 4
+  zRotation: 0
+  scoreGived: 0
+  decremmentOfScale: 0
+  hasImpulse: 0
+  impulsePower: 0

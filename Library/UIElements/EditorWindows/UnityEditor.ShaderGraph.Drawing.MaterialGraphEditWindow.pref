@@ -28,8 +28,8 @@ MonoBehaviour:
   m_Values:
   - '{}'
   - '{}'
-  - '{"position":{"x":89.0,"y":-4.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}'
-  - '{"m_Version":0,"m_SelectedElementsArray":[]}'
+  - '{"position":{"x":1519.38427734375,"y":79.03363037109375,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}}'
+  - '{"m_Version":63,"m_SelectedElementsArray":["c531ab38-91d5-4c2a-8b1c-4b431683d6dc"]}'
   - '{}'
   - '{}'
   - '{}'

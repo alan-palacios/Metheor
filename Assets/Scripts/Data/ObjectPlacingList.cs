@@ -12,6 +12,8 @@ public class ObjectPlacingList : UpdatableData
 public struct ObjectData
 {
           public string nombre;
+          public int minScoreToAppear;
+          public int maxScoreToAppear;
           //type of generation
           public enum GenerationMode { PDS};
           public GenerationMode generationMode;
@@ -23,7 +25,7 @@ public struct ObjectData
           //PDS mode settings
           public float radius;
           public int rejectionSamples;
-
+          public float radiusDecremment;          
           /*public bool randomScale;
           public float minScale;
           public float maxScale;*/

@@ -16,7 +16,7 @@ MonoBehaviour:
   m_RequireDepthTexture: 0
   m_RequireOpaqueTexture: 0
   m_OpaqueDownsampling: 1
-  m_SupportsHDR: 1
+  m_SupportsHDR: 0
   m_MSAA: 2
   m_RenderScale: 1
   m_MainLightRenderingMode: 0
@@ -34,7 +34,7 @@ MonoBehaviour:
   m_ShadowNormalBias: 1
   m_SoftShadowsSupported: 0
   m_SupportsDynamicBatching: 1
-  m_MixedLightingSupported: 1
+  m_MixedLightingSupported: 0
   m_ShadowType: 2
   m_LocalShadowsSupported: 1
   m_LocalShadowsAtlasResolution: 1024
