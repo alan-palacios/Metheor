@@ -54,11 +54,13 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Data\AsteroidsConfiguration.cs" />
+     <Compile Include="Assets\Scripts\Data\ExplosionConfiguration.cs" />
      <Compile Include="Assets\Scripts\Data\ObjectPlacingList.cs" />
      <Compile Include="Assets\Scripts\Data\SingleAstroObjectConfiguration.cs" />
      <Compile Include="Assets\Scripts\Data\SolarSystemConfiguration.cs" />
      <Compile Include="Assets\Scripts\Data\UpdatableData.cs" />
      <Compile Include="Assets\Scripts\ObjectGeneration\Asteroids.cs" />
+     <Compile Include="Assets\Scripts\ObjectGeneration\CollectibleObject.cs" />
      <Compile Include="Assets\Scripts\ObjectGeneration\GameObjectEx.cs" />
      <Compile Include="Assets\Scripts\ObjectGeneration\Meteor.cs" />
      <Compile Include="Assets\Scripts\ObjectGeneration\ObjectGenerator.cs" />

@@ -13,8 +13,7 @@ public class SingleAstroObjectConfiguration : UpdatableData
           public float minScale;
           public float maxScale;
           public float zRotation;
-          public int scoreGived;
-          public float decremmentOfScale;
+          public int scoreGived;          
 
           public bool hasImpulse;
           public float impulsePower;

@@ -8,7 +8,7 @@ public class PlayerMove : MonoBehaviour
 {
     // Start is called before the first frame update
     public ObjectPlacingList objPlacingList;
-
+    public ExplosionConfiguration expConf;
     private Rigidbody rb;
     float originalSpeed;
     float maxWidthScreenController;
@@ -17,9 +17,15 @@ public class PlayerMove : MonoBehaviour
     public float rotationSpeed;
     public float speedOfChange;
     public int modelRotationSpeed;
-    public float incremmentOfScale;
+    //public float incremmentOfScale;
     public float impulseVelocityAdded;
     public float impulseTime;
+
+    public float velocityBoost, transicionTime, boostTime;
+
+    public GameObject explosionParticles;
+    public float explosionOffset;
+
     public Text scoreText;
     private Vector3 newCameraRot;
     private GameObject  cameraChild;
@@ -29,6 +35,7 @@ public class PlayerMove : MonoBehaviour
     private GameObject  meteoriteModel;
     public int score =0;
     private bool paused=false;
+    private bool receivingImpulse=false, withSpeedBoost=false, collidingSatellite=false;
     void Start()
     {
           originalSpeed = moveSpeed;
@@ -104,6 +111,7 @@ public class PlayerMove : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
               GameObject objColl = collision.gameObject;
+
              if (objColl.tag == "CompletePlanet"){
                        //father of the complete and fract planet
                        GameObject GroupOfPlanets = objColl.transform.parent.gameObject;
@@ -117,11 +125,14 @@ public class PlayerMove : MonoBehaviour
                                 //UnityEditor.EditorApplication.isPlaying = false;
                       }else{
 
-                                StartCoroutine( EstablecerVelocidadOriginal(impulseVelocityAdded) );
                                 score+=GroupSolarSystem.GetComponent<SolarSystem>().solarSystemConfiguration.solarSystemData.scoreGived;
-                                float newScale = GroupOfPlanets.transform.localScale.x/incremmentOfScale;
+                                //float newScale = GroupOfPlanets.transform.localScale.x/incremmentOfScale;
                                 //transform.localScale+= new Vector3(newScale, newScale, newScale);
                                 UpdateScore();
+                                StartCoroutine(MostrarExplosion());
+                                if (!receivingImpulse && !withSpeedBoost) {
+                                          StartCoroutine( DarImpulso(impulseVelocityAdded) );
+                                }
                                 objColl.SetActive(false);
                                 GroupOfPlanets.transform.GetChild(1).gameObject.SetActive(true);
                                 StartCoroutine( GroupSolarSystem.GetComponent<SolarSystem>().DestruirPlaneta(GroupOfPlanets) );
@@ -136,6 +147,10 @@ public class PlayerMove : MonoBehaviour
                       float newScale = 1/GroupOfAsteroids.GetComponent<Asteroids>().asteroidsConfiguration.incremmentOfScale;
                       //transform.localScale+= new Vector3(newScale, newScale, newScale);
                       UpdateScore();
+                      StartCoroutine(MostrarExplosion());
+                      if (!receivingImpulse && !withSpeedBoost) {
+                                StartCoroutine( DarImpulso(impulseVelocityAdded) );
+                      }
                       StartCoroutine( GroupOfAsteroids.GetComponent<Asteroids>().DestruirAsteroide(objColl) );
              }
              else if (objColl.tag == "Satellite"){
@@ -149,8 +164,14 @@ public class PlayerMove : MonoBehaviour
                         }
 
                       score+=MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived;
-                      float newScale = 1/MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.decremmentOfScale;
+                      //float newScale = 1/MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.decremmentOfScale;
                       UpdateScore();
+                      if (!collidingSatellite) {
+                                StartCoroutine(MostrarExplosion());
+                      }
+                      if (!receivingImpulse && !withSpeedBoost) {
+                                StartCoroutine( DarImpulso(impulseVelocityAdded) );
+                      }
                       StartCoroutine( MasterParent.GetComponent<SingleAstroObject>().DestruirObjeto(objColl) );
              }
              else if (objColl.tag == "Astronaut"){
@@ -163,16 +184,28 @@ public class PlayerMove : MonoBehaviour
                       //MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scaleDec+=scaleDec;
                       //transform.localScale+= new Vector3(newScale, newScale, newScale);
                       UpdateScore();
+                      StartCoroutine(MostrarExplosion());
+                      if (!receivingImpulse && !withSpeedBoost) {
+                                StartCoroutine( DarImpulso(impulseVelocityAdded) );
+                      }
                       StartCoroutine( MasterParent.GetComponent<SingleAstroObject>().DestruirObjeto(objColl) );
             }else if (objColl.tag == "MeteorEnemy"){
                        UpdateScore("You lost");
+                       StartCoroutine(MostrarExplosion());
                        Time.timeScale = 0;
                        restartButton.SetActive(true);
+            }else if(objColl.tag == "SpeedBoost"){
+                      GameObject MasterParent = objColl.transform.parent.gameObject;
+                      StartCoroutine(MostrarExplosion());
+                      StartCoroutine( DarVelocidad() );
+                      StartCoroutine(MasterParent.GetComponent<CollectibleObject>().DestruirObjeto(MasterParent));
+
             }
 
     }
 
-    public IEnumerator EstablecerVelocidadOriginal(float addedVelocity){
+    public IEnumerator DarImpulso(float addedVelocity){
+              receivingImpulse=true;
               float fragmentOfTime = impulseTime/20;
               float fragmentOfVel = addedVelocity/10;
               for (int i=0 ; i<10; i+=1) {
@@ -183,10 +216,43 @@ public class PlayerMove : MonoBehaviour
                         moveSpeed-=fragmentOfVel;
                         yield return new WaitForSeconds(fragmentOfTime);
               }
-
-              moveSpeed=originalSpeed;
-
+              if (!withSpeedBoost) {
+                        moveSpeed=originalSpeed;
+              }
+              receivingImpulse=false;
     }
+
+    public IEnumerator DarVelocidad(){
+              withSpeedBoost=true;
+              float fragmentOfTime = transicionTime/20;
+              float fragmentOfVel = velocityBoost/10;
+              for (int i=0 ; i<10; i+=1) {
+                        moveSpeed+=fragmentOfVel;
+                        yield return new WaitForSeconds(fragmentOfTime);
+              }
+              yield return new WaitForSeconds(boostTime);
+              for (int i=0 ; i<10; i+=1) {
+                        moveSpeed-=fragmentOfVel;
+                        yield return new WaitForSeconds(fragmentOfTime);
+              }
+              moveSpeed=originalSpeed;
+              withSpeedBoost=false;
+    }
+
+    public IEnumerator MostrarExplosion(){
+              collidingSatellite=true;
+              GameObject objectInstanced = GameObject.Instantiate(expConf.explosionParticles,  Vector3.zero  , expConf.explosionParticles.transform.rotation ) as GameObject;
+              objectInstanced.transform.SetParent( transform, false);
+              objectInstanced.transform.position+=transform.forward*expConf.explosionOffset;
+              Vector3 instPos = objectInstanced.transform.position;
+              instPos.y=1;
+              objectInstanced.transform.position= instPos;
+              objectInstanced.GetComponent<Renderer>().material.color = expConf.colors[Random.Range(0,expConf.colors.Length) ];
+              yield return new WaitForSeconds(0.5f);
+              Destroy(objectInstanced);
+              collidingSatellite=false;
+    }
+
     void RestartGame()
     {
               Time.timeScale = 1;

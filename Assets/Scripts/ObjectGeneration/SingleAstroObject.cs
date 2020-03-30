@@ -41,8 +41,15 @@ public class SingleAstroObject : MonoBehaviour
 
           public IEnumerator DestruirObjeto(GameObject objeto){
 
-             Vector3 disminucionEscala = new Vector3( 0.1f, 0.1f, 0.1f);
-             float timeBetwenChange = 0.1f;
+             Vector3 disminucionEscala = Vector3.one*0.3f;
+             Vector3 aumentoEscala = Vector3.one*0.1f;
+             float timeBetwenChange = 0.04f;
+
+             //aumento de escala
+             for (int i=0; i<3; i++) {
+                       objeto.transform.localScale += aumentoEscala;
+                       yield return new WaitForSeconds(0.05f);
+             }
 
              while(objeto!=null && objeto.transform.localScale.x>0){
                     objeto.transform.localScale -= disminucionEscala;

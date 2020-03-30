@@ -9,6 +9,7 @@ TagManager:
   - Satellite
   - Astronaut
   - MeteorEnemy
+  - SpeedBoost
   layers:
   - Default
   - TransparentFX

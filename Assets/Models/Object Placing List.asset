@@ -74,3 +74,13 @@ MonoBehaviour:
     radius: 6
     rejectionSamples: 8
     radiusDecremment: 0.2
+  - nombre: SpeedBoost
+    minScoreToAppear: 0
+    maxScoreToAppear: 40
+    generationMode: 0
+    typeOfStelarObject: 3
+    objectParent: {fileID: 8645129033762892302, guid: 9b0e6efcabdcf0941b233b3981442d20,
+      type: 3}
+    radius: 20
+    rejectionSamples: 8
+    radiusDecremment: 0.2

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50268ffd968f0243bd28497a6548b4f, type: 3}
+  m_Name: Explosion Configuration
+  m_EditorClassIdentifier: 
+  autoUpdate: 1
+  explosionParticles: {fileID: 7023313849220060688, guid: 92432a32ba922044ea9daa588703a272,
+    type: 3}
+  explosionOffset: 0.9
+  colors:
+  - {r: 1, g: 0.98350245, b: 0.59607846, a: 0.8156863}
+  - {r: 1, g: 0.9019608, b: 0.3254717, a: 0.89411765}
+  - {r: 0.69411767, g: 0.88822263, b: 1, a: 0.9372549}
+  - {r: 1, g: 0.8523096, b: 0.6, a: 0.8156863}
+  - {r: 0.9351885, g: 1, b: 0.5882353, a: 0.8156863}
+  - {r: 0.91375804, g: 0.8745098, b: 1, a: 0.8156863}
