@@ -47,15 +47,20 @@ public class SingleAstroObject : MonoBehaviour
 
              //aumento de escala
              for (int i=0; i<3; i++) {
-                       objeto.transform.localScale += aumentoEscala;
+                       if(objeto!=null){
+                              objeto.transform.localScale += aumentoEscala;
+                       }
                        yield return new WaitForSeconds(0.05f);
              }
 
              while(objeto!=null && objeto.transform.localScale.x>0){
-                    objeto.transform.localScale -= disminucionEscala;
+                       if (objeto!=null) {
+                                        objeto.transform.localScale -= disminucionEscala;
+                       }
                     yield return new WaitForSeconds(timeBetwenChange);
 
              }
              Destroy(objeto);
+             objeto=null;
           }
 }

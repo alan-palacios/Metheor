@@ -45,7 +45,7 @@ MonoBehaviour:
     rejectionSamples: 8
     radiusDecremment: 0
   - nombre: Satellite
-    minScoreToAppear: 0
+    minScoreToAppear: 2
     maxScoreToAppear: 40
     generationMode: 0
     typeOfStelarObject: 3

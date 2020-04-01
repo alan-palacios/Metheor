@@ -179,6 +179,7 @@ public class PlayerMove : MonoBehaviour
                        GameObject GroupOfSatellite = objColl;
                        GameObject MasterParent = GroupOfSatellite.transform.parent.gameObject;
 
+                      objColl.gameObject.GetComponent<Collider>().enabled = false;
                       score+=MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived;
                       objPlacingList.objectsSettings[5].radius+= objPlacingList.objectsSettings[5].radiusDecremment;
                       //MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scaleDec+=scaleDec;

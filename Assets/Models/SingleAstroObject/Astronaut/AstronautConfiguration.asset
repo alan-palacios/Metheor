@@ -34,6 +34,5 @@ MonoBehaviour:
   maxScale: 1.3
   zRotation: 90
   scoreGived: 1
-  decremmentOfScale: 0.01
   hasImpulse: 1
   impulsePower: 1
