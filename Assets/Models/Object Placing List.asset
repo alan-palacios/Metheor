@@ -51,7 +51,7 @@ MonoBehaviour:
     typeOfStelarObject: 3
     objectParent: {fileID: 8220925936885797492, guid: 8ed62e895f5567e45a3600c5485a2205,
       type: 3}
-    radius: 15
+    radius: 8
     rejectionSamples: 8
     radiusDecremment: 0
   - nombre: Star

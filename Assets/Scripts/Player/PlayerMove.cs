@@ -111,97 +111,96 @@ public class PlayerMove : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
               GameObject objColl = collision.gameObject;
+                      if (objColl.tag == "CompletePlanet"){
+                                 //father of the complete and fract planet
+                                 GameObject GroupOfPlanets = objColl.transform.parent.gameObject;
+                                 //father solar system with all the types of planet
+                                 GameObject GroupSolarSystem = GroupOfPlanets.transform.parent.gameObject;
+                                 //Ouput the Collision to the console
+                                if (transform.localScale.x<=GroupOfPlanets.transform.localScale.x) {
+                                          UpdateScore("You lost");
+                                          Time.timeScale = 0;
+                                          restartButton.SetActive(true);
+                                          //UnityEditor.EditorApplication.isPlaying = false;
+                                }else{
 
-             if (objColl.tag == "CompletePlanet"){
-                       //father of the complete and fract planet
-                       GameObject GroupOfPlanets = objColl.transform.parent.gameObject;
-                       //father solar system with all the types of planet
-                       GameObject GroupSolarSystem = GroupOfPlanets.transform.parent.gameObject;
-                       //Ouput the Collision to the console
-                      if (transform.localScale.x<=GroupOfPlanets.transform.localScale.x) {
-                                UpdateScore("You lost");
-                                Time.timeScale = 0;
-                                restartButton.SetActive(true);
-                                //UnityEditor.EditorApplication.isPlaying = false;
-                      }else{
+                                          score+=GroupSolarSystem.GetComponent<SolarSystem>().solarSystemConfiguration.solarSystemData.scoreGived;
+                                          //float newScale = GroupOfPlanets.transform.localScale.x/incremmentOfScale;
+                                          //transform.localScale+= new Vector3(newScale, newScale, newScale);
+                                          UpdateScore();
+                                          StartCoroutine(MostrarExplosion());
+                                          if (!receivingImpulse && !withSpeedBoost) {
+                                                    StartCoroutine( DarImpulso(impulseVelocityAdded) );
+                                          }
+                                          objColl.SetActive(false);
+                                          GroupOfPlanets.transform.GetChild(1).gameObject.SetActive(true);
+                                          StartCoroutine( GroupSolarSystem.GetComponent<SolarSystem>().DestruirPlaneta(GroupOfPlanets) );
 
-                                score+=GroupSolarSystem.GetComponent<SolarSystem>().solarSystemConfiguration.solarSystemData.scoreGived;
-                                //float newScale = GroupOfPlanets.transform.localScale.x/incremmentOfScale;
+                                }
+                      }else if (objColl.tag == "Asteroid"){
+                                 //StartCoroutine( EstablecerVelocidadOriginal(impulseVelocityAdded) );
+                                 GameObject GroupOfAsteroids = objColl.transform.parent.gameObject;
+                                //StartCoroutine( EstablecerVelocidadOriginal(impulseVelocityAdded) );
+                                score+=GroupOfAsteroids.GetComponent<Asteroids>().asteroidsConfiguration.scoreGived;
+                                float newScale = 1/GroupOfAsteroids.GetComponent<Asteroids>().asteroidsConfiguration.incremmentOfScale;
                                 //transform.localScale+= new Vector3(newScale, newScale, newScale);
                                 UpdateScore();
                                 StartCoroutine(MostrarExplosion());
                                 if (!receivingImpulse && !withSpeedBoost) {
                                           StartCoroutine( DarImpulso(impulseVelocityAdded) );
                                 }
-                                objColl.SetActive(false);
-                                GroupOfPlanets.transform.GetChild(1).gameObject.SetActive(true);
-                                StartCoroutine( GroupSolarSystem.GetComponent<SolarSystem>().DestruirPlaneta(GroupOfPlanets) );
+                                StartCoroutine( GroupOfAsteroids.GetComponent<Asteroids>().DestruirAsteroide(objColl) );
+                      }else if (objColl.tag == "Satellite"){
 
-                      }
-             }
-             else if (objColl.tag == "Asteroid"){
-                       //StartCoroutine( EstablecerVelocidadOriginal(impulseVelocityAdded) );
-                       GameObject GroupOfAsteroids = objColl.transform.parent.gameObject;
-                      //StartCoroutine( EstablecerVelocidadOriginal(impulseVelocityAdded) );
-                      score+=GroupOfAsteroids.GetComponent<Asteroids>().asteroidsConfiguration.scoreGived;
-                      float newScale = 1/GroupOfAsteroids.GetComponent<Asteroids>().asteroidsConfiguration.incremmentOfScale;
-                      //transform.localScale+= new Vector3(newScale, newScale, newScale);
-                      UpdateScore();
-                      StartCoroutine(MostrarExplosion());
-                      if (!receivingImpulse && !withSpeedBoost) {
-                                StartCoroutine( DarImpulso(impulseVelocityAdded) );
-                      }
-                      StartCoroutine( GroupOfAsteroids.GetComponent<Asteroids>().DestruirAsteroide(objColl) );
-             }
-             else if (objColl.tag == "Satellite"){
+                                 GameObject GroupOfSatellite = objColl.transform.parent.gameObject;
+                                 GameObject MasterParent = GroupOfSatellite.transform.parent.gameObject;
 
-                       GameObject GroupOfSatellite = objColl.transform.parent.gameObject;
-                       GameObject MasterParent = GroupOfSatellite.transform.parent.gameObject;
+                                 for(int i = 0; i < GroupOfSatellite.transform.childCount; i++){
+                                            GameObject g = GroupOfSatellite.transform.GetChild(i).gameObject;
+                                            g.GetComponent<Rigidbody>().isKinematic = false;
+                                  }
 
-                       for(int i = 0; i < GroupOfSatellite.transform.childCount; i++){
-                                  GameObject g = GroupOfSatellite.transform.GetChild(i).gameObject;
-                                  g.GetComponent<Rigidbody>().isKinematic = false;
-                        }
+                                score+=MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived;
+                                //float newScale = 1/MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.decremmentOfScale;
+                                UpdateScore();
+                                if (!collidingSatellite) {
+                                          StartCoroutine(MostrarExplosion());
+                                }
+                                if (!receivingImpulse && !withSpeedBoost) {
+                                          StartCoroutine( DarImpulso(impulseVelocityAdded) );
+                                }
+                                StartCoroutine( MasterParent.GetComponent<SingleAstroObject>().DestruirObjeto(objColl, 0.1f) );
+                      }else if (objColl.tag == "Astronaut"){
 
-                      score+=MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived;
-                      //float newScale = 1/MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.decremmentOfScale;
-                      UpdateScore();
-                      if (!collidingSatellite) {
+                                 GameObject GroupOfSatellite = objColl;
+                                 GameObject MasterParent = GroupOfSatellite.transform.parent.gameObject;
+
+                                //objColl.gameObject.GetComponent<Collider>().enabled = false;
+                                //objColl.tag="Untagged";
+                                objColl.GetComponent<Rigidbody>().AddForce(
+                                                    transform.forward*6f,
+                                                     ForceMode.Impulse);
+
+                                score+=MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived;
+                                objPlacingList.objectsSettings[5].radius+= objPlacingList.objectsSettings[5].radiusDecremment;
+                                UpdateScore();
                                 StartCoroutine(MostrarExplosion());
+                                if (!receivingImpulse && !withSpeedBoost) {
+                                          StartCoroutine( DarImpulso(impulseVelocityAdded) );
+                                }
+                                //Destroy(objColl);
+                                StartCoroutine( MasterParent.GetComponent<SingleAstroObject>().DestruirObjeto(objColl, 0.05f) );
+                      }else if (objColl.tag == "MeteorEnemy"){
+                                 UpdateScore("You lost");
+                                 StartCoroutine(MostrarExplosion());
+                                 Time.timeScale = 0;
+                                 restartButton.SetActive(true);
+                      }else if(objColl.tag == "SpeedBoost"){
+                                GameObject MasterParent = objColl.transform.parent.gameObject;
+                                StartCoroutine(MostrarExplosion());
+                                StartCoroutine( DarVelocidad() );
+                                StartCoroutine(MasterParent.GetComponent<CollectibleObject>().DestruirObjeto(MasterParent));
                       }
-                      if (!receivingImpulse && !withSpeedBoost) {
-                                StartCoroutine( DarImpulso(impulseVelocityAdded) );
-                      }
-                      StartCoroutine( MasterParent.GetComponent<SingleAstroObject>().DestruirObjeto(objColl) );
-             }
-             else if (objColl.tag == "Astronaut"){
-
-                       GameObject GroupOfSatellite = objColl;
-                       GameObject MasterParent = GroupOfSatellite.transform.parent.gameObject;
-
-                      objColl.gameObject.GetComponent<Collider>().enabled = false;
-                      score+=MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived;
-                      objPlacingList.objectsSettings[5].radius+= objPlacingList.objectsSettings[5].radiusDecremment;
-                      //MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scaleDec+=scaleDec;
-                      //transform.localScale+= new Vector3(newScale, newScale, newScale);
-                      UpdateScore();
-                      StartCoroutine(MostrarExplosion());
-                      if (!receivingImpulse && !withSpeedBoost) {
-                                StartCoroutine( DarImpulso(impulseVelocityAdded) );
-                      }
-                      StartCoroutine( MasterParent.GetComponent<SingleAstroObject>().DestruirObjeto(objColl) );
-            }else if (objColl.tag == "MeteorEnemy"){
-                       UpdateScore("You lost");
-                       StartCoroutine(MostrarExplosion());
-                       Time.timeScale = 0;
-                       restartButton.SetActive(true);
-            }else if(objColl.tag == "SpeedBoost"){
-                      GameObject MasterParent = objColl.transform.parent.gameObject;
-                      StartCoroutine(MostrarExplosion());
-                      StartCoroutine( DarVelocidad() );
-                      StartCoroutine(MasterParent.GetComponent<CollectibleObject>().DestruirObjeto(MasterParent));
-
-            }
 
     }
 

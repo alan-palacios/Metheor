@@ -39,11 +39,13 @@ public class SingleAstroObject : MonoBehaviour
                     }
           }
 
-          public IEnumerator DestruirObjeto(GameObject objeto){
+          public IEnumerator DestruirObjeto(GameObject objeto, float timeBetwenChange){
+                    yield return null;
+             Vector3 disminucionEscala = Vector3.one*0.4f;
+             Vector3 aumentoEscala = Vector3.one*0.1f;              
 
-             Vector3 disminucionEscala = Vector3.one*0.3f;
-             Vector3 aumentoEscala = Vector3.one*0.1f;
-             float timeBetwenChange = 0.04f;
+             /*objeto.transform.localScale -= disminucionEscala;
+             yield return new WaitForSeconds(timeBetwenChange);*/
 
              //aumento de escala
              for (int i=0; i<3; i++) {
@@ -55,12 +57,14 @@ public class SingleAstroObject : MonoBehaviour
 
              while(objeto!=null && objeto.transform.localScale.x>0){
                        if (objeto!=null) {
-                                        objeto.transform.localScale -= disminucionEscala;
+                              objeto.transform.localScale -= disminucionEscala;
+                              if (objeto.transform.localScale.x<0) {
+                                        objeto.transform.localScale = Vector3.zero;
+                                        Destroy(objeto);
+                                        yield return 0;
+                              }
                        }
                     yield return new WaitForSeconds(timeBetwenChange);
-
              }
-             Destroy(objeto);
-             objeto=null;
           }
 }
