@@ -25,7 +25,7 @@ public class MapPreview : MonoBehaviour {
 
 	public void DrawMap() {
 		ObjectGenerator.DeleteObjectsInPreview(ref displayedObjectsParent);
-                    background.transform.localScale = new Vector3( (float)chunkSize/10, (float)chunkSize/10, (float)chunkSize/10 );
+                    //background.transform.localScale = new Vector3( (float)chunkSize/10, (float)chunkSize/10, (float)chunkSize/10 );
 
 		displayedObjectsParent = new GameObject("Displayed Objects Parent");
 		displayedObjectsParent.transform.parent = transform;

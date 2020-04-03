@@ -37,19 +37,12 @@ public class TerrainGenerator : MonoBehaviour {
 
 		UpdateVisibleChunks();
 
-		//StartCoroutine(DisplayPlayer());
+		//generandole estrellas unicamente
+		ObjectGenerator.GenerateStarsInGame(objectPlacingList, chunkSize,  background, new Vector2(0,0),
+			viewer.localScale.x, viewer.gameObject.GetComponent<PlayerMove>().score );		
 	}
 
-	/*IEnumerator DisplayPlayer(){
-		yield return new WaitForSeconds(0);
-
-		float yHeight = terrainChunkDictionary [new Vector2(0,0)].heightMap.values[ (int)chunkSize/2,  (int)chunkSize/2];
-		viewer.position = new Vector3(0, yHeight+0.5f , 1);
-	}*/
-
 	void Update() {
-		//testColor+=new Color(0.0F, 0.0F, 0.01F, 0.0F);
-		//biomesList.biomes[0].textureData.material.SetColor("testColor", testColor );
 
 		viewerPosition = new Vector2 (viewer.position.x, viewer.position.z);//mapGenerator.biomeData.meshSettings.meshScale;
 
@@ -66,7 +59,7 @@ public class TerrainGenerator : MonoBehaviour {
 	}
 
 	void UpdateVisibleChunks() {
-		//Debug.Log(chunkDictionary.Count);
+
 		HashSet<Vector2> alreadyUpdatedChunkCoords = new HashSet<Vector2>();
 
 		for (int i = visibleChunks.Count-1 ; i >=0 ; i--) {
@@ -87,7 +80,7 @@ public class TerrainGenerator : MonoBehaviour {
 
 					} else {
 
-						Chunk newChunk = new Chunk (viewedChunkCoord, transform, viewer, objectPlacingList, background, maxViewDst, chunkSize);
+						Chunk newChunk = new Chunk (viewedChunkCoord, transform, viewer, objectPlacingList, maxViewDst, chunkSize);
 						chunkDictionary.Add (viewedChunkCoord, newChunk);
 						newChunk.onVisibilityChanged +=onTerrainChunkVisibilityChanged;
 						newChunk.destroyCoroutineReference = StartCoroutine( destroyCoroutine(newChunk) );
@@ -114,7 +107,6 @@ public class TerrainGenerator : MonoBehaviour {
 
 	IEnumerator destroyCoroutine(Chunk chunk){
 		yield return new WaitForSeconds(5);
-		//Debug.Log("eliminando chunk "+chunk.coord);
 		Destroy(chunk.chunkGameObject);
 		chunkDictionary.Remove(chunk.coord);
 		visibleChunks.Remove(chunk);

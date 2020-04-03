@@ -9,6 +9,10 @@ public class PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     public ObjectPlacingList objPlacingList;
     public ExplosionConfiguration expConf;
+    public GeneralGameControl gameControl;
+
+    public GameObject  cameraChild;
+    public GameObject  meteoriteModel;
     private Rigidbody rb;
     float originalSpeed;
     float maxWidthScreenController;
@@ -26,15 +30,10 @@ public class PlayerMove : MonoBehaviour
     public GameObject explosionParticles;
     public float explosionOffset;
 
-    public Text scoreText;
+
     private Vector3 newCameraRot;
-    private GameObject  cameraChild;
-    public GameObject  restartButton;
-    public GameObject  pauseButton;
-    public GameObject  inGameRestartButton;
-    private GameObject  meteoriteModel;
+
     public int score =0;
-    private bool paused=false;
     private bool receivingImpulse=false, withSpeedBoost=false, collidingSatellite=false;
     void Start()
     {
@@ -43,17 +42,7 @@ public class PlayerMove : MonoBehaviour
           //Time.captureFramerate = 30;
           Application.targetFrameRate = 60;
           rb = GetComponent<Rigidbody>();
-          UpdateScore ();
-          cameraChild = transform.GetChild(1).gameObject;
-          meteoriteModel = transform.GetChild(0).gameObject;
-
-          restartButton = cameraChild.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
-          pauseButton = cameraChild.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject;
-          inGameRestartButton = cameraChild.transform.GetChild(0).gameObject.transform.GetChild(3).gameObject;
-
-          restartButton.GetComponent<Button>().onClick.AddListener(RestartGame);
-          pauseButton.GetComponent<Button>().onClick.AddListener(PauseGame);
-          inGameRestartButton.GetComponent<Button>().onClick.AddListener(RestartGame);
+          gameControl.UpdateScore ();
 
           maxWidthScreenController = Screen.width/4;
     }
@@ -118,16 +107,16 @@ public class PlayerMove : MonoBehaviour
                                  GameObject GroupSolarSystem = GroupOfPlanets.transform.parent.gameObject;
                                  //Ouput the Collision to the console
                                 if (transform.localScale.x<=GroupOfPlanets.transform.localScale.x) {
-                                          UpdateScore("You lost");
-                                          Time.timeScale = 0;
-                                          restartButton.SetActive(true);
+                                          StartCoroutine(MostrarExplosion());
+                                          gameControl.UpdateScore("You lost");
+                                          gameControl.OnLost();
                                           //UnityEditor.EditorApplication.isPlaying = false;
                                 }else{
 
                                           score+=GroupSolarSystem.GetComponent<SolarSystem>().solarSystemConfiguration.solarSystemData.scoreGived;
                                           //float newScale = GroupOfPlanets.transform.localScale.x/incremmentOfScale;
                                           //transform.localScale+= new Vector3(newScale, newScale, newScale);
-                                          UpdateScore();
+                                          gameControl.UpdateScore();
                                           StartCoroutine(MostrarExplosion());
                                           if (!receivingImpulse && !withSpeedBoost) {
                                                     StartCoroutine( DarImpulso(impulseVelocityAdded) );
@@ -144,7 +133,7 @@ public class PlayerMove : MonoBehaviour
                                 score+=GroupOfAsteroids.GetComponent<Asteroids>().asteroidsConfiguration.scoreGived;
                                 float newScale = 1/GroupOfAsteroids.GetComponent<Asteroids>().asteroidsConfiguration.incremmentOfScale;
                                 //transform.localScale+= new Vector3(newScale, newScale, newScale);
-                                UpdateScore();
+                                gameControl.UpdateScore();
                                 StartCoroutine(MostrarExplosion());
                                 if (!receivingImpulse && !withSpeedBoost) {
                                           StartCoroutine( DarImpulso(impulseVelocityAdded) );
@@ -162,7 +151,7 @@ public class PlayerMove : MonoBehaviour
 
                                 score+=MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived;
                                 //float newScale = 1/MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.decremmentOfScale;
-                                UpdateScore();
+                                gameControl.UpdateScore();
                                 if (!collidingSatellite) {
                                           StartCoroutine(MostrarExplosion());
                                 }
@@ -183,7 +172,7 @@ public class PlayerMove : MonoBehaviour
 
                                 score+=MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived;
                                 objPlacingList.objectsSettings[5].radius+= objPlacingList.objectsSettings[5].radiusDecremment;
-                                UpdateScore();
+                                gameControl.UpdateScore();
                                 StartCoroutine(MostrarExplosion());
                                 if (!receivingImpulse && !withSpeedBoost) {
                                           StartCoroutine( DarImpulso(impulseVelocityAdded) );
@@ -191,10 +180,9 @@ public class PlayerMove : MonoBehaviour
                                 //Destroy(objColl);
                                 StartCoroutine( MasterParent.GetComponent<SingleAstroObject>().DestruirObjeto(objColl, 0.05f) );
                       }else if (objColl.tag == "MeteorEnemy"){
-                                 UpdateScore("You lost");
+                                 gameControl.UpdateScore("You lost");
                                  StartCoroutine(MostrarExplosion());
-                                 Time.timeScale = 0;
-                                 restartButton.SetActive(true);
+                                 gameControl.OnLost();
                       }else if(objColl.tag == "SpeedBoost"){
                                 GameObject MasterParent = objColl.transform.parent.gameObject;
                                 StartCoroutine(MostrarExplosion());
@@ -253,25 +241,4 @@ public class PlayerMove : MonoBehaviour
               collidingSatellite=false;
     }
 
-    void RestartGame()
-    {
-              Time.timeScale = 1;
-             restartButton.SetActive(true);
-              SceneManager.LoadScene("MainScene");
-    }
-
-    void PauseGame()
-    {
-              Time.timeScale = paused?1:0;
-              paused = !paused;
-    }
-    void UpdateScore ()
-    {
-        scoreText.text = "Score: " + score.ToString ();
-    }
-
-    void UpdateScore (string txt)
-    {
-        scoreText.text =  txt;
-    }
 }

@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\Data\SingleAstroObjectConfiguration.cs" />
      <Compile Include="Assets\Scripts\Data\SolarSystemConfiguration.cs" />
      <Compile Include="Assets\Scripts\Data\UpdatableData.cs" />
+     <Compile Include="Assets\Scripts\GeneralGameControl\GeneralGameControl.cs" />
      <Compile Include="Assets\Scripts\ObjectGeneration\Asteroids.cs" />
      <Compile Include="Assets\Scripts\ObjectGeneration\CollectibleObject.cs" />
      <Compile Include="Assets\Scripts\ObjectGeneration\GameObjectEx.cs" />

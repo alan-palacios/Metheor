@@ -25,7 +25,7 @@ public class Chunk
           Transform viewer;
 
 
-          public Chunk(Vector2 coord, Transform parent, Transform viewer, ObjectPlacingList objectPlacingList, GameObject background, float maxViewDst, int chunkSize) {
+          public Chunk(Vector2 coord, Transform parent, Transform viewer, ObjectPlacingList objectPlacingList, float maxViewDst, int chunkSize) {
 
                     this.chunkSize=chunkSize;
 
@@ -43,10 +43,10 @@ public class Chunk
                     SetVisible(false);
 
 
-                    background = GameObject.Instantiate(background) as GameObject;
+                    /*background = GameObject.Instantiate(background) as GameObject;
                     background.transform.SetParent( chunkGameObject.transform, false);
                     background.transform.localScale*= (float)chunkSize/10;
-                    background.transform.position = new Vector3(position.x, -0.1f, position.y);
+                    background.transform.position = new Vector3(position.x, -0.1f, position.y);*/
 
 
                     this.maxViewDst = maxViewDst;
