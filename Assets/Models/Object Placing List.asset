@@ -26,7 +26,7 @@ MonoBehaviour:
     radiusDecremment: 0
   - nombre: SolarSystem
     minScoreToAppear: 70
-    maxScoreToAppear: 120
+    maxScoreToAppear: 200
     generationMode: 0
     typeOfStelarObject: 1
     objectParent: {fileID: 881523598912456800, guid: 98e004fdd18df2e4fa50149162dcc155,

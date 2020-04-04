@@ -13,6 +13,9 @@ public class PlayerMove : MonoBehaviour
 
     public GameObject  cameraChild;
     public GameObject  meteoriteModel;
+    public GameObject  meteoriteModelFract;
+    public GameObject  metheorElements;
+
     private Rigidbody rb;
     float originalSpeed;
     float maxWidthScreenController;
@@ -34,7 +37,7 @@ public class PlayerMove : MonoBehaviour
     private Vector3 newCameraRot;
 
     public int score =0;
-    private bool receivingImpulse=false, withSpeedBoost=false, collidingSatellite=false;
+    private bool receivingImpulse=false, withSpeedBoost=false, collidingSatellite=false, alive=true;
     void Start()
     {
           originalSpeed = moveSpeed;
@@ -52,40 +55,40 @@ public class PlayerMove : MonoBehaviour
               //float initialOrientationX = Input.gyro.gravity.x;
               //float initialOrientationY = Input.gyro.gravity.y;
               //Vector2 cameraRot = new Vector2( initialOrientationX, initialOrientationY );
-              Vector2 cameraRot = new Vector2( Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") );
+              if (alive) {
+                        Vector2 cameraRot = new Vector2( Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") );
 
-              if (Input.touchCount >0) {
-                        Touch touch = Input.GetTouch(0);
-                        float x = (touch.position.x - Screen.width/2) / (Screen.width/2) ;
+                        if (Input.touchCount >0) {
+                                  Touch touch = Input.GetTouch(0);
+                                  float x = (touch.position.x - Screen.width/2) / (Screen.width/2) ;
 
-                        if ( x>-noActionRange && x<noActionRange) {
-                                  x=0;
+                                  if ( x>-noActionRange && x<noActionRange) {
+                                            x=0;
+                                  }
+                                  x*=speedOfChange;
+                                  /*if (x<-1) {
+                                            x=-1;
+                                  }else if (x > 1) {
+                                            x=1;
+                                  }*/
+
+                                  cameraRot = new Vector3(x,0,0);
+
+                                  /*if (touch.position.x < Screen.width/2) {
+                                         cameraRot = new Vector3(-1,0,0);
+                                  }else if (touch.position.x > Screen.width/2) {
+                                         cameraRot = new Vector3(1,0,0);
+                                  }*/
                         }
-                        x*=speedOfChange;
-                        /*if (x<-1) {
-                                  x=-1;
-                        }else if (x > 1) {
-                                  x=1;
-                        }*/
 
-                        cameraRot = new Vector3(x,0,0);
 
-                        /*if (touch.position.x < Screen.width/2) {
-                               cameraRot = new Vector3(-1,0,0);
-                        }else if (touch.position.x > Screen.width/2) {
-                               cameraRot = new Vector3(1,0,0);
-                        }*/
+
+                        newCameraRot = new Vector3( 0, cameraRot.x*rotationSpeed, 0);
+                        transform.eulerAngles = transform.eulerAngles + newCameraRot;
+
+                        Vector3 direction =  transform.forward;
+                        transform.Translate(direction * moveSpeed* Time.fixedDeltaTime, Space.World );
               }
-
-
-
-              newCameraRot = new Vector3( 0, cameraRot.x*rotationSpeed, 0);
-              transform.eulerAngles = transform.eulerAngles + newCameraRot;
-
-              Vector3 direction =  transform.forward;
-              transform.Translate(direction * moveSpeed* Time.fixedDeltaTime, Space.World );
-              //rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
-
 
    }
 
@@ -107,9 +110,7 @@ public class PlayerMove : MonoBehaviour
                                  GameObject GroupSolarSystem = GroupOfPlanets.transform.parent.gameObject;
                                  //Ouput the Collision to the console
                                 if (transform.localScale.x<=GroupOfPlanets.transform.localScale.x) {
-                                          StartCoroutine(MostrarExplosion());
-                                          gameControl.UpdateScore("You lost");
-                                          gameControl.OnLost();
+                                          Die();
                                           //UnityEditor.EditorApplication.isPlaying = false;
                                 }else{
 
@@ -180,9 +181,8 @@ public class PlayerMove : MonoBehaviour
                                 //Destroy(objColl);
                                 StartCoroutine( MasterParent.GetComponent<SingleAstroObject>().DestruirObjeto(objColl, 0.05f) );
                       }else if (objColl.tag == "MeteorEnemy"){
-                                 gameControl.UpdateScore("You lost");
-                                 StartCoroutine(MostrarExplosion());
-                                 gameControl.OnLost();
+                                Die();
+
                       }else if(objColl.tag == "SpeedBoost"){
                                 GameObject MasterParent = objColl.transform.parent.gameObject;
                                 StartCoroutine(MostrarExplosion());
@@ -240,5 +240,36 @@ public class PlayerMove : MonoBehaviour
               Destroy(objectInstanced);
               collidingSatellite=false;
     }
+
+    public void Die(){
+
+              alive=false;
+              StartCoroutine(MostrarExplosion());
+              //gameControl.UpdateScore("You lose");
+              StartCoroutine(gameControl.OnLost() );
+              metheorElements.SetActive(false);
+              GameObject objectInstanced = GameObject.Instantiate(meteoriteModelFract,  meteoriteModel.transform.position  , meteoriteModel.transform.rotation ) as GameObject;
+              StartCoroutine(DestroyMetheor(objectInstanced));
+   }
+
+   public IEnumerator DestroyMetheor(GameObject metheor){
+       Vector3 disminucionEscala = Vector3.one*0.16f;
+       float timeBetwenChange = 0.1f;
+
+       while(metheor.transform.GetChild(0).gameObject.transform.localScale.x>0){
+
+                 for(int i = 0; i < metheor.transform.childCount; i++){
+                            GameObject g = metheor.transform.GetChild(i).gameObject;
+                            g.transform.localScale -= disminucionEscala;
+                            if (g.transform.localScale.x<=0) {
+                                    g.transform.localScale=Vector3.zero;
+                          }
+                  }
+
+             yield return new WaitForSeconds(timeBetwenChange);
+
+       }
+       Destroy(metheor);
+   }
 
 }

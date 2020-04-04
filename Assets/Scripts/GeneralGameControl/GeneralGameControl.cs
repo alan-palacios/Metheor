@@ -21,6 +21,8 @@ public class GeneralGameControl : MonoBehaviour
           public GameObject MenuElements;
           public Camera gameCamera;
 
+          public float timeAfterLose;
+
     void Start()
     {
           if (haveLost) {
@@ -55,7 +57,9 @@ public class GeneralGameControl : MonoBehaviour
 
     }
 
-    public void OnLost(){
+    public IEnumerator OnLost(){
+              Time.timeScale =0.8f;
+              yield return new WaitForSeconds(timeAfterLose);
               Time.timeScale = 0;
               hidenRestartButton.SetActive(true);
    }
@@ -63,13 +67,14 @@ public class GeneralGameControl : MonoBehaviour
     {
               Time.timeScale = paused?1:0;
               paused = !paused;
+              hidenRestartButton.SetActive(!hidenRestartButton.activeSelf);
     }
 
     public void UpdateScore ()
     {
-        scoreText.text = "Score: " + playerMove.score.ToString ();
+        scoreText.text = "" + playerMove.score.ToString ();
         gameCamera.fieldOfView+=0.1f;
-        
+
     }
 
     public void UpdateScore (string txt)
