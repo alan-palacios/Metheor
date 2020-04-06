@@ -17,70 +17,135 @@ MonoBehaviour:
   - nombre: Spike Rock
     minScoreToAppear: 40
     maxScoreToAppear: 100
+    appearInfinitely: 0
     generationMode: 0
     typeOfStelarObject: 3
     objectParent: {fileID: 3836171514278267402, guid: e03250a3edfa9404d96e71b3b5272c7b,
       type: 3}
     radius: 15
     rejectionSamples: 8
+    radiusIncremment: 0
     radiusDecremment: 0
+    scalable: 0
+    actualScale: 0
+    scaleDecremment: 0
   - nombre: SolarSystem
     minScoreToAppear: 70
-    maxScoreToAppear: 200
+    maxScoreToAppear: 102
+    appearInfinitely: 1
     generationMode: 0
     typeOfStelarObject: 1
     objectParent: {fileID: 881523598912456800, guid: 98e004fdd18df2e4fa50149162dcc155,
       type: 3}
     radius: 22
     rejectionSamples: 12
+    radiusIncremment: 0
     radiusDecremment: 0
+    scalable: 0
+    actualScale: 0
+    scaleDecremment: 0
   - nombre: Asteroids
     minScoreToAppear: 20
     maxScoreToAppear: 80
+    appearInfinitely: 1
     generationMode: 0
     typeOfStelarObject: 2
     objectParent: {fileID: 4431244805808537972, guid: c9cc59cf849ba5f4c9504d38c38b0d6f,
       type: 3}
     radius: 20
     rejectionSamples: 8
+    radiusIncremment: 0
     radiusDecremment: 0
+    scalable: 0
+    actualScale: 0
+    scaleDecremment: 0
   - nombre: Satellite
-    minScoreToAppear: 2
-    maxScoreToAppear: 40
+    minScoreToAppear: 30
+    maxScoreToAppear: 70
+    appearInfinitely: 0
     generationMode: 0
     typeOfStelarObject: 3
     objectParent: {fileID: 8220925936885797492, guid: 8ed62e895f5567e45a3600c5485a2205,
       type: 3}
     radius: 8
     rejectionSamples: 8
+    radiusIncremment: 0
     radiusDecremment: 0
+    scalable: 1
+    actualScale: 1
+    scaleDecremment: 0.01
   - nombre: Star
     minScoreToAppear: 0
     maxScoreToAppear: 10000000
+    appearInfinitely: 1
     generationMode: 0
     typeOfStelarObject: 3
     objectParent: {fileID: 8451396873394871827, guid: 58e995a0d66c07041914ca21cd2433c1,
       type: 3}
     radius: 4
     rejectionSamples: 8
+    radiusIncremment: 0
     radiusDecremment: 0
+    scalable: 0
+    actualScale: 0
+    scaleDecremment: 0
   - nombre: Astronaut
     minScoreToAppear: 0
     maxScoreToAppear: 40
+    appearInfinitely: 0
     generationMode: 0
     typeOfStelarObject: 3
     objectParent: {fileID: 320750783474683501, guid: a2ba4b8093850bb48a95d9f97b9ae44f,
       type: 3}
     radius: 6
     rejectionSamples: 8
-    radiusDecremment: 0.2
+    radiusIncremment: 0.2
+    radiusDecremment: 0
+    scalable: 1
+    actualScale: 1
+    scaleDecremment: 0.01
   - nombre: SpeedBoost
     minScoreToAppear: 0
-    maxScoreToAppear: 40
+    maxScoreToAppear: 0
+    appearInfinitely: 1
     generationMode: 0
     typeOfStelarObject: 3
     objectParent: {fileID: 8645129033762892302, guid: 9b0e6efcabdcf0941b233b3981442d20,
       type: 3}
     radius: 20
     rejectionSamples: 8
-    radiusDecremment: 0.2
+    radiusIncremment: 0
+    radiusDecremment: 0
+    scalable: 0
+    actualScale: 0
+    scaleDecremment: 0
+  - nombre: Bomb
+    minScoreToAppear: 0
+    maxScoreToAppear: 0
+    appearInfinitely: 1
+    generationMode: 0
+    typeOfStelarObject: 3
+    objectParent: {fileID: 2405470081866927391, guid: 607561880159ec341ab52508435e1a1e,
+      type: 3}
+    radius: 18
+    rejectionSamples: 8
+    radiusIncremment: 0
+    radiusDecremment: 0
+    scalable: 0
+    actualScale: 0
+    scaleDecremment: 0
+  - nombre: Ice
+    minScoreToAppear: 0
+    maxScoreToAppear: 0
+    appearInfinitely: 1
+    generationMode: 0
+    typeOfStelarObject: 3
+    objectParent: {fileID: 5683818767616723087, guid: ad7b77b5d6476df4aa20a9e84d135d57,
+      type: 3}
+    radius: 15
+    rejectionSamples: 8
+    radiusIncremment: 0
+    radiusDecremment: 0
+    scalable: 0
+    actualScale: 0
+    scaleDecremment: 0

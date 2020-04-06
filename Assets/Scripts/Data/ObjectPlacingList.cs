@@ -14,6 +14,7 @@ public struct ObjectData
           public string nombre;
           public int minScoreToAppear;
           public int maxScoreToAppear;
+          public bool appearInfinitely;
           //type of generation
           public enum GenerationMode { PDS};
           public GenerationMode generationMode;
@@ -25,10 +26,12 @@ public struct ObjectData
           //PDS mode settings
           public float radius;
           public int rejectionSamples;
-          public float radiusDecremment;          
-          /*public bool randomScale;
-          public float minScale;
-          public float maxScale;*/
+          public float radiusIncremment;
+          public float radiusDecremment;
+
+          public bool scalable;
+          public float actualScale;
+          public float scaleDecremment;
 
 
 }

@@ -10,6 +10,8 @@ TagManager:
   - Astronaut
   - MeteorEnemy
   - SpeedBoost
+  - Bomb
+  - Ice
   layers:
   - Default
   - TransparentFX

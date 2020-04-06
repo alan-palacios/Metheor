@@ -21,7 +21,7 @@ public class CollectibleObject : MonoBehaviour
 
           public IEnumerator DestruirObjeto(GameObject objeto){
 
-             Vector3 disminucionEscala = new Vector3( 0.1f, 0.1f, 0.1f);
+             Vector3 disminucionEscala = Vector3.one*0.2f;
              float timeBetwenChange = 0.05f;
 
              while(objeto!=null && objeto.transform.localScale.x>0){

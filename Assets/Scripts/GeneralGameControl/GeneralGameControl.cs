@@ -11,6 +11,7 @@ public class GeneralGameControl : MonoBehaviour
           public Text scoreText;
 
           public GameObject  hidenRestartButton;
+          public GameObject  pauseButton;
 
           private bool paused=true;
 
@@ -61,6 +62,7 @@ public class GeneralGameControl : MonoBehaviour
               Time.timeScale =0.8f;
               yield return new WaitForSeconds(timeAfterLose);
               Time.timeScale = 0;
+              pauseButton.SetActive(false);
               hidenRestartButton.SetActive(true);
    }
     public void PauseGame()

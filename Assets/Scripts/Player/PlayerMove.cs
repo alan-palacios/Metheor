@@ -16,6 +16,8 @@ public class PlayerMove : MonoBehaviour
     public GameObject  meteoriteModelFract;
     public GameObject  metheorElements;
 
+    public GameObject [] meteorParticles;
+    public Color congeledColor;
     private Rigidbody rb;
     float originalSpeed;
     float maxWidthScreenController;
@@ -172,7 +174,8 @@ public class PlayerMove : MonoBehaviour
                                                      ForceMode.Impulse);
 
                                 score+=MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived;
-                                objPlacingList.objectsSettings[5].radius+= objPlacingList.objectsSettings[5].radiusDecremment;
+                                ObjectGenerator.modifyPlacementValues(objPlacingList, 5);
+                                
                                 gameControl.UpdateScore();
                                 StartCoroutine(MostrarExplosion());
                                 if (!receivingImpulse && !withSpeedBoost) {
@@ -182,12 +185,23 @@ public class PlayerMove : MonoBehaviour
                                 StartCoroutine( MasterParent.GetComponent<SingleAstroObject>().DestruirObjeto(objColl, 0.05f) );
                       }else if (objColl.tag == "MeteorEnemy"){
                                 Die();
-
                       }else if(objColl.tag == "SpeedBoost"){
                                 GameObject MasterParent = objColl.transform.parent.gameObject;
                                 StartCoroutine(MostrarExplosion());
                                 StartCoroutine( DarVelocidad() );
                                 StartCoroutine(MasterParent.GetComponent<CollectibleObject>().DestruirObjeto(MasterParent));
+                      }else if(objColl.tag == "Bomb"){
+                                GameObject MasterParent = objColl.transform.parent.gameObject;
+                                StartCoroutine(MostrarExplosion());
+                                StartCoroutine(MostrarExplosion());
+                                StartCoroutine(MasterParent.GetComponent<CollectibleObject>().DestruirObjeto(MasterParent));
+                                Die();
+                      }else if(objColl.tag == "Ice"){
+                                GameObject MasterParent = objColl.transform.parent.gameObject;
+                                StartCoroutine(MostrarExplosion());
+                                StartCoroutine(Congelarse());
+                                StartCoroutine(MasterParent.GetComponent<CollectibleObject>().DestruirObjeto(MasterParent));
+
                       }
 
     }
@@ -239,6 +253,27 @@ public class PlayerMove : MonoBehaviour
               yield return new WaitForSeconds(0.5f);
               Destroy(objectInstanced);
               collidingSatellite=false;
+    }
+
+    public IEnumerator Congelarse(){
+              moveSpeed=0;
+              alive=false;
+              for (int i=0; i<meteorParticles.Length; i++) {
+                        meteorParticles[i].SetActive(false);
+              }
+              Material mat = meteoriteModel.GetComponent<Renderer>().material;
+              Color originalColor = mat.GetColor("_Color");
+              mat.SetColor( "_Color", congeledColor );
+
+              yield return new WaitForSeconds(1.7f);
+
+              moveSpeed=originalSpeed;
+              alive=true;
+              for (int i=0; i<meteorParticles.Length; i++) {
+                        meteorParticles[i].SetActive(true);
+              }
+              mat.SetColor( "_Color", originalColor );
+
     }
 
     public void Die(){

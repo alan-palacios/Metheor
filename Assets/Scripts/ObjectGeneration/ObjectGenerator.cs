@@ -118,64 +118,61 @@ public static class ObjectGenerator
 
                                                   if(objectPlacingList.objectsSettings[i].generationMode == ObjectData.GenerationMode.PDS &&
                                                             score >= objectPlacingList.objectsSettings[i].minScoreToAppear &&
-                                                            score <= objectPlacingList.objectsSettings[i].maxScoreToAppear ){
+                                                            (score <= objectPlacingList.objectsSettings[i].maxScoreToAppear ||
+                                                            objectPlacingList.objectsSettings[i].appearInfinitely) ){
 
+                                                                      List <Vector2> originalPoints = PoissonDiscSampling.GeneratePoints(objectPlacingList.objectsSettings[i].radius,
+                                                                      new Vector2( chunkSize, chunkSize), objectPlacingList.objectsSettings[i].rejectionSamples );
 
-                                                            List <Vector2> originalPoints = PoissonDiscSampling.GeneratePoints(objectPlacingList.objectsSettings[i].radius,
-                                                            new Vector2( chunkSize, chunkSize), objectPlacingList.objectsSettings[i].rejectionSamples );
+                                                                      List<Vector2> points = new List<Vector2>();
 
-                                                            List<Vector2> points = new List<Vector2>();
+                                                                      for (int x=0; x<originalPoints.Count; x++) {
+                                                                                points.Add(originalPoints[x]);
+                                                                                /*float heightValue = heightValues[ (int)originalPoints[x].x, (int)originalPoints[x].y ];
+                                                                                if ( heightValue >= objectPlacingList.objectsSettings[i].startHeight && heightValue <= objectPlacingList.objectsSettings[i].endHeight ) {
+                                                                                }*/
+                                                                      }
 
-                                                            for (int x=0; x<originalPoints.Count; x++) {
-                                                                      points.Add(originalPoints[x]);
-                                                                      /*float heightValue = heightValues[ (int)originalPoints[x].x, (int)originalPoints[x].y ];
-                                                                      if ( heightValue >= objectPlacingList.objectsSettings[i].startHeight && heightValue <= objectPlacingList.objectsSettings[i].endHeight ) {
-                                                                      }*/
-                                                            }
+                                                                      objetos[i]= new GameObject[points.Count];
 
-                                                            objetos[i]= new GameObject[points.Count];
+                                                                      for (int j=0; j<objetos[i].Length; j++) {
+                                                                                /*
+                                                                                          if (objectPlacingList.objectsSettings[i].randomScale) {
+                                                                                                    float newScale = Random.Range( localScale-objectPlacingList.objectsSettings[i].minScale, localScale+objectPlacingList.objectsSettings[i].maxScale );
 
-                                                            for (int j=0; j<objetos[i].Length; j++) {
-                                                                      /*
-                                                                                if (objectPlacingList.objectsSettings[i].randomScale) {
-                                                                                          float newScale = Random.Range( localScale-objectPlacingList.objectsSettings[i].minScale, localScale+objectPlacingList.objectsSettings[i].maxScale );
+                                                                                                    objetos[i][j].transform.localScale = Vector3.one*Mathf.Floor (newScale / 0.1f)*0.1f;
+                                                                                          }
 
-                                                                                          objetos[i][j].transform.localScale = Vector3.one*Mathf.Floor (newScale / 0.1f)*0.1f;
+                                                                                }*/
+                                                                                if(objectPlacingList.objectsSettings[i].typeOfStelarObject == ObjectData.TypeOfStelarObject.Asteroids
+                                                                                          || objectPlacingList.objectsSettings[i].typeOfStelarObject == ObjectData.TypeOfStelarObject.SingleAstroObject){
+
+                                                                                          GameObject objectPlaced = objectPlacingList.objectsSettings[i].objectParent;
+
+                                                                                          float xCoord =  coord.x*chunkSize-chunkSize/2+points[j].x;
+                                                                                          float yCoord = coord.y*chunkSize-chunkSize/2+points[j].y;
+                                                                                          float heightCoord = 0;
+                                                                                          objetos[i][j] = GameObject.Instantiate(objectPlaced, new Vector3(  xCoord, heightCoord  ,yCoord)  , Quaternion.identity, parentObj.transform ) as GameObject;
+                                                                                          if (objectPlacingList.objectsSettings[i].scalable) {
+                                                                                                    objetos[i][j].transform.localScale = Vector3.one*objectPlacingList.objectsSettings[i].actualScale;
+                                                                                          }
                                                                                 }
+                                                                                if(objectPlacingList.objectsSettings[i].typeOfStelarObject == ObjectData.TypeOfStelarObject.SolarSystem){
 
-                                                                      }*/
-                                                                      if(objectPlacingList.objectsSettings[i].typeOfStelarObject == ObjectData.TypeOfStelarObject.Asteroids){
-                                                                                GameObject objectPlaced = objectPlacingList.objectsSettings[i].objectParent;
+                                                                                          GameObject objectPlaced = objectPlacingList.objectsSettings[i].objectParent;
 
-                                                                                float xCoord =  coord.x*chunkSize-chunkSize/2+points[j].x;
-                                                                                float yCoord = coord.y*chunkSize-chunkSize/2+points[j].y;
-                                                                                float heightCoord = 0;
-                                                                                objetos[i][j] = GameObject.Instantiate(objectPlaced, new Vector3(  xCoord, heightCoord  ,yCoord)  , Quaternion.identity, parentObj.transform ) as GameObject;
+                                                                                          float xCoord =  coord.x*chunkSize-chunkSize/2+points[j].x;
+                                                                                          float yCoord = coord.y*chunkSize-chunkSize/2+points[j].y;
+                                                                                          float heightCoord = 0;
+                                                                                          //heightValues[ (int)points[j].x, (int)points[j].y ] -objectPlacingList.objectsSettings[i].offsetHeight;
+                                                                                          //float heightCoord = heightValues[ (int)points[j].x, (int)points[j].y ] +
+                                                                                          //                                        viewedModelFilter.sharedMesh.bounds.size.y*objectPlaced.transform.localScale.y/2 -
+                                                                                          //                                        objectPlacingList.objectsSettings[i].offsetHeight;
+                                                                                          Vector3 angles = new Vector3(0,0,0);
+                                                                                          angles.y = Random.Range(0, 6)*60;
+                                                                                          objetos[i][j] = GameObject.Instantiate(objectPlaced, new Vector3(  xCoord, heightCoord  ,yCoord)  , Quaternion.identity, parentObj.transform ) as GameObject;
+                                                                                }
                                                                       }
-                                                                      if(objectPlacingList.objectsSettings[i].typeOfStelarObject == ObjectData.TypeOfStelarObject.SingleAstroObject){
-                                                                                GameObject objectPlaced = objectPlacingList.objectsSettings[i].objectParent;
-
-                                                                                float xCoord =  coord.x*chunkSize-chunkSize/2+points[j].x;
-                                                                                float yCoord = coord.y*chunkSize-chunkSize/2+points[j].y;
-                                                                                float heightCoord = 0;
-                                                                                objetos[i][j] = GameObject.Instantiate(objectPlaced, new Vector3(  xCoord, heightCoord  ,yCoord)  , Quaternion.identity, parentObj.transform ) as GameObject;
-                                                                      }
-                                                                      if(objectPlacingList.objectsSettings[i].typeOfStelarObject == ObjectData.TypeOfStelarObject.SolarSystem){
-
-                                                                                GameObject objectPlaced = objectPlacingList.objectsSettings[i].objectParent;
-
-                                                                                float xCoord =  coord.x*chunkSize-chunkSize/2+points[j].x;
-                                                                                float yCoord = coord.y*chunkSize-chunkSize/2+points[j].y;
-                                                                                float heightCoord = 0;
-                                                                                //heightValues[ (int)points[j].x, (int)points[j].y ] -objectPlacingList.objectsSettings[i].offsetHeight;
-                                                                                //float heightCoord = heightValues[ (int)points[j].x, (int)points[j].y ] +
-                                                                                //                                        viewedModelFilter.sharedMesh.bounds.size.y*objectPlaced.transform.localScale.y/2 -
-                                                                                //                                        objectPlacingList.objectsSettings[i].offsetHeight;
-                                                                                Vector3 angles = new Vector3(0,0,0);
-                                                                                angles.y = Random.Range(0, 6)*60;
-                                                                                objetos[i][j] = GameObject.Instantiate(objectPlaced, new Vector3(  xCoord, heightCoord  ,yCoord)  , Quaternion.identity, parentObj.transform ) as GameObject;
-                                                                      }
-                                                            }
                                                   }
 
 
@@ -220,4 +217,9 @@ public static class ObjectGenerator
                               }
           }
 
+          public static void modifyPlacementValues(ObjectPlacingList objPlacingList, int index){
+                    objPlacingList.objectsSettings[index].radius+= objPlacingList.objectsSettings[index].radiusIncremment;
+                    objPlacingList.objectsSettings[index].radius-= objPlacingList.objectsSettings[index].radiusDecremment;
+                    objPlacingList.objectsSettings[index].actualScale-= objPlacingList.objectsSettings[index].scaleDecremment;
+          }
 }
