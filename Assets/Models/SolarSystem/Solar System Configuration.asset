@@ -29,14 +29,14 @@ MonoBehaviour:
     scoreGived: 5
     minNumOfPlanets: 1
     maxNumOfPlanets: 4
-    maxDst: 10
-    minDst: 3
+    maxDst: 11
+    minDst: 5.5
     randomScale: 0
     PlanetsMinScale: 0.7
-    PlanetsMaxScale: 1.3
-    SunMinScale: 1
-    SunMaxScale: 1.3
+    PlanetsMaxScale: 1.5
+    SunMinScale: 1.3
+    SunMaxScale: 1.8
     PlanetsMinTVelocity: 10
     PlanetsMaxTVelocity: 15
     PlanetsMinRVelocity: 0.4
-    PlanetsMaxRVelocity: 0.8
+    PlanetsMaxRVelocity: 1

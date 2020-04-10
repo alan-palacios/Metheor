@@ -20,6 +20,10 @@ public class GeneralGameControl : MonoBehaviour
 
           public GameObject GameElements;
           public GameObject MenuElements;
+          public GameObject mapGenerator;
+          public GameObject solarSystemParent;
+          public GameObject solarSystemInstanced;
+
           public Camera gameCamera;
 
           public float timeAfterLose;
@@ -29,25 +33,27 @@ public class GeneralGameControl : MonoBehaviour
           if (haveLost) {
                     PlayGame();
           }else{
-                    StopGame();
+                    StartCoroutine(StopGame());
           }
 
     }
 
-    public void StopGame(){
-              if (paused) {
-                        Time.timeScale = 0;
-                        paused=true;
-              }
+    public IEnumerator StopGame(){
 
+              if (paused) {
+                        yield return null;
+                        mapGenerator.SetActive(false);
+                        solarSystemInstanced = GameObject.Instantiate(solarSystemParent, Vector3.zero  , Quaternion.identity, transform ) as GameObject;
+              }
     }
 
     public void PlayGame()
     {
               Time.timeScale = paused?1:0;
               paused = false;
+              Destroy(solarSystemInstanced);
               playerElements.SetActive(true);
-              GameElements.SetActive(true);
+              mapGenerator.SetActive(true);
               MenuElements.SetActive(false);
     }
 
