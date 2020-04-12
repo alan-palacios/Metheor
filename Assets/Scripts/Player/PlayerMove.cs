@@ -35,16 +35,15 @@ public class PlayerMove : MonoBehaviour
     public GameObject explosionParticles;
     public float explosionOffset;
 
-
     private Vector3 newCameraRot;
+    public static int score = 200;
 
-    public int score =0;
     private bool receivingImpulse=false, withSpeedBoost=false, collidingSatellite=false, alive=true;
+
     void Start()
     {
           originalSpeed = moveSpeed;
           QualitySettings.vSyncCount = 0;
-          //Time.captureFramerate = 30;
           Application.targetFrameRate = 60;
           rb = GetComponent<Rigidbody>();
           gameControl.UpdateScore ();
@@ -53,10 +52,7 @@ public class PlayerMove : MonoBehaviour
     }
 
     void FixedUpdate(){
-              //Input.gyro.enabled = true;
-              //float initialOrientationX = Input.gyro.gravity.x;
-              //float initialOrientationY = Input.gyro.gravity.y;
-              //Vector2 cameraRot = new Vector2( initialOrientationX, initialOrientationY );
+                            
               if (alive) {
                         Vector2 cameraRot = new Vector2( Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") );
 
@@ -97,9 +93,6 @@ public class PlayerMove : MonoBehaviour
     void Update(){
 
               meteoriteModel.transform.Rotate(  Time.deltaTime * modelRotationSpeed * new Vector3( 0.5f, 0, 1) );
-              //meteoriteModel.transform.rotation = Quaternion.RotateTowards(meteoriteModel.transform.rotation,
-                    //Quaternion.Euler(1, 0,1), modelRotationSpeed * Time.deltaTime);
-              //meteoriteModel.transform.rotation= Quaternion.Lerp (meteoriteModel.transform.rotation, Vector3.up , modelRotationSpeed * 1f * Time.deltaTime);
    }
 
     void OnCollisionEnter(Collision collision)
@@ -175,7 +168,7 @@ public class PlayerMove : MonoBehaviour
 
                                 score+=MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived;
                                 ObjectGenerator.modifyPlacementValues(objPlacingList, 5);
-                                
+
                                 gameControl.UpdateScore();
                                 StartCoroutine(MostrarExplosion());
                                 if (!receivingImpulse && !withSpeedBoost) {
@@ -201,7 +194,14 @@ public class PlayerMove : MonoBehaviour
                                 StartCoroutine(MostrarExplosion());
                                 StartCoroutine(Congelarse());
                                 StartCoroutine(MasterParent.GetComponent<CollectibleObject>().DestruirObjeto(MasterParent));
-
+                      }else if(objColl.tag == "BlackHole"){
+                                Time.timeScale=0.5f;
+                                objColl.GetComponent<BlackHole>().AtraerObjeto(transform);
+                                DieWithoutFracture();
+                      }else if(objColl.tag == "Teleporter"){
+                                Time.timeScale=0.8f;
+                                objColl.GetComponent<BlackHole>().AtraerObjeto(transform);
+                                Teleport();
                       }
 
     }
@@ -286,6 +286,20 @@ public class PlayerMove : MonoBehaviour
               GameObject objectInstanced = GameObject.Instantiate(meteoriteModelFract,  meteoriteModel.transform.position  , meteoriteModel.transform.rotation ) as GameObject;
               StartCoroutine(DestroyMetheor(objectInstanced));
    }
+    public void DieWithoutFracture(){
+
+              alive=false;
+              StartCoroutine(MostrarExplosion());
+              StartCoroutine(gameControl.OnLost() );
+              StartCoroutine(DestroyCompleteMetheor(meteoriteModel));
+   }
+    public void Teleport(){
+
+              alive=false;
+              StartCoroutine(MostrarExplosion());
+              StartCoroutine(gameControl.PassLevel() );
+              StartCoroutine(DestroyCompleteMetheor(meteoriteModel));
+   }
 
    public IEnumerator DestroyMetheor(GameObject metheor){
        Vector3 disminucionEscala = Vector3.one*0.16f;
@@ -305,6 +319,21 @@ public class PlayerMove : MonoBehaviour
 
        }
        Destroy(metheor);
+   }
+   public IEnumerator DestroyCompleteMetheor(GameObject metheor){
+       Vector3 disminucionEscala = Vector3.one*0.16f;
+       float timeBetwenChange = 0.1f;
+       for (int i=0; i<meteorParticles.Length; i++) {
+                 meteorParticles[i].SetActive(false);
+       }
+       while(metheor.transform.localScale.x>0){
+                  metheor.transform.localScale -= disminucionEscala;
+                  if (metheor.transform.localScale.x<=0) {
+                          metheor.transform.localScale=Vector3.zero;
+                    }
+                    yield return new WaitForSeconds(timeBetwenChange);
+       }
+       //Destroy(metheor);
    }
 
 }

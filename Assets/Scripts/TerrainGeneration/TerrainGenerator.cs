@@ -39,7 +39,7 @@ public class TerrainGenerator : MonoBehaviour {
 
 		//generandole estrellas unicamente
 		ObjectGenerator.GenerateStarsInGame(objectPlacingList, chunkSize,  background, new Vector2(0,0),
-			viewer.localScale.x, viewer.gameObject.GetComponent<PlayerMove>().score );
+			viewer.localScale.x, PlayerMove.score );
 	}
 
 	void Update() {

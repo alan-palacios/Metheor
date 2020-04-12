@@ -12,6 +12,8 @@ TagManager:
   - SpeedBoost
   - Bomb
   - Ice
+  - BlackHole
+  - Teleporter
   layers:
   - Default
   - TransparentFX

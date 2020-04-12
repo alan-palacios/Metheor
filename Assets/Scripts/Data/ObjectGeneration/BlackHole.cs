@@ -18,16 +18,19 @@ public class BlackHole : MonoBehaviour
     public float minSize;
     public float sizeIncrement;
 
-    float angleIncremment;
+    public float gravityConstant;
 
+    Vector3 direction;
+    float angleIncremment;
+    bool atrayendoObjeto;
+    GameObject metheor;
 
     void Start()
     {
-              transform.position=Vector3.zero;
               angleIncremment=360/particlesOfSameColor;
               float initAngle=0;
               float shapeRadius=minRadius;
-              float partSize=minSize;              
+              float partSize=minSize;
 
               Vector3 angles = new Vector3(0,0,initAngle);
 
@@ -53,5 +56,19 @@ public class BlackHole : MonoBehaviour
                         partSize+=sizeIncrement;
               }
     }
+
+    void FixedUpdate(){
+              if (atrayendoObjeto) {
+                        direction =  transform.position - metheor.transform.position;
+                        float gravityAceleration = gravityConstant/Vector3.Distance(transform.position,metheor.transform.position);
+                        metheor.transform.Translate(direction * (gravityConstant)* Time.fixedDeltaTime, Space.World );
+              }
+   }
+
+    public void AtraerObjeto(Transform transform){
+              atrayendoObjeto=true;
+              this.metheor = transform.gameObject;
+
+   }
 
 }

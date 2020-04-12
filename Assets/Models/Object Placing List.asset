@@ -31,8 +31,8 @@ MonoBehaviour:
     scaleDecremment: 0
   - nombre: SolarSystem
     minScoreToAppear: 70
-    maxScoreToAppear: 102
-    appearInfinitely: 1
+    maxScoreToAppear: 130
+    appearInfinitely: 0
     generationMode: 0
     typeOfStelarObject: 1
     objectParent: {fileID: 881523598912456800, guid: 98e004fdd18df2e4fa50149162dcc155,
@@ -145,6 +145,36 @@ MonoBehaviour:
     radius: 15
     rejectionSamples: 8
     radiusIncremment: 0
+    radiusDecremment: 0
+    scalable: 0
+    actualScale: 0
+    scaleDecremment: 0
+  - nombre: Teleport Black Hole
+    minScoreToAppear: 200
+    maxScoreToAppear: 0
+    appearInfinitely: 1
+    generationMode: 0
+    typeOfStelarObject: 3
+    objectParent: {fileID: 1206010594332148617, guid: a2b1bfb55b3d155489951da7442ee3f9,
+      type: 3}
+    radius: 15
+    rejectionSamples: 8
+    radiusIncremment: 0
+    radiusDecremment: 0
+    scalable: 0
+    actualScale: 0
+    scaleDecremment: 0
+  - nombre: Dangerous Black Hole
+    minScoreToAppear: 150
+    maxScoreToAppear: 0
+    appearInfinitely: 1
+    generationMode: 0
+    typeOfStelarObject: 3
+    objectParent: {fileID: 1529405581707832730, guid: 87e3e73eca3dcdb43a1a6a82b9342aca,
+      type: 3}
+    radius: 15
+    rejectionSamples: 8
+    radiusIncremment: 0.5
     radiusDecremment: 0
     scalable: 0
     actualScale: 0

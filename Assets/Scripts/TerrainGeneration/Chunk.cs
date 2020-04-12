@@ -89,7 +89,7 @@ public class Chunk
                                                   //el valor de los objetos y waterObj no se altera, tiene que pasarse con ref
                                                   if (!objectsGenerated) {
                                                             ObjectGenerator.GenerateObjectsInGame(objectPlacingList, chunkSize,  displayedObjectsParent, coord,
-                                                                      viewer.localScale.x, viewer.gameObject.GetComponent<PlayerMove>().score );
+                                                                      viewer.localScale.x, PlayerMove.score );
                                                             objectsGenerated=true;
                                                   }
                                         }
