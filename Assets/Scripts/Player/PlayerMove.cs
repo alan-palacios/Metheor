@@ -36,7 +36,7 @@ public class PlayerMove : MonoBehaviour
     public float explosionOffset;
 
     private Vector3 newCameraRot;
-    public static int score = 200;
+    public static int score = 0;
 
     private bool receivingImpulse=false, withSpeedBoost=false, collidingSatellite=false, alive=true;
 
@@ -46,13 +46,13 @@ public class PlayerMove : MonoBehaviour
           QualitySettings.vSyncCount = 0;
           Application.targetFrameRate = 60;
           rb = GetComponent<Rigidbody>();
-          gameControl.UpdateScore ();
+          //gameControl.UpdateScore ();
 
           maxWidthScreenController = Screen.width/4;
     }
 
     void FixedUpdate(){
-                            
+
               if (alive) {
                         Vector2 cameraRot = new Vector2( Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") );
 
@@ -64,11 +64,6 @@ public class PlayerMove : MonoBehaviour
                                             x=0;
                                   }
                                   x*=speedOfChange;
-                                  /*if (x<-1) {
-                                            x=-1;
-                                  }else if (x > 1) {
-                                            x=1;
-                                  }*/
 
                                   cameraRot = new Vector3(x,0,0);
 
@@ -112,7 +107,7 @@ public class PlayerMove : MonoBehaviour
                                           score+=GroupSolarSystem.GetComponent<SolarSystem>().solarSystemConfiguration.solarSystemData.scoreGived;
                                           //float newScale = GroupOfPlanets.transform.localScale.x/incremmentOfScale;
                                           //transform.localScale+= new Vector3(newScale, newScale, newScale);
-                                          gameControl.UpdateScore();
+                                          gameControl.UpdateScore( GroupSolarSystem.GetComponent<SolarSystem>().solarSystemConfiguration.solarSystemData.scoreGived);
                                           StartCoroutine(MostrarExplosion());
                                           if (!receivingImpulse && !withSpeedBoost) {
                                                     StartCoroutine( DarImpulso(impulseVelocityAdded) );
@@ -129,7 +124,7 @@ public class PlayerMove : MonoBehaviour
                                 score+=GroupOfAsteroids.GetComponent<Asteroids>().asteroidsConfiguration.scoreGived;
                                 float newScale = 1/GroupOfAsteroids.GetComponent<Asteroids>().asteroidsConfiguration.incremmentOfScale;
                                 //transform.localScale+= new Vector3(newScale, newScale, newScale);
-                                gameControl.UpdateScore();
+                                gameControl.UpdateScore( GroupOfAsteroids.GetComponent<Asteroids>().asteroidsConfiguration.scoreGived);
                                 StartCoroutine(MostrarExplosion());
                                 if (!receivingImpulse && !withSpeedBoost) {
                                           StartCoroutine( DarImpulso(impulseVelocityAdded) );
@@ -147,7 +142,7 @@ public class PlayerMove : MonoBehaviour
 
                                 score+=MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived;
                                 //float newScale = 1/MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.decremmentOfScale;
-                                gameControl.UpdateScore();
+                                gameControl.UpdateScore( MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived);
                                 if (!collidingSatellite) {
                                           StartCoroutine(MostrarExplosion());
                                 }
@@ -169,7 +164,7 @@ public class PlayerMove : MonoBehaviour
                                 score+=MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived;
                                 ObjectGenerator.modifyPlacementValues(objPlacingList, 5);
 
-                                gameControl.UpdateScore();
+                                gameControl.UpdateScore( MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived);
                                 StartCoroutine(MostrarExplosion());
                                 if (!receivingImpulse && !withSpeedBoost) {
                                           StartCoroutine( DarImpulso(impulseVelocityAdded) );
@@ -182,6 +177,11 @@ public class PlayerMove : MonoBehaviour
                                 GameObject MasterParent = objColl.transform.parent.gameObject;
                                 StartCoroutine(MostrarExplosion());
                                 StartCoroutine( DarVelocidad() );
+                                StartCoroutine(MasterParent.GetComponent<CollectibleObject>().DestruirObjeto(MasterParent));
+                      }else if(objColl.tag == "Coin"){
+                                GameObject MasterParent = objColl.transform.parent.gameObject;
+                                gameControl.GiveCoin();
+                                StartCoroutine(MostrarExplosion());
                                 StartCoroutine(MasterParent.GetComponent<CollectibleObject>().DestruirObjeto(MasterParent));
                       }else if(objColl.tag == "Bomb"){
                                 GameObject MasterParent = objColl.transform.parent.gameObject;
@@ -280,7 +280,6 @@ public class PlayerMove : MonoBehaviour
 
               alive=false;
               StartCoroutine(MostrarExplosion());
-              //gameControl.UpdateScore("You lose");
               StartCoroutine(gameControl.OnLost() );
               metheorElements.SetActive(false);
               GameObject objectInstanced = GameObject.Instantiate(meteoriteModelFract,  meteoriteModel.transform.position  , meteoriteModel.transform.rotation ) as GameObject;

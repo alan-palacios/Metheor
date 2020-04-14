@@ -6,7 +6,7 @@ using UnityEngine;
 public class AsteroidsConfiguration : UpdatableData
 {
           public GameObject [] asteroidsModels;
-          public Material materials;
+          public Material [] materials;
           public int scoreGived;
           public float incremmentOfScale;
           public int minNumOfAsteroids;

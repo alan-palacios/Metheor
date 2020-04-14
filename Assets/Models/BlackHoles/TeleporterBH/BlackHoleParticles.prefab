@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8547115661680195704}
   - component: {fileID: 8547115661680195705}
   m_Layer: 0
-  m_Name: BlackHoleParticles (5)
+  m_Name: BlackHoleParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0
+    scalar: 0.2
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -4654,8 +4654,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 277bdefd87019e849bedc8b81b1da528, type: 2}
-  - {fileID: 2100000, guid: 277bdefd87019e849bedc8b81b1da528, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

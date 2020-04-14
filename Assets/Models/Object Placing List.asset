@@ -45,7 +45,7 @@ MonoBehaviour:
     actualScale: 0
     scaleDecremment: 0
   - nombre: Asteroids
-    minScoreToAppear: 20
+    minScoreToAppear: 0
     maxScoreToAppear: 80
     appearInfinitely: 1
     generationMode: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
     scaleDecremment: 0.01
   - nombre: Star
     minScoreToAppear: 0
-    maxScoreToAppear: 10000000
+    maxScoreToAppear: 10
     appearInfinitely: 1
     generationMode: 0
     typeOfStelarObject: 3
@@ -112,7 +112,7 @@ MonoBehaviour:
     typeOfStelarObject: 3
     objectParent: {fileID: 8645129033762892302, guid: 9b0e6efcabdcf0941b233b3981442d20,
       type: 3}
-    radius: 20
+    radius: 18
     rejectionSamples: 8
     radiusIncremment: 0
     radiusDecremment: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
     actualScale: 0
     scaleDecremment: 0
   - nombre: Teleport Black Hole
-    minScoreToAppear: 200
+    minScoreToAppear: 205
     maxScoreToAppear: 0
     appearInfinitely: 1
     generationMode: 0
@@ -166,13 +166,28 @@ MonoBehaviour:
     scaleDecremment: 0
   - nombre: Dangerous Black Hole
     minScoreToAppear: 150
-    maxScoreToAppear: 0
-    appearInfinitely: 1
+    maxScoreToAppear: 200
+    appearInfinitely: 0
     generationMode: 0
     typeOfStelarObject: 3
     objectParent: {fileID: 1529405581707832730, guid: 87e3e73eca3dcdb43a1a6a82b9342aca,
       type: 3}
     radius: 15
+    rejectionSamples: 8
+    radiusIncremment: 0.5
+    radiusDecremment: 0
+    scalable: 0
+    actualScale: 0
+    scaleDecremment: 0
+  - nombre: Coin
+    minScoreToAppear: 0
+    maxScoreToAppear: 0
+    appearInfinitely: 1
+    generationMode: 0
+    typeOfStelarObject: 3
+    objectParent: {fileID: 1541293976492213438, guid: b07232dfe0f0e5a4494a598d108d0e67,
+      type: 3}
+    radius: 20
     rejectionSamples: 8
     radiusIncremment: 0.5
     radiusDecremment: 0

@@ -24,12 +24,16 @@ MonoBehaviour:
   - {fileID: 5444673969180045236, guid: 1273f2234bad6f6468b903226020c12a, type: 3}
   - {fileID: 641178031750182196, guid: 70ebaacb3466c2e43a771cd51434c7a6, type: 3}
   - {fileID: 315903848272722222, guid: 82aa8c5f0d52987449b51dc3b5f6bba3, type: 3}
-  materials: {fileID: 0}
+  materials:
+  - {fileID: 2100000, guid: 1516f8892d080d04782ad05acb0582bc, type: 2}
+  - {fileID: 2100000, guid: 409585be45ee18b43b95232909ffbbee, type: 2}
+  - {fileID: 2100000, guid: 19b57c212f7e4654896a3399a882a4b8, type: 2}
+  - {fileID: 2100000, guid: 1ec01764b3cda254ca313a286fea40a6, type: 2}
   scoreGived: 1
   incremmentOfScale: 30
   minNumOfAsteroids: 10
   maxNumOfAsteroids: 18
-  AsteroidsMinScale: 1
-  AsteroidsMaxScale: 1.8
+  AsteroidsMinScale: 1.8
+  AsteroidsMaxScale: 2.1
   maxDst: 4
   minDst: 0

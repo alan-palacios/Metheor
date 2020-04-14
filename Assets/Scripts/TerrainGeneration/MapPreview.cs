@@ -12,15 +12,19 @@ public class MapPreview : MonoBehaviour {
 	public DrawMode drawMode;
 
 	public bool autoUpdate;
+	public bool autoGenerate;
 	public int chunkSize;
 	public int actualScore;
 
 	public void DrawMapInEditor() {
-		if (drawMode == DrawMode.Map) {
-			DrawMap ();
-		} else if (drawMode == DrawMode.DeleteChilds) {
-			GameObject.DestroyImmediate(displayedObjectsParent);
+		if (autoGenerate) {
+			if (drawMode == DrawMode.Map) {
+				DrawMap ();
+			} else if (drawMode == DrawMode.DeleteChilds) {
+				GameObject.DestroyImmediate(displayedObjectsParent);
+			}
 		}
+
 	}
 
 	public void DrawMap() {

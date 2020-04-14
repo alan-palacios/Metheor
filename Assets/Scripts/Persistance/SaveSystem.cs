@@ -5,11 +5,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 public static class SaveSystem
 {
 
-          public static void SaveData(int score, string fileName){
+          public static void SaveData(PlayerData data, string fileName){
                     BinaryFormatter formatter = new BinaryFormatter();
-                    string path = Path.Combine(Application.persistentDataPath, fileName);
-
-                    PlayerData data = new PlayerData(score);
+                    string path = Path.Combine(Application.persistentDataPath, fileName);                    
                     using ( FileStream stream = new FileStream(path, FileMode.Create)){
                         formatter.Serialize(stream, data);
                     }
