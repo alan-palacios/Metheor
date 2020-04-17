@@ -45,12 +45,6 @@ public class TerrainGenerator : MonoBehaviour {
 	void Update() {
 
 		viewerPosition = new Vector2 (viewer.position.x, viewer.position.z);//mapGenerator.biomeData.meshSettings.meshScale;
-
-		if (viewerPosition!=viewerPositionOld) {
-			/*foreach (Chunk chunk  in visibleTerrainChunks) {
-				chunk.UpdateCollisionMesh();
-			}*/
-		}
 		if ((viewerPositionOld - viewerPosition).sqrMagnitude > sqrViewerMoveThresholdForChunkUpdate) {
 			viewerPositionOld = viewerPosition;
 			UpdateVisibleChunks ();
@@ -59,7 +53,7 @@ public class TerrainGenerator : MonoBehaviour {
 	}
 
 	void UpdateVisibleChunks() {
-
+		
 		HashSet<Vector2> alreadyUpdatedChunkCoords = new HashSet<Vector2>();
 
 		for (int i = visibleChunks.Count-1 ; i >=0 ; i--) {
@@ -106,7 +100,7 @@ public class TerrainGenerator : MonoBehaviour {
 	}
 
 	IEnumerator destroyCoroutine(Chunk chunk){
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds(1);
 		Destroy(chunk.chunkGameObject);
 		chunkDictionary.Remove(chunk.coord);
 		visibleChunks.Remove(chunk);

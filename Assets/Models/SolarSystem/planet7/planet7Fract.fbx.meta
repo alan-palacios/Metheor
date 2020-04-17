@@ -1,0 +1,199 @@
+fileFormatVersion: 2
+guid: d30392c0d17de974481db32632c92ed6
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Planet3.001_cell.020
+    100002: Planet3.001_cell.021
+    100004: Planet3.001_cell.022
+    100006: Planet3.001_cell.023
+    100008: Planet3.001_cell.024
+    100010: Planet3.001_cell.025
+    100012: Planet3.001_cell.026
+    100014: Planet3.001_cell.027
+    100016: Planet3.001_cell.028
+    100018: Planet3.001_cell.029
+    100020: Planet3.001_cell.030
+    100022: Planet3.001_cell.031
+    100024: Planet3.001_cell.032
+    100026: Planet3.001_cell.033
+    100028: Planet3.001_cell.034
+    100030: Planet3.001_cell.035
+    100032: Planet3.001_cell.036
+    100034: Planet3.001_cell.037
+    100036: Planet3.001_cell.038
+    100038: Planet3.001_cell.039
+    100040: //RootNode
+    400000: Planet3.001_cell.020
+    400002: Planet3.001_cell.021
+    400004: Planet3.001_cell.022
+    400006: Planet3.001_cell.023
+    400008: Planet3.001_cell.024
+    400010: Planet3.001_cell.025
+    400012: Planet3.001_cell.026
+    400014: Planet3.001_cell.027
+    400016: Planet3.001_cell.028
+    400018: Planet3.001_cell.029
+    400020: Planet3.001_cell.030
+    400022: Planet3.001_cell.031
+    400024: Planet3.001_cell.032
+    400026: Planet3.001_cell.033
+    400028: Planet3.001_cell.034
+    400030: Planet3.001_cell.035
+    400032: Planet3.001_cell.036
+    400034: Planet3.001_cell.037
+    400036: Planet3.001_cell.038
+    400038: Planet3.001_cell.039
+    400040: //RootNode
+    2100000: planet7Material
+    2300000: Planet3.001_cell.020
+    2300002: Planet3.001_cell.021
+    2300004: Planet3.001_cell.022
+    2300006: Planet3.001_cell.023
+    2300008: Planet3.001_cell.024
+    2300010: Planet3.001_cell.025
+    2300012: Planet3.001_cell.026
+    2300014: Planet3.001_cell.027
+    2300016: Planet3.001_cell.028
+    2300018: Planet3.001_cell.029
+    2300020: Planet3.001_cell.030
+    2300022: Planet3.001_cell.031
+    2300024: Planet3.001_cell.032
+    2300026: Planet3.001_cell.033
+    2300028: Planet3.001_cell.034
+    2300030: Planet3.001_cell.035
+    2300032: Planet3.001_cell.036
+    2300034: Planet3.001_cell.037
+    2300036: Planet3.001_cell.038
+    2300038: Planet3.001_cell.039
+    3300000: Planet3.001_cell.020
+    3300002: Planet3.001_cell.021
+    3300004: Planet3.001_cell.022
+    3300006: Planet3.001_cell.023
+    3300008: Planet3.001_cell.024
+    3300010: Planet3.001_cell.025
+    3300012: Planet3.001_cell.026
+    3300014: Planet3.001_cell.027
+    3300016: Planet3.001_cell.028
+    3300018: Planet3.001_cell.029
+    3300020: Planet3.001_cell.030
+    3300022: Planet3.001_cell.031
+    3300024: Planet3.001_cell.032
+    3300026: Planet3.001_cell.033
+    3300028: Planet3.001_cell.034
+    3300030: Planet3.001_cell.035
+    3300032: Planet3.001_cell.036
+    3300034: Planet3.001_cell.037
+    3300036: Planet3.001_cell.038
+    3300038: Planet3.001_cell.039
+    4300000: Planet3.001_cell.020
+    4300002: Planet3.001_cell.021
+    4300004: Planet3.001_cell.022
+    4300006: Planet3.001_cell.023
+    4300008: Planet3.001_cell.024
+    4300010: Planet3.001_cell.025
+    4300012: Planet3.001_cell.026
+    4300014: Planet3.001_cell.027
+    4300016: Planet3.001_cell.028
+    4300018: Planet3.001_cell.029
+    4300020: Planet3.001_cell.030
+    4300022: Planet3.001_cell.031
+    4300024: Planet3.001_cell.032
+    4300026: Planet3.001_cell.033
+    4300028: Planet3.001_cell.034
+    4300030: Planet3.001_cell.035
+    4300032: Planet3.001_cell.036
+    4300034: Planet3.001_cell.037
+    4300036: Planet3.001_cell.038
+    4300038: Planet3.001_cell.039
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: planet7Material
+    second: {fileID: 2100000, guid: 6d8c753e8ba8fb94181703ee20d25eee, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1.1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -38,8 +38,10 @@ public class GeneralGameControl : MonoBehaviour
           public float timeAfterLose;
 
           public Camera gameCamera;
-
+          public Color [] bgColors;
           static PlayerData playerData;
+
+          public static int level = 0;
 
     void Start()
     {
@@ -52,6 +54,11 @@ public class GeneralGameControl : MonoBehaviour
 
     }
 
+    void Update(){
+              if (Input.GetKey("up")) {
+                        PauseGame();
+              }
+   }
     public IEnumerator StopGame(){
               Time.timeScale = paused?1:0;
               playerData = new PlayerData(PlayerMove.score,0);
@@ -78,6 +85,7 @@ public class GeneralGameControl : MonoBehaviour
               if (passLevel) {
                         blackHoleInstanced = GameObject.Instantiate(blackHoleParent, Vector3.zero  , Quaternion.identity, transform ) as GameObject;
                         Destroy(blackHoleInstanced.GetComponent<Collider>() );
+                        gameCamera.backgroundColor = bgColors[level%bgColors.Length];
               }
               coinText.text = "" + playerData.getCoins();
               scoreText.text = "" + playerData.getScore();
@@ -94,6 +102,7 @@ public class GeneralGameControl : MonoBehaviour
     {
               yield return new WaitForSeconds(timeAfterLose);
               PlayerMove.score=0;
+              level++;
               passLevel=true;
               haveLost=true;
               SceneManager.LoadScene("MainScene");
@@ -115,6 +124,7 @@ public class GeneralGameControl : MonoBehaviour
               paused=false;
               SaveActualData();
               PlayerMove.score=0;
+              level=0;
               SceneManager.LoadScene("MainScene");
    }
 
@@ -140,6 +150,9 @@ public class GeneralGameControl : MonoBehaviour
              playerData.setScore( playerData.getScore() + scoreGived);
              scoreText.text = "" + playerData.getScore();
              gameCamera.fieldOfView+=0.1f;
+             if (gameCamera.fieldOfView>25) {
+                       gameCamera.fieldOfView=25;
+             }
     }
 
     public void GiveCoin(){

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2916a6763977724ebad9b1552fcafa8, type: 3}
+  m_Name: GiantAstConfig
+  m_EditorClassIdentifier: 
+  autoUpdate: 1
+  asteroidsModels:
+  - {fileID: 2304870364146197258, guid: b1fe7f2161907904ea622955969a2d9a, type: 3}
+  - {fileID: 7476250927209280960, guid: 9aa8127feaa88be4f99fc31ca549e8c8, type: 3}
+  - {fileID: 1974015930454754125, guid: 630d46332e3440e49842c1682d7a4afb, type: 3}
+  - {fileID: 5536928516106774371, guid: 6b9c0ad325858774bb57b10f11b02224, type: 3}
+  materials:
+  - {fileID: 2100000, guid: 4bd4677d4ff4d7e4cbd13ff56deb4756, type: 2}
+  scoreGived: 0
+  incremmentOfScale: 0
+  minNumOfAsteroids: 8
+  maxNumOfAsteroids: 10
+  AsteroidsMinScale: 1.3
+  AsteroidsMaxScale: 1.6
+  maxDst: 16
+  minDst: 6

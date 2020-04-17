@@ -154,7 +154,13 @@ public static class ObjectGenerator
                                                                                           float heightCoord = 0;
                                                                                           objetos[i][j] = GameObject.Instantiate(objectPlaced, new Vector3(  xCoord, heightCoord  ,yCoord)  , Quaternion.identity, parentObj.transform ) as GameObject;
                                                                                           if (objectPlacingList.objectsSettings[i].scalable) {
-                                                                                                    objetos[i][j].transform.localScale = Vector3.one*objectPlacingList.objectsSettings[i].actualScale;
+                                                                                                    float numerator = score - objectPlacingList.objectsSettings[i].minScoreToAppear;
+                                                                                                    float denominator =  objectPlacingList.objectsSettings[i].maxScoreToAppear + objectPlacingList.objectsSettings[i].offsetScoreForScale;
+                                                                                                    float scaleMultiplier = 1 - ( numerator/denominator);
+                                                                                                    objetos[i][j].transform.localScale = Vector3.one*objectPlacingList.objectsSettings[i].initialScale*scaleMultiplier;
+                                                                                                    if (objetos[i][j].transform.localScale.x< objectPlacingList.objectsSettings[i].minScale) {
+                                                                                                              objetos[i][j].transform.localScale = Vector3.one*objectPlacingList.objectsSettings[i].minScale;
+                                                                                                    }
                                                                                           }
                                                                                 }
                                                                                 if(objectPlacingList.objectsSettings[i].typeOfStelarObject == ObjectData.TypeOfStelarObject.SolarSystem){
@@ -168,9 +174,16 @@ public static class ObjectGenerator
                                                                                           //float heightCoord = heightValues[ (int)points[j].x, (int)points[j].y ] +
                                                                                           //                                        viewedModelFilter.sharedMesh.bounds.size.y*objectPlaced.transform.localScale.y/2 -
                                                                                           //                                        objectPlacingList.objectsSettings[i].offsetHeight;
-                                                                                          Vector3 angles = new Vector3(0,0,0);
-                                                                                          angles.y = Random.Range(0, 6)*60;
                                                                                           objetos[i][j] = GameObject.Instantiate(objectPlaced, new Vector3(  xCoord, heightCoord  ,yCoord)  , Quaternion.identity, parentObj.transform ) as GameObject;
+                                                                                          if (objectPlacingList.objectsSettings[i].scalable) {
+                                                                                                    float numerator = score - objectPlacingList.objectsSettings[i].minScoreToAppear;
+                                                                                                    float denominator =  objectPlacingList.objectsSettings[i].maxScoreToAppear + objectPlacingList.objectsSettings[i].offsetScoreForScale;
+                                                                                                    float scaleMultiplier = 1 - ( numerator/denominator);
+                                                                                                    objetos[i][j].transform.localScale = Vector3.one*objectPlacingList.objectsSettings[i].initialScale*scaleMultiplier;
+                                                                                                    if (objetos[i][j].transform.localScale.x< objectPlacingList.objectsSettings[i].minScale) {
+                                                                                                              objetos[i][j].transform.localScale = Vector3.one*objectPlacingList.objectsSettings[i].minScale;
+                                                                                                    }
+                                                                                          }
                                                                                 }
                                                                       }
                                                   }
@@ -220,6 +233,19 @@ public static class ObjectGenerator
           public static void modifyPlacementValues(ObjectPlacingList objPlacingList, int index){
                     objPlacingList.objectsSettings[index].radius+= objPlacingList.objectsSettings[index].radiusIncremment;
                     objPlacingList.objectsSettings[index].radius-= objPlacingList.objectsSettings[index].radiusDecremment;
-                    objPlacingList.objectsSettings[index].actualScale-= objPlacingList.objectsSettings[index].scaleDecremment;
+                    if (objPlacingList.objectsSettings[index].radius< objPlacingList.objectsSettings[index].minRadius) {
+                              objPlacingList.objectsSettings[index].radius= objPlacingList.objectsSettings[index].minRadius;
+                    }
+          }
+          public static void modifyAllPlacementValues(ObjectPlacingList objectPlacingList, int score){
+                    for (int i=0; i< objectPlacingList.objectsSettings.Length; i++) {
+                              if (objectPlacingList.objectsSettings[i].scalable &&
+                                        score >= objectPlacingList.objectsSettings[i].minScoreToAppear &&
+                                        (score <= objectPlacingList.objectsSettings[i].maxScoreToAppear ||
+                                        objectPlacingList.objectsSettings[i].appearInfinitely) ) {
+                                                  modifyPlacementValues(objectPlacingList, i);
+                              }
+                    }
+
           }
 }

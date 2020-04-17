@@ -15,35 +15,39 @@ MonoBehaviour:
   autoUpdate: 1
   objectsSettings:
   - nombre: Spike Rock
-    minScoreToAppear: 40
-    maxScoreToAppear: 100
+    minScoreToAppear: 0
+    maxScoreToAppear: 70
     appearInfinitely: 0
     generationMode: 0
     typeOfStelarObject: 3
     objectParent: {fileID: 3836171514278267402, guid: e03250a3edfa9404d96e71b3b5272c7b,
       type: 3}
     radius: 15
+    minRadius: 0
     rejectionSamples: 8
     radiusIncremment: 0
-    radiusDecremment: 0
+    radiusDecremment: 0.1
     scalable: 0
-    actualScale: 0
-    scaleDecremment: 0
+    initialScale: 0
+    offsetScoreForScale: 0
+    minScale: 0
   - nombre: SolarSystem
-    minScoreToAppear: 70
-    maxScoreToAppear: 130
+    minScoreToAppear: 220
+    maxScoreToAppear: 390
     appearInfinitely: 0
     generationMode: 0
     typeOfStelarObject: 1
     objectParent: {fileID: 881523598912456800, guid: 98e004fdd18df2e4fa50149162dcc155,
       type: 3}
-    radius: 22
-    rejectionSamples: 12
+    radius: 23
+    minRadius: 10
+    rejectionSamples: 8
     radiusIncremment: 0
-    radiusDecremment: 0
-    scalable: 0
-    actualScale: 0
-    scaleDecremment: 0
+    radiusDecremment: 0.19
+    scalable: 1
+    initialScale: 1.5
+    offsetScoreForScale: -300
+    minScale: 0.7
   - nombre: Asteroids
     minScoreToAppear: 0
     maxScoreToAppear: 80
@@ -52,28 +56,32 @@ MonoBehaviour:
     typeOfStelarObject: 2
     objectParent: {fileID: 4431244805808537972, guid: c9cc59cf849ba5f4c9504d38c38b0d6f,
       type: 3}
-    radius: 20
+    radius: 18
+    minRadius: 0
     rejectionSamples: 8
     radiusIncremment: 0
     radiusDecremment: 0
     scalable: 0
-    actualScale: 0
-    scaleDecremment: 0
+    initialScale: 0
+    offsetScoreForScale: 0
+    minScale: 0
   - nombre: Satellite
     minScoreToAppear: 30
-    maxScoreToAppear: 70
+    maxScoreToAppear: 140
     appearInfinitely: 0
     generationMode: 0
     typeOfStelarObject: 3
     objectParent: {fileID: 8220925936885797492, guid: 8ed62e895f5567e45a3600c5485a2205,
       type: 3}
-    radius: 8
+    radius: 15
+    minRadius: 0
     rejectionSamples: 8
     radiusIncremment: 0
-    radiusDecremment: 0
+    radiusDecremment: 0.1
     scalable: 1
-    actualScale: 1
-    scaleDecremment: 0.01
+    initialScale: 3
+    offsetScoreForScale: -60
+    minScale: 0.8
   - nombre: Star
     minScoreToAppear: 0
     maxScoreToAppear: 10
@@ -83,27 +91,31 @@ MonoBehaviour:
     objectParent: {fileID: 8451396873394871827, guid: 58e995a0d66c07041914ca21cd2433c1,
       type: 3}
     radius: 4
+    minRadius: 0
     rejectionSamples: 8
     radiusIncremment: 0
     radiusDecremment: 0
     scalable: 0
-    actualScale: 0
-    scaleDecremment: 0
+    initialScale: 0
+    offsetScoreForScale: 0
+    minScale: 0
   - nombre: Astronaut
     minScoreToAppear: 0
-    maxScoreToAppear: 40
+    maxScoreToAppear: 70
     appearInfinitely: 0
     generationMode: 0
     typeOfStelarObject: 3
     objectParent: {fileID: 320750783474683501, guid: a2ba4b8093850bb48a95d9f97b9ae44f,
       type: 3}
     radius: 6
+    minRadius: 0
     rejectionSamples: 8
-    radiusIncremment: 0.2
+    radiusIncremment: 0.1
     radiusDecremment: 0
     scalable: 1
-    actualScale: 1
-    scaleDecremment: 0.01
+    initialScale: 1
+    offsetScoreForScale: 30
+    minScale: 0.6
   - nombre: SpeedBoost
     minScoreToAppear: 0
     maxScoreToAppear: 0
@@ -113,12 +125,14 @@ MonoBehaviour:
     objectParent: {fileID: 8645129033762892302, guid: 9b0e6efcabdcf0941b233b3981442d20,
       type: 3}
     radius: 18
+    minRadius: 0
     rejectionSamples: 8
     radiusIncremment: 0
     radiusDecremment: 0
     scalable: 0
-    actualScale: 0
-    scaleDecremment: 0
+    initialScale: 0
+    offsetScoreForScale: 0
+    minScale: 0
   - nombre: Bomb
     minScoreToAppear: 0
     maxScoreToAppear: 0
@@ -128,12 +142,14 @@ MonoBehaviour:
     objectParent: {fileID: 2405470081866927391, guid: 607561880159ec341ab52508435e1a1e,
       type: 3}
     radius: 18
+    minRadius: 0
     rejectionSamples: 8
     radiusIncremment: 0
     radiusDecremment: 0
     scalable: 0
-    actualScale: 0
-    scaleDecremment: 0
+    initialScale: 0
+    offsetScoreForScale: 0
+    minScale: 0
   - nombre: Ice
     minScoreToAppear: 0
     maxScoreToAppear: 0
@@ -143,14 +159,16 @@ MonoBehaviour:
     objectParent: {fileID: 5683818767616723087, guid: ad7b77b5d6476df4aa20a9e84d135d57,
       type: 3}
     radius: 15
+    minRadius: 0
     rejectionSamples: 8
     radiusIncremment: 0
     radiusDecremment: 0
     scalable: 0
-    actualScale: 0
-    scaleDecremment: 0
+    initialScale: 0
+    offsetScoreForScale: 0
+    minScale: 0
   - nombre: Teleport Black Hole
-    minScoreToAppear: 205
+    minScoreToAppear: 451
     maxScoreToAppear: 0
     appearInfinitely: 1
     generationMode: 0
@@ -158,27 +176,31 @@ MonoBehaviour:
     objectParent: {fileID: 1206010594332148617, guid: a2b1bfb55b3d155489951da7442ee3f9,
       type: 3}
     radius: 15
+    minRadius: 0
     rejectionSamples: 8
     radiusIncremment: 0
     radiusDecremment: 0
     scalable: 0
-    actualScale: 0
-    scaleDecremment: 0
+    initialScale: 0
+    offsetScoreForScale: 0
+    minScale: 0
   - nombre: Dangerous Black Hole
-    minScoreToAppear: 150
-    maxScoreToAppear: 200
+    minScoreToAppear: 410
+    maxScoreToAppear: 450
     appearInfinitely: 0
     generationMode: 0
     typeOfStelarObject: 3
     objectParent: {fileID: 1529405581707832730, guid: 87e3e73eca3dcdb43a1a6a82b9342aca,
       type: 3}
     radius: 15
+    minRadius: 0
     rejectionSamples: 8
     radiusIncremment: 0.5
     radiusDecremment: 0
     scalable: 0
-    actualScale: 0
-    scaleDecremment: 0
+    initialScale: 1
+    offsetScoreForScale: 0
+    minScale: 1
   - nombre: Coin
     minScoreToAppear: 0
     maxScoreToAppear: 0
@@ -188,9 +210,45 @@ MonoBehaviour:
     objectParent: {fileID: 1541293976492213438, guid: b07232dfe0f0e5a4494a598d108d0e67,
       type: 3}
     radius: 20
+    minRadius: 0
     rejectionSamples: 8
     radiusIncremment: 0.5
     radiusDecremment: 0
     scalable: 0
-    actualScale: 0
-    scaleDecremment: 0
+    initialScale: 0
+    offsetScoreForScale: 0
+    minScale: 0
+  - nombre: Giant Asteroids
+    minScoreToAppear: 150
+    maxScoreToAppear: 200
+    appearInfinitely: 0
+    generationMode: 0
+    typeOfStelarObject: 3
+    objectParent: {fileID: 668053349782931749, guid: e7560dbd05076274b901717f570c4db2,
+      type: 3}
+    radius: 20
+    minRadius: 0
+    rejectionSamples: 8
+    radiusIncremment: 0.5
+    radiusDecremment: 0
+    scalable: 0
+    initialScale: 2
+    offsetScoreForScale: 0
+    minScale: 1
+  - nombre: Giant Asteroids After Teleport
+    minScoreToAppear: 460
+    maxScoreToAppear: 170
+    appearInfinitely: 1
+    generationMode: 0
+    typeOfStelarObject: 3
+    objectParent: {fileID: 668053349782931749, guid: e7560dbd05076274b901717f570c4db2,
+      type: 3}
+    radius: 15
+    minRadius: 0
+    rejectionSamples: 8
+    radiusIncremment: 0.5
+    radiusDecremment: 0
+    scalable: 0
+    initialScale: 2
+    offsetScoreForScale: 0
+    minScale: 1

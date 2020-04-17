@@ -38,8 +38,7 @@ public class Meteor : MonoBehaviour
                                                             objectInstanced.transform.position).normalized*movePower;
                               rb = objectInstanced.GetComponent<Rigidbody>();
                               yield return new WaitForSeconds(timeOfLife);
-                              Destroy(objectInstanced);
-                              objectInstanced=null;
+                              StartCoroutine(DestruirObjeto(objectInstanced, 0.07f) );                              
                     }
           }
 
@@ -69,5 +68,23 @@ public class Meteor : MonoBehaviour
                     pos.z = center.z + radius * Mathf.Cos(ang * Mathf.Deg2Rad);
                     pos.y = center.y;
                     return pos;
+          }
+
+          public IEnumerator DestruirObjeto(GameObject objeto, float timeBetwenChange){
+                    yield return null;
+                       Vector3 disminucionEscala = Vector3.one*0.4f;
+                       Vector3 aumentoEscala = Vector3.one*0.1f;
+
+                       while(objeto!=null && objeto.transform.localScale.x>0){
+                                 if (objeto!=null) {
+                                        objeto.transform.localScale -= disminucionEscala;
+                                        if (objeto.transform.localScale.x<0) {
+                                                  objeto.transform.localScale = Vector3.zero;
+                                                  Destroy(objeto);
+                                                  yield return 0;
+                                        }
+                                 }
+                              yield return new WaitForSeconds(timeBetwenChange);
+                       }
           }
 }

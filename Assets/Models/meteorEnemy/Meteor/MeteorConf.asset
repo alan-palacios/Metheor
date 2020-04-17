@@ -19,7 +19,7 @@ MonoBehaviour:
   materials: []
   randomScale: 1
   minScale: 1
-  maxScale: 2.5
+  maxScale: 2
   zRotation: 0
   scoreGived: 0
   hasImpulse: 0

@@ -16,6 +16,11 @@ MonoBehaviour:
   generateCollider: 1
   models:
   - {fileID: 7036128716210877085, guid: e1451d271255b4f40942657247057a2c, type: 3}
+  materials: []
   randomScale: 1
-  minScale: 0.5
+  minScale: 1.5
   maxScale: 2
+  zRotation: 0
+  scoreGived: 0
+  hasImpulse: 0
+  impulsePower: 0

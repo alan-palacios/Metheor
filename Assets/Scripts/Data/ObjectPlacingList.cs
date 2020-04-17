@@ -25,13 +25,14 @@ public struct ObjectData
           public GameObject objectParent;
           //PDS mode settings
           public float radius;
+          public float minRadius;
           public int rejectionSamples;
           public float radiusIncremment;
           public float radiusDecremment;
 
           public bool scalable;
-          public float actualScale;
-          public float scaleDecremment;
-
+          public float initialScale;
+          public float offsetScoreForScale;
+          public float minScale;
 
 }

@@ -29,6 +29,7 @@ ModelImporter:
     100046: Cube.007
     100048: Cube.008
     100050: Cylinder
+    100052: Cylinder.015
     400000: Icosphere.024
     400002: Icosphere.025
     400004: Icosphere.026
@@ -55,8 +56,10 @@ ModelImporter:
     400046: Cube.007
     400048: Cube.008
     400050: Cylinder
+    400052: Cylinder.015
     2100000: Material.008
     2100002: Material
+    2100004: SpaceStation.010
     2300000: Icosphere.024
     2300002: Icosphere.025
     2300004: Icosphere.026
@@ -82,6 +85,7 @@ ModelImporter:
     2300044: Cube.007
     2300046: Cube.008
     2300048: Cylinder
+    2300050: Cylinder.015
     3300000: Icosphere.024
     3300002: Icosphere.025
     3300004: Icosphere.026
@@ -107,6 +111,7 @@ ModelImporter:
     3300044: Cube.007
     3300046: Cube.008
     3300048: Cylinder
+    3300050: Cylinder.015
     4300000: Icosphere.024
     4300002: Icosphere.025
     4300004: Icosphere.026
@@ -132,11 +137,17 @@ ModelImporter:
     4300044: Cube.007
     4300046: Cube.008
     4300048: Cylinder
+    4300050: Cylinder.015
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material
+    second: {fileID: 2100000, guid: 78a7885d9e1dad347af0ad6a83501691, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SpaceStation.010
     second: {fileID: 2100000, guid: 78a7885d9e1dad347af0ad6a83501691, type: 2}
   materials:
     importMaterials: 1
@@ -168,7 +179,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 1.15
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1

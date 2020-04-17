@@ -38,6 +38,7 @@ public class PlayerMove : MonoBehaviour
     private Vector3 newCameraRot;
     public static int score = 0;
 
+
     private bool receivingImpulse=false, withSpeedBoost=false, collidingSatellite=false, alive=true;
 
     void Start()
@@ -99,11 +100,11 @@ public class PlayerMove : MonoBehaviour
                                  //father solar system with all the types of planet
                                  GameObject GroupSolarSystem = GroupOfPlanets.transform.parent.gameObject;
                                  //Ouput the Collision to the console
-                                if (transform.localScale.x<=GroupOfPlanets.transform.localScale.x) {
+                                if (transform.localScale.x<=GroupOfPlanets.transform.localScale.x * GroupSolarSystem.transform.localScale.x + 0.15f) {
                                           Die();
                                           //UnityEditor.EditorApplication.isPlaying = false;
                                 }else{
-
+                                          ObjectGenerator.modifyAllPlacementValues(objPlacingList, score);
                                           score+=GroupSolarSystem.GetComponent<SolarSystem>().solarSystemConfiguration.solarSystemData.scoreGived;
                                           //float newScale = GroupOfPlanets.transform.localScale.x/incremmentOfScale;
                                           //transform.localScale+= new Vector3(newScale, newScale, newScale);
@@ -118,9 +119,12 @@ public class PlayerMove : MonoBehaviour
 
                                 }
                       }else if (objColl.tag == "Asteroid"){
+                                ObjectGenerator.modifyAllPlacementValues(objPlacingList, score);
+
                                  //StartCoroutine( EstablecerVelocidadOriginal(impulseVelocityAdded) );
                                  GameObject GroupOfAsteroids = objColl.transform.parent.gameObject;
                                 //StartCoroutine( EstablecerVelocidadOriginal(impulseVelocityAdded) );
+
                                 score+=GroupOfAsteroids.GetComponent<Asteroids>().asteroidsConfiguration.scoreGived;
                                 float newScale = 1/GroupOfAsteroids.GetComponent<Asteroids>().asteroidsConfiguration.incremmentOfScale;
                                 //transform.localScale+= new Vector3(newScale, newScale, newScale);
@@ -134,27 +138,32 @@ public class PlayerMove : MonoBehaviour
 
                                  GameObject GroupOfSatellite = objColl.transform.parent.gameObject;
                                  GameObject MasterParent = GroupOfSatellite.transform.parent.gameObject;
+                                 if (transform.localScale.x<=GroupOfSatellite.transform.localScale.x * MasterParent.transform.localScale.x) {
+                                          Die();
+                                          //UnityEditor.EditorApplication.isPlaying = false;
+                                }else{
+                                          ObjectGenerator.modifyAllPlacementValues(objPlacingList, score);
+                                           for(int i = 0; i < GroupOfSatellite.transform.childCount; i++){
+                                                      GameObject g = GroupOfSatellite.transform.GetChild(i).gameObject;
+                                                      g.GetComponent<Rigidbody>().isKinematic = false;
+                                            }
 
-                                 for(int i = 0; i < GroupOfSatellite.transform.childCount; i++){
-                                            GameObject g = GroupOfSatellite.transform.GetChild(i).gameObject;
-                                            g.GetComponent<Rigidbody>().isKinematic = false;
-                                  }
-
-                                score+=MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived;
-                                //float newScale = 1/MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.decremmentOfScale;
-                                gameControl.UpdateScore( MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived);
-                                if (!collidingSatellite) {
-                                          StartCoroutine(MostrarExplosion());
+                                          score+=MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived;
+                                          //float newScale = 1/MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.decremmentOfScale;
+                                          gameControl.UpdateScore( MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived);
+                                          if (!collidingSatellite) {
+                                                    StartCoroutine(MostrarExplosion());
+                                          }
+                                          if (!receivingImpulse && !withSpeedBoost) {
+                                                    StartCoroutine( DarImpulso(impulseVelocityAdded) );
+                                          }
+                                          StartCoroutine( MasterParent.GetComponent<SingleAstroObject>().DestruirObjeto(objColl, 0.05f) );
                                 }
-                                if (!receivingImpulse && !withSpeedBoost) {
-                                          StartCoroutine( DarImpulso(impulseVelocityAdded) );
-                                }
-                                StartCoroutine( MasterParent.GetComponent<SingleAstroObject>().DestruirObjeto(objColl, 0.1f) );
                       }else if (objColl.tag == "Astronaut"){
 
                                  GameObject GroupOfSatellite = objColl;
                                  GameObject MasterParent = GroupOfSatellite.transform.parent.gameObject;
-
+                                 ObjectGenerator.modifyAllPlacementValues(objPlacingList, score);
                                 //objColl.gameObject.GetComponent<Collider>().enabled = false;
                                 //objColl.tag="Untagged";
                                 objColl.GetComponent<Rigidbody>().AddForce(
@@ -162,7 +171,6 @@ public class PlayerMove : MonoBehaviour
                                                      ForceMode.Impulse);
 
                                 score+=MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived;
-                                ObjectGenerator.modifyPlacementValues(objPlacingList, 5);
 
                                 gameControl.UpdateScore( MasterParent.GetComponent<SingleAstroObject>().singleAstroObjectConfiguration.scoreGived);
                                 StartCoroutine(MostrarExplosion());
