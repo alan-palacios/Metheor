@@ -65,6 +65,7 @@ public class SolarSystem : MonoBehaviour
           }
 
           void Update(){
+              if(Time.timeScale == 0)return;
                     //Vector3 sunAngle = sun.transform.rota;
                     sun.transform.Rotate(0, sunVelocityRotation, 0, Space.Self);
                     for (int i=0; i<planets.Length; i++) {

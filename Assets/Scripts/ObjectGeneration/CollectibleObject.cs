@@ -14,6 +14,7 @@ public class CollectibleObject : MonoBehaviour
           }
 
           void Update(){
+              if(Time.timeScale == 0)return;
                     if (objectInstanced!=null) {
                               objectInstanced.transform.Rotate (rotVelocityX,rotVelocityY,0, Space.World);
                     }

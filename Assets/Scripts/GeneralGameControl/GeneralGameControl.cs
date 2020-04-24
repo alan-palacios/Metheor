@@ -13,6 +13,7 @@ public class GeneralGameControl : MonoBehaviour
 
           public GameObject  restartButton;
           public GameObject  menuButton;
+          public GameObject  backgroundImg;
 
           public GameObject  pauseButton;
 
@@ -42,7 +43,7 @@ public class GeneralGameControl : MonoBehaviour
           static PlayerData playerData;
 
           public static int level = 0;
-
+          public SoundControl soundCtrl;
     void Start()
     {
 
@@ -60,6 +61,7 @@ public class GeneralGameControl : MonoBehaviour
               }
    }
     public IEnumerator StopGame(){
+            soundCtrl.PlaySound("menu");
               Time.timeScale = paused?1:0;
               playerData = new PlayerData(PlayerMove.score,0);
               solarSystemInstanced = GameObject.Instantiate(solarSystemParent, Vector3.zero  , Quaternion.identity, transform ) as GameObject;
@@ -80,6 +82,7 @@ public class GeneralGameControl : MonoBehaviour
 
     public void PlayGame()
     {
+
               Time.timeScale = paused?1:0;
               paused = false;
               if (passLevel) {
@@ -96,6 +99,8 @@ public class GeneralGameControl : MonoBehaviour
               mapGenerator.SetActive(true);
               meteorEnemy.SetActive(true);
               MenuElements.SetActive(false);
+              soundCtrl.PlaySound("bgMusic");
+              soundCtrl.PlaySound("fire");
     }
 
     public IEnumerator PassLevel()
@@ -135,18 +140,22 @@ public class GeneralGameControl : MonoBehaviour
               pauseButton.SetActive(false);
               restartButton.SetActive(true);
               menuButton.SetActive(true);
+              backgroundImg.SetActive(true);
    }
 
 
 
     public void PauseGame(){
+            soundCtrl.StopSound("fire");
               Time.timeScale = paused?1:0;
               paused = !paused;
               restartButton.SetActive(!restartButton.activeSelf);
               menuButton.SetActive(!menuButton.activeSelf);
+              backgroundImg.SetActive(!backgroundImg.activeSelf);
     }
 
     public void UpdateScore ( int scoreGived){
+            soundCtrl.PlaySound("score");
              playerData.setScore( playerData.getScore() + scoreGived);
              scoreText.text = "" + playerData.getScore();
              gameCamera.fieldOfView+=0.1f;

@@ -36,10 +36,11 @@ public class PlayerMove : MonoBehaviour
     public float explosionOffset;
 
     private Vector3 newCameraRot;
-    public static int score = 0;
+    public static int score = 300;
 
 
     private bool receivingImpulse=false, withSpeedBoost=false, collidingSatellite=false, alive=true;
+    public SoundControl soundCtrl;
 
     void Start()
     {
@@ -95,6 +96,7 @@ public class PlayerMove : MonoBehaviour
     {
               GameObject objColl = collision.gameObject;
                       if (objColl.tag == "CompletePlanet"){
+
                                  //father of the complete and fract planet
                                  GameObject GroupOfPlanets = objColl.transform.parent.gameObject;
                                  //father solar system with all the types of planet
@@ -180,6 +182,7 @@ public class PlayerMove : MonoBehaviour
                                 //Destroy(objColl);
                                 StartCoroutine( MasterParent.GetComponent<SingleAstroObject>().DestruirObjeto(objColl, 0.05f) );
                       }else if (objColl.tag == "MeteorEnemy"){
+
                                 Die();
                       }else if(objColl.tag == "SpeedBoost"){
                                 GameObject MasterParent = objColl.transform.parent.gameObject;
@@ -187,11 +190,13 @@ public class PlayerMove : MonoBehaviour
                                 StartCoroutine( DarVelocidad() );
                                 StartCoroutine(MasterParent.GetComponent<CollectibleObject>().DestruirObjeto(MasterParent));
                       }else if(objColl.tag == "Coin"){
+                                soundCtrl.PlaySound("coin");
                                 GameObject MasterParent = objColl.transform.parent.gameObject;
                                 gameControl.GiveCoin();
                                 StartCoroutine(MostrarExplosion());
                                 StartCoroutine(MasterParent.GetComponent<CollectibleObject>().DestruirObjeto(MasterParent));
                       }else if(objColl.tag == "Bomb"){
+                                soundCtrl.StopSound("fire");
                                 GameObject MasterParent = objColl.transform.parent.gameObject;
                                 StartCoroutine(MostrarExplosion());
                                 StartCoroutine(MostrarExplosion());
@@ -200,13 +205,17 @@ public class PlayerMove : MonoBehaviour
                       }else if(objColl.tag == "Ice"){
                                 GameObject MasterParent = objColl.transform.parent.gameObject;
                                 StartCoroutine(MostrarExplosion());
+                                soundCtrl.StopSound("fire");
+                                soundCtrl.PlaySound("freeze");
                                 StartCoroutine(Congelarse());
                                 StartCoroutine(MasterParent.GetComponent<CollectibleObject>().DestruirObjeto(MasterParent));
                       }else if(objColl.tag == "BlackHole"){
+                                soundCtrl.StopSound("fire");
                                 Time.timeScale=0.5f;
                                 objColl.GetComponent<BlackHole>().AtraerObjeto(transform);
                                 DieWithoutFracture();
                       }else if(objColl.tag == "Teleporter"){
+                                soundCtrl.StopSound("fire");
                                 Time.timeScale=0.8f;
                                 objColl.GetComponent<BlackHole>().AtraerObjeto(transform);
                                 Teleport();
@@ -250,6 +259,7 @@ public class PlayerMove : MonoBehaviour
     }
 
     public IEnumerator MostrarExplosion(){
+
               collidingSatellite=true;
               GameObject objectInstanced = GameObject.Instantiate(expConf.explosionParticles,  Vector3.zero  , expConf.explosionParticles.transform.rotation ) as GameObject;
               objectInstanced.transform.SetParent( transform, false);
@@ -280,12 +290,15 @@ public class PlayerMove : MonoBehaviour
               for (int i=0; i<meteorParticles.Length; i++) {
                         meteorParticles[i].SetActive(true);
               }
+              soundCtrl.PlaySound("unfreeze");
+              soundCtrl.PlaySound("fire");
               mat.SetColor( "_Color", originalColor );
 
     }
 
     public void Die(){
-
+            soundCtrl.StopSound("fire");
+            soundCtrl.PlaySound("hit");
               alive=false;
               StartCoroutine(MostrarExplosion());
               StartCoroutine(gameControl.OnLost() );
@@ -294,7 +307,7 @@ public class PlayerMove : MonoBehaviour
               StartCoroutine(DestroyMetheor(objectInstanced));
    }
     public void DieWithoutFracture(){
-
+        soundCtrl.StopSound("fire");
               alive=false;
               StartCoroutine(MostrarExplosion());
               StartCoroutine(gameControl.OnLost() );
