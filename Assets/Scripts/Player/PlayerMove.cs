@@ -36,7 +36,7 @@ public class PlayerMove : MonoBehaviour
     public float explosionOffset;
 
     private Vector3 newCameraRot;
-    public static int score = 300;
+    public static int score = 0;
 
 
     private bool receivingImpulse=false, withSpeedBoost=false, collidingSatellite=false, alive=true;
@@ -332,13 +332,14 @@ public class PlayerMove : MonoBehaviour
                             g.transform.localScale -= disminucionEscala;
                             if (g.transform.localScale.x<=0) {
                                     g.transform.localScale=Vector3.zero;
+                                    Destroy(metheor);
+                                    yield break;
                           }
                   }
-
-             yield return new WaitForSeconds(timeBetwenChange);
+                  yield return new WaitForSeconds(timeBetwenChange);
 
        }
-       Destroy(metheor);
+
    }
    public IEnumerator DestroyCompleteMetheor(GameObject metheor){
        Vector3 disminucionEscala = Vector3.one*0.16f;

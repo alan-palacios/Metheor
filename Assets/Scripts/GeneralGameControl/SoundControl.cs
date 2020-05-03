@@ -19,6 +19,8 @@ public class SoundControl : MonoBehaviour
 
     void Start(){
         audioSource = GetComponent<AudioSource>();
+        if ( !PlayerPrefs.HasKey("SoundEffectsOn")) PlayerPrefs.SetInt("SoundEffectsOn", 1);
+        if ( !PlayerPrefs.HasKey("MusicOn")) PlayerPrefs.SetInt("MusicOn", 1);
     }
 
     public void PlayClickSound(){
@@ -50,7 +52,7 @@ public class SoundControl : MonoBehaviour
                 break;
             case "bgMusic":
                 int index = Random.Range(0, music.Length);
-                inGameMusicSource.clip = music[index];                
+                inGameMusicSource.clip = music[index];
                 inGameMusicSource.Play();
                 break;
         }
@@ -63,4 +65,25 @@ public class SoundControl : MonoBehaviour
                 break;
         }
     }
+
+
+    public void ChangeSoundEffectsState(){
+              PlayerPrefs.SetInt("SoundEffectsOn", PlayerPrefs.GetInt("SoundEffectsOn")==1?0:1 );
+
+              if ( PlayerPrefs.GetInt("SoundEffectsOn") ==1 ) {
+                        playerAudioSource.volume = 0.7f;
+              }else{
+                        playerAudioSource.volume = 0;
+              }
+   }
+
+   public void ChangeMusicState(){
+             PlayerPrefs.SetInt("MusicOn", PlayerPrefs.GetInt("MusicOn")==1?0:1 );
+
+             if ( PlayerPrefs.GetInt("MusicOn") ==1 ) {
+                       playerAudioSource.volume = 0.65f;
+             }else{
+                       playerAudioSource.volume = 0;
+             }
+   }
 }

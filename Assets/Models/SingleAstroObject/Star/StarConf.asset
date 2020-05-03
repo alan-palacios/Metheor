@@ -15,9 +15,11 @@ MonoBehaviour:
   autoUpdate: 1
   generateCollider: 1
   models: []
+  materials: []
   randomScale: 1
   minScale: 0.1
   maxScale: 0.3
   zRotation: 0
   scoreGived: 0
-  incremmentOfScale: 0
+  hasImpulse: 0
+  impulsePower: 0

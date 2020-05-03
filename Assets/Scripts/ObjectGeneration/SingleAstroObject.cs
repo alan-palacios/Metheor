@@ -42,7 +42,7 @@ public class SingleAstroObject : MonoBehaviour
           public IEnumerator DestruirObjeto(GameObject objeto, float timeBetwenChange){
                     yield return null;
              Vector3 disminucionEscala = Vector3.one*0.4f;
-             Vector3 aumentoEscala = Vector3.one*0.1f;              
+             Vector3 aumentoEscala = Vector3.one*0.1f;
 
              /*objeto.transform.localScale -= disminucionEscala;
              yield return new WaitForSeconds(timeBetwenChange);*/
@@ -61,7 +61,7 @@ public class SingleAstroObject : MonoBehaviour
                               if (objeto.transform.localScale.x<0) {
                                         objeto.transform.localScale = Vector3.zero;
                                         Destroy(objeto);
-                                        yield return 0;
+                                        yield break;
                               }
                        }
                     yield return new WaitForSeconds(timeBetwenChange);
