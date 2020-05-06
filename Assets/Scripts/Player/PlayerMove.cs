@@ -7,20 +7,35 @@ using UnityEngine.SceneManagement;
 public class PlayerMove : MonoBehaviour
 {
     // Start is called before the first frame update
-    public ObjectPlacingList objPlacingList;
-    public ExplosionConfiguration expConf;
-    public GeneralGameControl gameControl;
+     [Header("Scripts And Data")]
+      public ObjectPlacingList objPlacingList;
+      public CharactersList charactersList;
+      public ExplosionConfiguration expConf;
+      public GeneralGameControl gameControl;
+      public SoundControl soundCtrl;
 
+     [Header("Character")]
+     public static int characterIndex=0;
+
+     [Header("Hierarchy")]
     public GameObject  cameraChild;
-    public GameObject  meteoriteModel;
-    public GameObject  meteoriteModelFract;
     public GameObject  metheorElements;
 
-    public GameObject [] meteorParticles;
+    //public GameObject  meteoritePrefab;
+    private GameObject  meteoriteModel;
+
+    public GameObject  meteoriteModelFract;
+
+    //public GameObject [] meteorParticlesPrefab;
+    private GameObject [] meteorParticles;
+
+     [Header("Effects")]
     public Color congeledColor;
-    private Rigidbody rb;
-    float originalSpeed;
-    float maxWidthScreenController;
+    public GameObject explosionParticles;
+    public float explosionOffset;
+
+     [Header("Move Configuration")]
+
     public float noActionRange;
     public float moveSpeed;
     public float rotationSpeed;
@@ -31,16 +46,15 @@ public class PlayerMove : MonoBehaviour
     public float impulseTime;
 
     public float velocityBoost, transicionTime, boostTime;
-
-    public GameObject explosionParticles;
-    public float explosionOffset;
-
     private Vector3 newCameraRot;
+
+    private Rigidbody rb;
+    float originalSpeed;
+    float maxWidthScreenController;
+     [Header("Others")]
     public static int score = 0;
-
-
     private bool receivingImpulse=false, withSpeedBoost=false, collidingSatellite=false, alive=true;
-    public SoundControl soundCtrl;
+
 
     void Start()
     {
@@ -49,8 +63,32 @@ public class PlayerMove : MonoBehaviour
           Application.targetFrameRate = 60;
           rb = GetComponent<Rigidbody>();
           //gameControl.UpdateScore ();
-
           maxWidthScreenController = Screen.width/4;
+
+          //instancing metheor
+          meteoriteModel = Instantiate(charactersList.charactersData[characterIndex].meteoritePrefab, Vector3.zero, Quaternion.identity);
+          meteoriteModel.transform.SetParent(metheorElements.transform,false);
+
+          meteoriteModelFract = charactersList.charactersData[characterIndex].meteoriteModelFract;
+          meteorParticles = new GameObject[3];
+
+          meteoriteModel.GetComponent<Renderer>().material = charactersList.charactersData[characterIndex].material;
+          foreach (Transform child in meteoriteModelFract.transform) {
+              child.gameObject.GetComponent<Renderer>().material = charactersList.charactersData[characterIndex].material;
+          }
+
+          GameObject meteorP1 = charactersList.charactersData[characterIndex].meteorParticlesPrefab[0];
+          GameObject meteorP2 = charactersList.charactersData[characterIndex].meteorParticlesPrefab[1];
+          GameObject meteorP3 = charactersList.charactersData[characterIndex].meteorParticlesPrefab[2];
+
+          meteorParticles[0] = Instantiate(meteorP1, meteorP1.transform.position, meteorP1.transform.rotation);
+          meteorParticles[0].transform.SetParent(meteoriteModel.transform,false);
+
+          meteorParticles[1] = Instantiate(meteorP2, meteorP2.transform.position, meteorP2.transform.rotation);
+          meteorParticles[1].transform.SetParent(meteoriteModel.transform,false);
+
+          meteorParticles[2] = Instantiate(meteorP3, meteorP3.transform.position, meteorP3.transform.rotation);
+          meteorParticles[2].transform.SetParent(metheorElements.transform,false);
     }
 
     void FixedUpdate(){

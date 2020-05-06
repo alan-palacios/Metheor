@@ -6,10 +6,17 @@ ModelImporter:
     100000: //RootNode
     400000: //RootNode
     2100000: Material
+    2100002: Metheor1
     2300000: //RootNode
     3300000: //RootNode
     4300000: Icosphere.007
-  externalObjects: {}
+    4300002: Metheor1.001
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metheor1
+    second: {fileID: 2100000, guid: f455757ce6819c043820d99c1f21ee21, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

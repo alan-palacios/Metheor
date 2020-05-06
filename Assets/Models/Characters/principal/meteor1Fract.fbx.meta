@@ -24,6 +24,26 @@ ModelImporter:
     100036: Icosphere.043_cell.018
     100038: Icosphere.043_cell.019
     100040: //RootNode
+    100042: Metheor1.001_cell
+    100044: Metheor1.001_cell.001
+    100046: Metheor1.001_cell.002
+    100048: Metheor1.001_cell.003
+    100050: Metheor1.001_cell.004
+    100052: Metheor1.001_cell.005
+    100054: Metheor1.001_cell.006
+    100056: Metheor1.001_cell.007
+    100058: Metheor1.001_cell.008
+    100060: Metheor1.001_cell.009
+    100062: Metheor1.001_cell.010
+    100064: Metheor1.001_cell.011
+    100066: Metheor1.001_cell.012
+    100068: Metheor1.001_cell.013
+    100070: Metheor1.001_cell.014
+    100072: Metheor1.001_cell.015
+    100074: Metheor1.001_cell.016
+    100076: Metheor1.001_cell.017
+    100078: Metheor1.001_cell.018
+    100080: Metheor1.001_cell.019
     400000: Icosphere.043_cell
     400002: Icosphere.043_cell.001
     400004: Icosphere.043_cell.002
@@ -45,7 +65,28 @@ ModelImporter:
     400036: Icosphere.043_cell.018
     400038: Icosphere.043_cell.019
     400040: //RootNode
+    400042: Metheor1.001_cell
+    400044: Metheor1.001_cell.001
+    400046: Metheor1.001_cell.002
+    400048: Metheor1.001_cell.003
+    400050: Metheor1.001_cell.004
+    400052: Metheor1.001_cell.005
+    400054: Metheor1.001_cell.006
+    400056: Metheor1.001_cell.007
+    400058: Metheor1.001_cell.008
+    400060: Metheor1.001_cell.009
+    400062: Metheor1.001_cell.010
+    400064: Metheor1.001_cell.011
+    400066: Metheor1.001_cell.012
+    400068: Metheor1.001_cell.013
+    400070: Metheor1.001_cell.014
+    400072: Metheor1.001_cell.015
+    400074: Metheor1.001_cell.016
+    400076: Metheor1.001_cell.017
+    400078: Metheor1.001_cell.018
+    400080: Metheor1.001_cell.019
     2100000: Material.013
+    2100002: Metheor1
     2300000: Icosphere.043_cell
     2300002: Icosphere.043_cell.001
     2300004: Icosphere.043_cell.002
@@ -66,6 +107,26 @@ ModelImporter:
     2300034: Icosphere.043_cell.017
     2300036: Icosphere.043_cell.018
     2300038: Icosphere.043_cell.019
+    2300040: Metheor1.001_cell
+    2300042: Metheor1.001_cell.001
+    2300044: Metheor1.001_cell.002
+    2300046: Metheor1.001_cell.003
+    2300048: Metheor1.001_cell.004
+    2300050: Metheor1.001_cell.005
+    2300052: Metheor1.001_cell.006
+    2300054: Metheor1.001_cell.007
+    2300056: Metheor1.001_cell.008
+    2300058: Metheor1.001_cell.009
+    2300060: Metheor1.001_cell.010
+    2300062: Metheor1.001_cell.011
+    2300064: Metheor1.001_cell.012
+    2300066: Metheor1.001_cell.013
+    2300068: Metheor1.001_cell.014
+    2300070: Metheor1.001_cell.015
+    2300072: Metheor1.001_cell.016
+    2300074: Metheor1.001_cell.017
+    2300076: Metheor1.001_cell.018
+    2300078: Metheor1.001_cell.019
     3300000: Icosphere.043_cell
     3300002: Icosphere.043_cell.001
     3300004: Icosphere.043_cell.002
@@ -86,6 +147,26 @@ ModelImporter:
     3300034: Icosphere.043_cell.017
     3300036: Icosphere.043_cell.018
     3300038: Icosphere.043_cell.019
+    3300040: Metheor1.001_cell
+    3300042: Metheor1.001_cell.001
+    3300044: Metheor1.001_cell.002
+    3300046: Metheor1.001_cell.003
+    3300048: Metheor1.001_cell.004
+    3300050: Metheor1.001_cell.005
+    3300052: Metheor1.001_cell.006
+    3300054: Metheor1.001_cell.007
+    3300056: Metheor1.001_cell.008
+    3300058: Metheor1.001_cell.009
+    3300060: Metheor1.001_cell.010
+    3300062: Metheor1.001_cell.011
+    3300064: Metheor1.001_cell.012
+    3300066: Metheor1.001_cell.013
+    3300068: Metheor1.001_cell.014
+    3300070: Metheor1.001_cell.015
+    3300072: Metheor1.001_cell.016
+    3300074: Metheor1.001_cell.017
+    3300076: Metheor1.001_cell.018
+    3300078: Metheor1.001_cell.019
     4300000: Icosphere.043_cell
     4300002: Icosphere.043_cell.001
     4300004: Icosphere.043_cell.002
@@ -106,12 +187,37 @@ ModelImporter:
     4300034: Icosphere.043_cell.017
     4300036: Icosphere.043_cell.018
     4300038: Icosphere.043_cell.019
+    4300040: Metheor1.001_cell
+    4300042: Metheor1.001_cell.001
+    4300044: Metheor1.001_cell.002
+    4300046: Metheor1.001_cell.003
+    4300048: Metheor1.001_cell.004
+    4300050: Metheor1.001_cell.005
+    4300052: Metheor1.001_cell.006
+    4300054: Metheor1.001_cell.007
+    4300056: Metheor1.001_cell.008
+    4300058: Metheor1.001_cell.009
+    4300060: Metheor1.001_cell.010
+    4300062: Metheor1.001_cell.011
+    4300064: Metheor1.001_cell.012
+    4300066: Metheor1.001_cell.013
+    4300068: Metheor1.001_cell.014
+    4300070: Metheor1.001_cell.015
+    4300072: Metheor1.001_cell.016
+    4300074: Metheor1.001_cell.017
+    4300076: Metheor1.001_cell.018
+    4300078: Metheor1.001_cell.019
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.013
     second: {fileID: 2100000, guid: d473137bcc208434783f001a57a11348, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metheor1
+    second: {fileID: 2100000, guid: f455757ce6819c043820d99c1f21ee21, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
