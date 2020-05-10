@@ -11,6 +11,7 @@ public class GeneralGameControl : MonoBehaviour
           public Text scoreText;
           public Text coinText;
 
+
           public GameObject  restartButton;
           public GameObject  menuButton;
           public GameObject  backgroundImg;
@@ -36,6 +37,7 @@ public class GeneralGameControl : MonoBehaviour
 
           public Text highScore;
           public Text totalCoins;
+          public Text totalCoinShop;
           public GameObject options;
           public GameObject credits;
           public GameObject shop;
@@ -43,7 +45,7 @@ public class GeneralGameControl : MonoBehaviour
 
           public Camera gameCamera;
           public Color [] bgColors;
-          static PlayerData playerData;
+          public static PlayerData playerData;
 
           public static int level = 0;
           public SoundControl soundCtrl;
@@ -69,19 +71,26 @@ public class GeneralGameControl : MonoBehaviour
               yield return null;
               mapGenerator.SetActive(false);
 
-              if (SaveSystem.LoadData("player.dta")!=null) {
-                        playerData = new PlayerData(PlayerMove.score,0,SaveSystem.LoadData("player.dta").getTutorialViewed());
+              if (SaveSystem.LoadData<PlayerData>("player.dta")!=null) {
+                        playerData = new PlayerData(PlayerMove.score,0,SaveSystem.LoadData<PlayerData>("player.dta").getTutorialViewed());
               }else{
                         playerData = new PlayerData(PlayerMove.score,0,false);
-                        SaveSystem.SaveData(playerData ,"player.dta");
+                        SaveSystem.SaveData<PlayerData>(playerData ,"player.dta");
               }
-              highScore.text = SaveSystem.LoadData("player.dta").getScore().ToString();
-              totalCoins.text = SaveSystem.LoadData("player.dta").getCoins().ToString();
+              highScore.text = SaveSystem.LoadData<PlayerData>("player.dta").getScore().ToString();
+              totalCoins.text = SaveSystem.LoadData<PlayerData>("player.dta").getCoins().ToString();
+              totalCoinShop.text = totalCoins.text;
     }
 
     public void PlayGame()
     {
-              if (SaveSystem.LoadData("player.dta").getTutorialViewed()) {
+              if (SaveSystem.LoadData<PlayerData>("player.dta").getTutorialViewed()) {
+                          if (SaveSystem.LoadData<CharactersData>("characters.dta")!=null) {
+                              PlayerMove.characterIndex = SaveSystem.LoadData<CharactersData>("characters.dta").GetSelectedIndex();
+                          }else{
+                              PlayerMove.characterIndex = 0;
+                          }
+
                         Time.timeScale = paused?1:0;
                         paused = false;
                         if (passLevel) {
@@ -140,7 +149,7 @@ public class GeneralGameControl : MonoBehaviour
    }
 
    public void GiveCoin(){
-            playerData.setCoins( playerData.getCoins() +1 );
+            playerData.setCoins( playerData.getCoins() +5 );
             coinText.text = playerData.getCoins().ToString();
   }
 
@@ -172,41 +181,44 @@ public class GeneralGameControl : MonoBehaviour
             PlayerMove.score=0;
             level=0;
             SceneManager.LoadScene("MainScene");
- }
+     }
 
- void Update(){
-          if (Input.GetKey("up")) {
-                    PauseGame();
-          }
-}
+     void Update(){
+              if (Input.GetKey("up")) {
+                        PauseGame();
+              }
+    }
 
-public void ShowOptions(){
-          credits.SetActive(false);
-          options.SetActive(!options.activeSelf);
-}
+    public void ShowOptions(){
+              credits.SetActive(false);
+              options.SetActive(!options.activeSelf);
+    }
 
 
 
-public void ShowCredits(){
-          credits.SetActive(true);
-          options.SetActive(false);
-}
+    public void ShowCredits(){
+              credits.SetActive(true);
+              options.SetActive(false);
+    }
 
-/// Saving Data
+
+    /// Saving Data
    public void SaveActualData(){
-             if (playerData.getScore() < SaveSystem.LoadData("player.dta").getScore()) {
-                       playerData.setScore( SaveSystem.LoadData("player.dta").getScore());
+             if (playerData.getScore() < SaveSystem.LoadData<PlayerData>("player.dta").getScore()) {
+                       playerData.setScore( SaveSystem.LoadData<PlayerData>("player.dta").getScore());
              }
-             playerData.setCoins(playerData.getCoins() +SaveSystem.LoadData("player.dta").getCoins() );
-             SaveSystem.SaveData( playerData , "player.dta");
+             playerData.setCoins(playerData.getCoins() +SaveSystem.LoadData<PlayerData>("player.dta").getCoins() );
+             SaveSystem.SaveData<PlayerData>( playerData , "player.dta");
              playerData.Reiniciar();
    }
 
    public void BorrarDatos(){
              playerData = new PlayerData(0,0,false);
-             SaveSystem.SaveData( playerData , "player.dta");
-             highScore.text = SaveSystem.LoadData("player.dta").getScore().ToString();
-             totalCoins.text = SaveSystem.LoadData("player.dta").getCoins().ToString();
+             SaveSystem.SaveData<PlayerData>( playerData , "player.dta");
+             highScore.text = SaveSystem.LoadData<PlayerData>("player.dta").getScore().ToString();
+             totalCoins.text = SaveSystem.LoadData<PlayerData>("player.dta").getCoins().ToString();
+             totalCoinShop.text = totalCoins.text;
+             SaveSystem.DeleteFile("C:/Users/AlanPalacios/AppData/LocalLow/AlanPalacios/Metheor\\characters.dta");
    }
    public void SaveTutorial(){
              playerData.setTutorialViewed(true);

@@ -56,8 +56,8 @@ MonoBehaviour:
     - {fileID: 1282821292549766106, guid: 3ec2510e699c46143ad6f7d07997c950, type: 3}
     - {fileID: 3022222728756552536, guid: 57a5c72a2227a744e88ca084c16d6d0c, type: 3}
     material: {fileID: 2100000, guid: 896b3d30b23edbd4f956e4943c688ee8, type: 2}
-    price: 32
-    img: {fileID: 21300000, guid: 33b49e2020bc3c9439c20412e5dc6c97, type: 3}
+    price: 34
+    img: {fileID: 21300000, guid: 25f068bdb2404ce4faa2bf06caf702e3, type: 3}
   - meteoritePrefab: {fileID: 2613798615094668445, guid: f9e6233211ceb2d49821241c64da6396,
       type: 3}
     meteoriteModelFract: {fileID: 6565025020074340081, guid: 6d4bd62ef05ffb74ba8ee5e1006ef009,
@@ -67,8 +67,8 @@ MonoBehaviour:
     - {fileID: 1282821292549766106, guid: 3ec2510e699c46143ad6f7d07997c950, type: 3}
     - {fileID: 3022222728756552536, guid: 57a5c72a2227a744e88ca084c16d6d0c, type: 3}
     material: {fileID: 2100000, guid: 4b6725ef9ac8fcc4a8ea82eb75b47a9a, type: 2}
-    price: 32
-    img: {fileID: 21300000, guid: 33b49e2020bc3c9439c20412e5dc6c97, type: 3}
+    price: 34
+    img: {fileID: 21300000, guid: 25f068bdb2404ce4faa2bf06caf702e3, type: 3}
   - meteoritePrefab: {fileID: 2613798615094668445, guid: f9e6233211ceb2d49821241c64da6396,
       type: 3}
     meteoriteModelFract: {fileID: 6565025020074340081, guid: 6d4bd62ef05ffb74ba8ee5e1006ef009,
@@ -78,5 +78,5 @@ MonoBehaviour:
     - {fileID: 1282821292549766106, guid: 3ec2510e699c46143ad6f7d07997c950, type: 3}
     - {fileID: 3022222728756552536, guid: 57a5c72a2227a744e88ca084c16d6d0c, type: 3}
     material: {fileID: 2100000, guid: dd8a33d590ee556449ef9ba84c435c0b, type: 2}
-    price: 32
-    img: {fileID: 21300000, guid: 33b49e2020bc3c9439c20412e5dc6c97, type: 3}
+    price: 34
+    img: {fileID: 21300000, guid: 25f068bdb2404ce4faa2bf06caf702e3, type: 3}

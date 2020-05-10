@@ -74,6 +74,7 @@
      <Compile Include="Assets\Scripts\ObjectGeneration\PoissonDiscSampling.cs" />
      <Compile Include="Assets\Scripts\ObjectGeneration\SingleAstroObject.cs" />
      <Compile Include="Assets\Scripts\ObjectGeneration\SolarSystem.cs" />
+     <Compile Include="Assets\Scripts\Persistance\CharactersData.cs" />
      <Compile Include="Assets\Scripts\Persistance\Cifrado.cs" />
      <Compile Include="Assets\Scripts\Persistance\PlayerData.cs" />
      <Compile Include="Assets\Scripts\Persistance\SaveSystem.cs" />
