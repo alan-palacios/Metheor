@@ -7,7 +7,7 @@ public static class SaveSystem
 
           public static void SaveData<T>(T data, string fileName){
                     BinaryFormatter formatter = new BinaryFormatter();
-                    string path = Path.Combine(Application.persistentDataPath, fileName);                    
+                    string path = Path.Combine(Application.persistentDataPath, fileName);
                     using ( FileStream stream = new FileStream(path, FileMode.Create)){
                         formatter.Serialize(stream, data);
                     }

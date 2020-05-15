@@ -6,24 +6,29 @@ using UnityEngine.SceneManagement;
 
 public class GeneralGameControl : MonoBehaviour
 {
+            [Header("Scripts")]
           public GameObject playerElements;
           public PlayerMove playerMove;
+          public AdManager adManager;
+
+          [Header("GUI")]
           public Text scoreText;
           public Text coinText;
-
-
-          public GameObject  restartButton;
-          public GameObject  menuButton;
-          public GameObject  backgroundImg;
-
+          
+          public GameObject onDeadPauseMenu;
+          public GameObject receiveExtraLifeBtn;
           public GameObject  pauseButton;
+
 
           private bool paused=true;
 
           [SerializeField]
           private static bool haveLost=false;
           private static bool passLevel=false;
+          private static bool extraLife=false;
+          public bool giveExtraLife { get; set;}
 
+          [Header("GameObjects Scene")]
           public GameObject GameElements;
           public GameObject mapGenerator;
           public GameObject meteorEnemy;
@@ -48,6 +53,7 @@ public class GeneralGameControl : MonoBehaviour
           public static PlayerData playerData;
 
           public static int level = 0;
+          private static float cameraSize;
           public SoundControl soundCtrl;
           public Tutorial tutorial;
 
@@ -61,7 +67,15 @@ public class GeneralGameControl : MonoBehaviour
 
     }
 
-
+    void Update(){
+        if (Input.GetKey("up")) {
+                  PauseGame();
+        }
+        if (giveExtraLife) {
+            giveExtraLife = false;
+            ShowExtraLifeBtn();
+        }
+    }
 
     public IEnumerator ShowMenu(){
               soundCtrl.PlaySound("menu");
@@ -89,6 +103,7 @@ public class GeneralGameControl : MonoBehaviour
                               PlayerMove.characterIndex = SaveSystem.LoadData<CharactersData>("characters.dta").GetSelectedIndex();
                           }else{
                               PlayerMove.characterIndex = 0;
+
                           }
 
                         Time.timeScale = paused?1:0;
@@ -97,11 +112,15 @@ public class GeneralGameControl : MonoBehaviour
                                   blackHoleInstanced = GameObject.Instantiate(blackHoleParent, Vector3.zero  , Quaternion.identity, transform ) as GameObject;
                                   Destroy(blackHoleInstanced.GetComponent<Collider>() );
                                   gameCamera.backgroundColor = bgColors[level%bgColors.Length];
+                        }else if(extraLife){
+                            gameCamera.fieldOfView=cameraSize;
+                            extraLife = false;
                         }
+                        Destroy(solarSystemInstanced);
+
                         coinText.text = playerData.getCoins().ToString();
                         scoreText.text = playerData.getScore().ToString();
                         passLevel=false;
-                        Destroy(solarSystemInstanced);
 
                         playerElements.SetActive(true);
                         mapGenerator.SetActive(true);
@@ -128,18 +147,37 @@ public class GeneralGameControl : MonoBehaviour
               SceneManager.LoadScene("MainScene");
     }
 
+    public void ShowExtraLifeBtn(){
+        receiveExtraLifeBtn.SetActive(true);
+        onDeadPauseMenu.SetActive(false);
+    }
+    public void ExtraLife(){
+        receiveExtraLifeBtn.SetActive(false);
+        extraLife = true;
+        paused=false;
+        haveLost=true;
+        Debug.Log("LOADING SCENE");
+        cameraSize = gameCamera.fieldOfView;
+        SceneManager.LoadScene("MainScene");
+
+    }
+
     public IEnumerator OnLost(){
               Time.timeScale =0.8f;
               yield return new WaitForSeconds(timeAfterLose);
+              adManager.ShowInterstitialAd();
               Time.timeScale = 0;
+              //displaying ad
+
               pauseButton.SetActive(false);
-              restartButton.SetActive(true);
+              onDeadPauseMenu.SetActive(!onDeadPauseMenu.activeSelf);
+              /*restartButton.SetActive(true);
               menuButton.SetActive(true);
-              backgroundImg.SetActive(true);
+              backgroundImg.SetActive(true);*/
    }
 
    public void UpdateScore ( int scoreGived){
-          soundCtrl.PlaySound("score");
+            soundCtrl.PlaySound("score");
             playerData.setScore( playerData.getScore() + scoreGived);
             scoreText.text = playerData.getScore().ToString();
             gameCamera.fieldOfView+=0.1f;
@@ -158,9 +196,10 @@ public class GeneralGameControl : MonoBehaviour
             soundCtrl.StopSound("fire");
               Time.timeScale = paused?1:0;
               paused = !paused;
-              restartButton.SetActive(!restartButton.activeSelf);
-              menuButton.SetActive(!menuButton.activeSelf);
-              backgroundImg.SetActive(!backgroundImg.activeSelf);
+              onDeadPauseMenu.SetActive(!onDeadPauseMenu.activeSelf);
+              //restartButton.SetActive(!restartButton.activeSelf);
+              //menuButton.SetActive(!menuButton.activeSelf);
+              //backgroundImg.SetActive(!backgroundImg.activeSelf);
     }
 
    public void GoToMenu()
@@ -175,6 +214,8 @@ public class GeneralGameControl : MonoBehaviour
             DoSelection();
    }
 
+
+
    public void DoSelection(){
             paused=false;
             SaveActualData();
@@ -183,11 +224,7 @@ public class GeneralGameControl : MonoBehaviour
             SceneManager.LoadScene("MainScene");
      }
 
-     void Update(){
-              if (Input.GetKey("up")) {
-                        PauseGame();
-              }
-    }
+
 
     public void ShowOptions(){
               credits.SetActive(false);
@@ -218,7 +255,7 @@ public class GeneralGameControl : MonoBehaviour
              highScore.text = SaveSystem.LoadData<PlayerData>("player.dta").getScore().ToString();
              totalCoins.text = SaveSystem.LoadData<PlayerData>("player.dta").getCoins().ToString();
              totalCoinShop.text = totalCoins.text;
-             SaveSystem.DeleteFile("C:/Users/AlanPalacios/AppData/LocalLow/AlanPalacios/Metheor\\characters.dta");
+             //SaveSystem.DeleteFile("C:/Users/AlanPalacios/AppData/LocalLow/AlanPalacios/Metheor\\characters.dta");
    }
    public void SaveTutorial(){
              playerData.setTutorialViewed(true);

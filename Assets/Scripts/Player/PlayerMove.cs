@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -96,22 +97,25 @@ public class PlayerMove : MonoBehaviour
               if (alive) {
                         Vector2 cameraRot = new Vector2( Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") );
 
-                        if (Input.touchCount >0) {
+                        if (Input.touchCount >0 && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) {
                                   Touch touch = Input.GetTouch(0);
                                   float x = (touch.position.x - Screen.width/2) / (Screen.width/2) ;
 
-                                  if ( x>-noActionRange && x<noActionRange) {
-                                            x=0;
-                                  }
-                                  x*=speedOfChange;
+                                  if (touch.position.y<2700) {
 
-                                  cameraRot = new Vector3(x,0,0);
+                                      if ( x>-noActionRange && x<noActionRange) {
+                                          x=0;
+                                      }
+                                      x*=speedOfChange;
 
-                                  /*if (touch.position.x < Screen.width/2) {
-                                         cameraRot = new Vector3(-1,0,0);
+                                      cameraRot = new Vector3(x,0,0);
+
+                                      /*if (touch.position.x < Screen.width/2) {
+                                      cameraRot = new Vector3(-1,0,0);
                                   }else if (touch.position.x > Screen.width/2) {
-                                         cameraRot = new Vector3(1,0,0);
+                                  cameraRot = new Vector3(1,0,0);
                                   }*/
+                                  }
                         }
 
 
@@ -318,8 +322,9 @@ public class PlayerMove : MonoBehaviour
                         meteorParticles[i].SetActive(false);
               }
               Material mat = meteoriteModel.GetComponent<Renderer>().material;
-              Color originalColor = mat.GetColor("_Color");
-              mat.SetColor( "_Color", congeledColor );
+              Color originalColor = mat.GetColor("_BaseColor");
+
+              mat.SetColor( "_BaseColor", congeledColor );
 
               yield return new WaitForSeconds(1.7f);
 
@@ -330,7 +335,7 @@ public class PlayerMove : MonoBehaviour
               }
               soundCtrl.PlaySound("unfreeze");
               soundCtrl.PlaySound("fire");
-              mat.SetColor( "_Color", originalColor );
+              mat.SetColor( "_BaseColor", originalColor );
 
     }
 

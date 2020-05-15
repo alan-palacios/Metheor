@@ -73,9 +73,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 2ad8544456fcc654f8b6f8110730a6f9, type: 3}
 --- !u!1001 &7013785399662066867
 PrefabInstance:
@@ -211,19 +211,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2ad8544456fcc654f8b6f8110730a6f9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.115789846
+      value: 0.082136646
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2ad8544456fcc654f8b6f8110730a6f9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.33022016
+      value: 0.2473788
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2ad8544456fcc654f8b6f8110730a6f9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0116625605
+      value: -0.008772598
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2ad8544456fcc654f8b6f8110730a6f9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.93670243
+      value: -0.96539134
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2ad8544456fcc654f8b6f8110730a6f9, type: 3}
       propertyPath: m_RootOrder

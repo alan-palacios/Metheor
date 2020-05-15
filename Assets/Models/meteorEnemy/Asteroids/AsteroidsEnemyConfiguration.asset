@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c7bc75ff263d0b40aa3e641d54dab37, type: 3}
+  m_Name: AsteroidsEnemyConfiguration
+  m_EditorClassIdentifier: 
+  autoUpdate: 0
+  multipleObjects: 1
+  multipleObjectsParent: {fileID: 649468908873313968, guid: 6e97e507a3a6523478143966a53faba8,
+    type: 3}
+  objectsModels:
+  - {fileID: 2304870364146197258, guid: b1fe7f2161907904ea622955969a2d9a, type: 3}
+  - {fileID: 7476250927209280960, guid: 9aa8127feaa88be4f99fc31ca549e8c8, type: 3}
+  - {fileID: 1974015930454754125, guid: 630d46332e3440e49842c1682d7a4afb, type: 3}
+  - {fileID: 5536928516106774371, guid: 6b9c0ad325858774bb57b10f11b02224, type: 3}
+  minNumOfObjects: 3
+  maxNumOfObjects: 6
+  maxDst: 4
+  minDst: 2
+  models: []
+  randomScale: 0
+  minScale: 1
+  maxScale: 1
+  zRotation: 0
+  timeOfLife: 4
+  timeBetwenChange: 0.06
+  movePower: 5.5
+  rotationVelocity: 60

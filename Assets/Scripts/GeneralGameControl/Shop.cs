@@ -51,13 +51,7 @@ public class Shop : MonoBehaviour
 
                         }else{
                                 Debug.Log("generando characters data");
-                                int[] charactersInfo = new int[charactersList.charactersData.Length];
-                                for (int i=0; i<charactersInfo.Length; i++) {
-                                    charactersInfo[i]=2;
-                                }
-                                charactersInfo[0]=0;
-                                charactersPersistance = new CharactersData(charactersInfo);
-                                SaveSystem.SaveData<CharactersData>(charactersPersistance ,"characters.dta");
+                                InitializeCharacterData();                                
                         }
                         UpdateCoinsText();
                         GenerateProducts();
@@ -109,9 +103,23 @@ public class Shop : MonoBehaviour
                                   int temp = index;
                                   item.transform.SetParent( charactersGroup.transform, false);
                                   item.transform.GetChild(2).GetComponentInChildren<Image>().sprite= charactersList.charactersData[index].img;
-                                  item.transform.GetChild(4).GetComponentInChildren<Text>().text= charactersList.charactersData[index].price.ToString();
-                                  item.transform.GetChild(4).GetComponent<Button>().onClick.AddListener( () => BuyButton(temp) );
-                                  item.transform.GetChild(3).GetComponent<Button>().onClick.AddListener( () => SelectButton(temp) );
+
+                                  if (charactersPersistance.GetIndexInfo(index)==0) {
+                                      SetSelectedItem(item);
+                                      item.transform.GetChild(3).GetComponent<Button>().onClick.AddListener( () => SelectButton(temp) );
+                                      item.transform.GetChild(4).GetComponent<Button>().onClick.AddListener( () => SelectButton(temp) );
+                                  }else if(charactersPersistance.GetIndexInfo(index)==1){
+                                      SetSelectItem(item);
+                                      item.transform.GetChild(3).GetComponent<Button>().onClick.AddListener( () => SelectButton(temp) );
+                                      item.transform.GetChild(4).GetComponent<Button>().onClick.AddListener( () => SelectButton(temp) );
+
+                                  }else{
+                                      SetBuyItem(item, index);
+                                      item.transform.GetChild(3).gameObject.SetActive(false);
+                                      item.transform.GetChild(4).GetComponent<Button>().onClick.AddListener( () => BuyButton(temp) );
+                                  }
+
+
 
                                   i++;
                                   index++;
@@ -127,18 +135,30 @@ public class Shop : MonoBehaviour
 
               }
 
+              public void SetSelectItem(GameObject item){
+                  item.transform.GetChild(0).gameObject.SetActive(false);
+                  item.transform.GetChild(4).GetComponentInChildren<Text>().text = "select";
+                  item.transform.GetChild(4).gameObject.transform.GetChild(1).gameObject.SetActive(false);
+                  item.transform.GetChild(4).GetComponentInChildren<Text>().alignment = TextAnchor.MiddleCenter;
+              }
+              public void SetSelectedItem(GameObject item){
+                  item.transform.GetChild(0).gameObject.SetActive(true);
+                  item.transform.GetChild(4).GetComponentInChildren<Text>().text = "selected";
+                  item.transform.GetChild(4).gameObject.transform.GetChild(1).gameObject.SetActive(false);
+                  item.transform.GetChild(4).GetComponentInChildren<Text>().alignment = TextAnchor.MiddleCenter;
+              }
+              public void SetBuyItem(GameObject item, int index){
+                  item.transform.GetChild(4).GetComponentInChildren<Text>().text= charactersList.charactersData[index].price.ToString();
+                  item.transform.GetChild(4).GetComponentInChildren<Text>().alignment = TextAnchor.MiddleRight;
+              }
+
               public void SelectButton(int i){
                         GameObject oldItem = charactersGroup.transform.GetChild (characterSelected).gameObject;
-                        oldItem.transform.GetChild(0).gameObject.SetActive(false);
-                        oldItem.transform.GetChild(4).GetComponentInChildren<Text>().text = "select";
-                        oldItem.transform.GetChild(4).GetComponentInChildren<Text>().alignment = TextAnchor.MiddleCenter;
+                        SetSelectItem(oldItem);
                         //charactersGroup.transform.GetChild (characterSelected).gameObject.transform.GetChild(4).gameObject.transform.GetChild(1).gameObject.SetActive(true);
 
                         GameObject newItem = charactersGroup.transform.GetChild (i).gameObject;
-                        newItem.transform.GetChild(0).gameObject.SetActive(true);
-                        newItem.transform.GetChild(4).GetComponentInChildren<Text>().text = "selected";
-                        newItem.transform.GetChild(4).gameObject.transform.GetChild(1).gameObject.SetActive(false);
-                        newItem.transform.GetChild(4).GetComponentInChildren<Text>().alignment = TextAnchor.MiddleCenter;
+                        SetSelectedItem(newItem);
 
                         characterSelected = i;
                         PlayerMove.characterIndex = characterSelected;
@@ -147,22 +167,25 @@ public class Shop : MonoBehaviour
               }
 
               public void BuyButton(int i){
-                  GameObject item = charactersGroup.transform.GetChild (i).gameObject;
-                  int price = Int32.Parse(item.transform.GetChild(4).GetComponentInChildren<Text>().text);
-                  if(SaveSystem.LoadData<PlayerData>("player.dta").getCoins() >= price ){
-                      //buy and save
-                      PlayerData pd = SaveSystem.LoadData<PlayerData>("player.dta");
-                      pd.setCoins(pd.getCoins()-price);
-                      SaveSystem.SaveData<PlayerData>(pd,"player.dta");
-                      charactersPersistance.SetIndexInfo(i,1);
-                      SaveSystem.SaveData<CharactersData>(charactersPersistance ,"characters.dta");
+                  if (charactersPersistance.GetIndexInfo(i)==2) {
+                      GameObject item = charactersGroup.transform.GetChild (i).gameObject;
+                      int price = Int32.Parse(item.transform.GetChild(4).GetComponentInChildren<Text>().text);
+                      if(SaveSystem.LoadData<PlayerData>("player.dta").getCoins() >= price ){
+                          //buy and save
+                          PlayerData pd = SaveSystem.LoadData<PlayerData>("player.dta");
+                          pd.setCoins(pd.getCoins()-price);
+                          SaveSystem.SaveData<PlayerData>(pd,"player.dta");
+                          charactersPersistance.SetIndexInfo(i,1);
+                          SaveSystem.SaveData<CharactersData>(charactersPersistance ,"characters.dta");
 
-                      //UI response
-                      item.transform.GetChild(0).gameObject.SetActive(true);
-                      item.transform.GetChild(4).GetComponentInChildren<Text>().text = "selected";
-                      item.transform.GetChild(4).gameObject.transform.GetChild(1).gameObject.SetActive(false);
-                      item.transform.GetChild(4).GetComponentInChildren<Text>().alignment = TextAnchor.MiddleCenter;
-                      UpdateCoinsText();
+                          //UI response
+                          item.transform.GetChild(4).GetComponent<Button>().onClick.RemoveListener( () => BuyButton(i) );
+                          item.transform.GetChild(3).gameObject.SetActive(true);
+                          item.transform.GetChild(3).GetComponent<Button>().onClick.AddListener( () => SelectButton(i) );
+                          item.transform.GetChild(4).GetComponent<Button>().onClick.AddListener( () => SelectButton(i) );
+                          SelectButton(i);
+                          UpdateCoinsText();
+                      }
                   }
 
               }
@@ -173,6 +196,17 @@ public class Shop : MonoBehaviour
                         for (int i = 0; i< childCount; i++) {
                                   DestroyImmediate(charactersGroup.transform.GetChild (0).gameObject) ;
                         }
+              }
+
+              public void InitializeCharacterData(){
+                  int[] charactersInfo = new int[charactersList.charactersData.Length];
+                  for (int i=0; i<charactersInfo.Length; i++) {
+                      charactersInfo[i]=2;
+                  }
+                  charactersInfo[0]=0;
+                  charactersPersistance = new CharactersData(charactersInfo);
+                  characterSelected=0;
+                  SaveSystem.SaveData<CharactersData>(charactersPersistance ,"characters.dta");
               }
 
               [Serializable]

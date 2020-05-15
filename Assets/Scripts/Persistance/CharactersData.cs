@@ -30,6 +30,9 @@ public class CharactersData
    public void SetIndexInfo(int index, int info){
        characters[index]=info;
    }
+   public int GetIndexInfo(int index){
+       return characters[index];
+   }
 
    public int GetSelectedIndex(){
        for (int i=0; i<characters.Length; i++) {
@@ -61,9 +64,7 @@ public class CharactersData
        }
        characters = new int[newLongitude];
        Array.Copy(tempArray,characters,newLongitude);
-
-
-
    }
+
 
 }

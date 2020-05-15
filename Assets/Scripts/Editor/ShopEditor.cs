@@ -11,6 +11,7 @@ public class ShopEditor : Editor {
                    DrawDefaultInspector();
 
                    if(GUILayout.Button("Generar Lista de Productos")) {
+                             shop.OpenStore();
                              shop.GenerateProducts();
                    }
               }

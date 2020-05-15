@@ -90,7 +90,7 @@ MonoBehaviour:
     typeOfStelarObject: 3
     objectParent: {fileID: 8451396873394871827, guid: 58e995a0d66c07041914ca21cd2433c1,
       type: 3}
-    radius: 4
+    radius: 3.5
     minRadius: 0
     rejectionSamples: 8
     radiusIncremment: 0
