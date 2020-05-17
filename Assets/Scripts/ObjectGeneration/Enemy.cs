@@ -47,7 +47,8 @@ public class Enemy : MonoBehaviour
           public IEnumerator GenerateEnemy(){
                     yield return new WaitForSeconds(timeToInit);
                     while(true){
-                                objConf = objConfList[ Random.Range(0,objConfList.Length) ];
+                                //objConf = objConfList[ Random.Range(0,objConfList.Length) ];
+                                objConf = objConfList[ 3 ];
                                 if (objConf.multipleObjects) {
                                     InstanceMultipleObjects();
                                 }else{

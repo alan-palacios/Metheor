@@ -13,10 +13,10 @@ public class AdManager : MonoBehaviour
     private static RewardedAd doubleCoinAd;
 
     private static int timer = 0;
-    private static bool displayAd = true;
+    private static bool displayAd = false;
     public int timeBetweenAds;
-    public string adName;
-
+     static bool giveExtraLife;
+     static bool giveDoubleCoins;
 
     void Start()
     {
@@ -32,23 +32,49 @@ public class AdManager : MonoBehaviour
         #else
                 string adUnitId = "unexpected_platform";
         #endif*/
-        interstitialAd = RequestAndLoadInterstitialAd("ca-app-pub-3940256099942544/1033173712");
-        doubleCoinAd = RequestAndLoadRewardedAd("ca-app-pub-3940256099942544/5224354917");
-        extraLifeAd = RequestAndLoadRewardedAd("ca-app-pub-3940256099942544/5224354917");
+        if (interstitialAd == null) {
+            interstitialAd = RequestAndLoadInterstitialAd("ca-app-pub-3940256099942544/1033173712");
+        }
+        if (doubleCoinAd == null) {
+            doubleCoinAd = RequestAndLoadRewardedAd("ca-app-pub-3940256099942544/5224354917", "DoubleCoins");
+        }
+        if (extraLifeAd == null) {
+            extraLifeAd = RequestAndLoadRewardedAd("ca-app-pub-3940256099942544/5224354917", "ExtraLife");
+        }
 
         StartCoroutine(Contar());
     }
 
+    void Update(){
 
+        if (giveExtraLife) {
+            giveExtraLife = false;
+            generalGC.ShowExtraLifeBtn();
+        }
 
-    public RewardedAd RequestAndLoadRewardedAd(string adUnitId){
+        if (giveDoubleCoins) {
+            giveDoubleCoins = false;
+            generalGC.ShowDoubleCoinsBtn();
+        }
+    }
+
+    public RewardedAd RequestAndLoadRewardedAd(string adUnitId, string adName){
             Debug.Log("Requesting RewardedAd Ad.");
             RewardedAd ad = new RewardedAd(adUnitId);
 
-            // Add Event Handlers
-            //interstitialAd.OnAdFailedToLoad += (sender, args) => OnAdFailedToLoadEvent.Invoke();
-            ad.OnAdClosed += HandleOnRewardedAdClosed;
-            ad.OnUserEarnedReward += HandleUserEarnedReward;
+            switch (adName) {
+                case "DoubleCoins":
+                    ad.OnUserEarnedReward += HandleUserEarnedCoins;
+                    ad.OnAdClosed += HandleOnRewardedAdDoubleCoinsClosed;
+                    break;
+                case "ExtraLife":
+                    ad.OnUserEarnedReward += HandleUserEarnedLife;
+                    ad.OnAdClosed += HandleOnRewardedAdExtraLifeClosed;
+                    break;
+            }
+
+
+
 
             // Load an interstitial ad
             ad.LoadAd(CreateAdRequest());
@@ -79,12 +105,22 @@ public class AdManager : MonoBehaviour
             .Build();
     }
 
+    public bool RewardedAdIsLoaded(string adName){
+        switch (adName) {
+            case "DoubleCoins":
+                return doubleCoinAd.IsLoaded();
+            case "ExtraLife":
+                return extraLifeAd.IsLoaded();
+        }
+        return true;
+    }
+
     public void ShowRewardedAd(string adName)
     {
-        this.adName = adName;
         switch (adName) {
             case "DoubleCoins":
                 if (doubleCoinAd.IsLoaded()) {
+                        Debug.Log("entra "+adName);
                     doubleCoinAd.Show();
                 }
                 break;
@@ -103,10 +139,10 @@ public class AdManager : MonoBehaviour
             {
                 Debug.Log("SHOW AD");
                 Debug.Log("TIME: " +timer);
-
+                interstitialAd.Show();
                 displayAd = false;
                 timer = 0;
-                interstitialAd.Show();
+
             }else{
                 Debug.Log("Interstitial ad is not ready yet");
             }
@@ -120,31 +156,26 @@ public class AdManager : MonoBehaviour
     {
         ((InterstitialAd)sender).LoadAd(CreateAdRequest());
     }
-    public void HandleOnRewardedAdClosed(object sender, EventArgs args)
+    public void HandleOnRewardedAdDoubleCoinsClosed(object sender, EventArgs args)
     {
-        ((RewardedAd)sender).LoadAd(CreateAdRequest());
+        doubleCoinAd = RequestAndLoadRewardedAd("ca-app-pub-3940256099942544/5224354917", "DoubleCoins");
+    }
+    public void HandleOnRewardedAdExtraLifeClosed(object sender, EventArgs args)
+    {
+        extraLifeAd = RequestAndLoadRewardedAd("ca-app-pub-3940256099942544/5224354917", "ExtraLife");
     }
 
-
-    public void HandleUserEarnedReward(object sender, Reward args)
+    public void HandleUserEarnedLife(object sender, Reward args)
     {
-        Debug.Log(adName);
-        switch (adName) {
-            case "ExtraLife"://ExtraLife
-                generalGC.giveExtraLife=true;                
-                break;
-            case "DoubleCoins"://DoubleCoins
+            giveExtraLife=true;
+            Debug.Log("extra life setted true");
 
-                break;
-        }
-        /*switch (args.Type) {
-            case "coin"://ExtraLife
-                generalGC.ExtraLife();
-                break;
-            case "DoubleCoins"://DoubleCoins
+    }
+    public void HandleUserEarnedCoins(object sender, Reward args)
+    {
+            giveDoubleCoins = true;
+            Debug.Log("double coins setted true");
 
-                break;
-        }*/
     }
 
 

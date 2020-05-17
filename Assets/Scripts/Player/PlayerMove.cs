@@ -54,7 +54,7 @@ public class PlayerMove : MonoBehaviour
     float maxWidthScreenController;
      [Header("Others")]
     public static int score = 0;
-    private bool receivingImpulse=false, withSpeedBoost=false, collidingSatellite=false, alive=true;
+    private bool receivingImpulse=false, withSpeedBoost=false, collidingSatellite=false, alive=true, isFreezed=false;
 
 
     void Start()
@@ -249,7 +249,9 @@ public class PlayerMove : MonoBehaviour
                                 StartCoroutine(MostrarExplosion());
                                 soundCtrl.StopSound("fire");
                                 soundCtrl.PlaySound("freeze");
-                                StartCoroutine(Congelarse());
+                                if (!isFreezed) {
+                                    StartCoroutine(Congelarse());                                    
+                                }
                                 StartCoroutine(MasterParent.GetComponent<CollectibleObject>().DestruirObjeto(MasterParent));
                       }else if(objColl.tag == "BlackHole"){
                                 soundCtrl.StopSound("fire");
@@ -316,6 +318,7 @@ public class PlayerMove : MonoBehaviour
     }
 
     public IEnumerator Congelarse(){
+                isFreezed = true;
               moveSpeed=0;
               alive=false;
               for (int i=0; i<meteorParticles.Length; i++) {
@@ -333,6 +336,7 @@ public class PlayerMove : MonoBehaviour
               for (int i=0; i<meteorParticles.Length; i++) {
                         meteorParticles[i].SetActive(true);
               }
+              isFreezed = false;
               soundCtrl.PlaySound("unfreeze");
               soundCtrl.PlaySound("fire");
               mat.SetColor( "_BaseColor", originalColor );

@@ -14,10 +14,14 @@ public class GeneralGameControl : MonoBehaviour
           [Header("GUI")]
           public Text scoreText;
           public Text coinText;
-          
-          public GameObject onDeadPauseMenu;
+
+          public GameObject onDeadMenu;
+          public GameObject onPauseMenu;
           public GameObject receiveExtraLifeBtn;
+          public GameObject receiveDoubleCoinsBtn;
           public GameObject  pauseButton;
+          public GameObject showExtraLifeAdBtn;
+          public GameObject doubleCoinsAdBtn;
 
 
           private bool paused=true;
@@ -26,7 +30,9 @@ public class GeneralGameControl : MonoBehaviour
           private static bool haveLost=false;
           private static bool passLevel=false;
           private static bool extraLife=false;
-          public bool giveExtraLife { get; set;}
+
+          static bool extraLifeGived = false;
+          static bool doubleCoinsGived = false;
 
           [Header("GameObjects Scene")]
           public GameObject GameElements;
@@ -71,10 +77,7 @@ public class GeneralGameControl : MonoBehaviour
         if (Input.GetKey("up")) {
                   PauseGame();
         }
-        if (giveExtraLife) {
-            giveExtraLife = false;
-            ShowExtraLifeBtn();
-        }
+
     }
 
     public IEnumerator ShowMenu(){
@@ -112,7 +115,8 @@ public class GeneralGameControl : MonoBehaviour
                                   blackHoleInstanced = GameObject.Instantiate(blackHoleParent, Vector3.zero  , Quaternion.identity, transform ) as GameObject;
                                   Destroy(blackHoleInstanced.GetComponent<Collider>() );
                                   gameCamera.backgroundColor = bgColors[level%bgColors.Length];
-                        }else if(extraLife){
+                        }
+                        if(extraLife){
                             gameCamera.fieldOfView=cameraSize;
                             extraLife = false;
                         }
@@ -149,10 +153,11 @@ public class GeneralGameControl : MonoBehaviour
 
     public void ShowExtraLifeBtn(){
         receiveExtraLifeBtn.SetActive(true);
-        onDeadPauseMenu.SetActive(false);
+        onDeadMenu.SetActive(false);
     }
     public void ExtraLife(){
         receiveExtraLifeBtn.SetActive(false);
+        extraLifeGived = true;
         extraLife = true;
         paused=false;
         haveLost=true;
@@ -162,15 +167,41 @@ public class GeneralGameControl : MonoBehaviour
 
     }
 
+    public void ShowDoubleCoinsBtn(){
+        receiveDoubleCoinsBtn.SetActive(true);
+        onDeadMenu.SetActive(false);
+    }
+    public void GiveDoubleCoins(){
+        receiveDoubleCoinsBtn.SetActive(false);
+        playerData.setCoins( playerData.getCoins()*2 );
+        coinText.text = playerData.getCoins().ToString();
+        onPauseMenu.SetActive(true);
+
+    }
+
     public IEnumerator OnLost(){
+            adManager.ShowInterstitialAd();
               Time.timeScale =0.8f;
               yield return new WaitForSeconds(timeAfterLose);
-              adManager.ShowInterstitialAd();
               Time.timeScale = 0;
+
               //displaying ad
 
               pauseButton.SetActive(false);
-              onDeadPauseMenu.SetActive(!onDeadPauseMenu.activeSelf);
+              onDeadMenu.SetActive(!onDeadMenu.activeSelf);
+              if (extraLifeGived || !adManager.RewardedAdIsLoaded("ExtraLife")) {
+                  showExtraLifeAdBtn.GetComponent<Button>().interactable = false;
+              }else{
+                  showExtraLifeAdBtn.GetComponent<Button>().interactable = true;
+              }
+              extraLifeGived = false;
+
+              if (doubleCoinsGived || !adManager.RewardedAdIsLoaded("DoubleCoins")) {
+                  doubleCoinsAdBtn.GetComponent<Button>().interactable = false;
+              }else{
+                  doubleCoinsAdBtn.GetComponent<Button>().interactable = true;
+              }
+              doubleCoinsGived = false;
               /*restartButton.SetActive(true);
               menuButton.SetActive(true);
               backgroundImg.SetActive(true);*/
@@ -196,7 +227,7 @@ public class GeneralGameControl : MonoBehaviour
             soundCtrl.StopSound("fire");
               Time.timeScale = paused?1:0;
               paused = !paused;
-              onDeadPauseMenu.SetActive(!onDeadPauseMenu.activeSelf);
+              onPauseMenu.SetActive(!onPauseMenu.activeSelf);
               //restartButton.SetActive(!restartButton.activeSelf);
               //menuButton.SetActive(!menuButton.activeSelf);
               //backgroundImg.SetActive(!backgroundImg.activeSelf);
