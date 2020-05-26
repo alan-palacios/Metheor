@@ -53,7 +53,7 @@ public class TerrainGenerator : MonoBehaviour {
 	}
 
 	void UpdateVisibleChunks() {
-		
+
 		HashSet<Vector2> alreadyUpdatedChunkCoords = new HashSet<Vector2>();
 
 		for (int i = visibleChunks.Count-1 ; i >=0 ; i--) {

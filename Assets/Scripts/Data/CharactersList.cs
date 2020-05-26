@@ -13,10 +13,11 @@ public struct CharacterData
 {
 
       public GameObject  meteoritePrefab;
-      public GameObject  meteoriteModelFract;
-      public GameObject [] meteorParticlesPrefab;
+      public GameObject  meteoriteModelFract;      
+      public Color [] meteorParticlesColor;
+      public bool overwriteMaterial;
       public Material material;
       public int price;
-      public Sprite img;      
+      public Sprite img;
 
 }

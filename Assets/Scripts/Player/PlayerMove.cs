@@ -27,7 +27,7 @@ public class PlayerMove : MonoBehaviour
 
     public GameObject  meteoriteModelFract;
 
-    //public GameObject [] meteorParticlesPrefab;
+    public GameObject [] meteorParticlesPrefab;
     private GameObject [] meteorParticles;
 
      [Header("Effects")]
@@ -42,6 +42,8 @@ public class PlayerMove : MonoBehaviour
     public float rotationSpeed;
     public float speedOfChange;
     public int modelRotationSpeed;
+    private Vector3 rotationDirection;
+    public Vector3 [] rotationDirections;
     //public float incremmentOfScale;
     public float impulseVelocityAdded;
     public float impulseTime;
@@ -59,11 +61,13 @@ public class PlayerMove : MonoBehaviour
 
     void Start()
     {
+        ObjectGenerator.modifyAllPlacementValues(objPlacingList, score);
           originalSpeed = moveSpeed;
           QualitySettings.vSyncCount = 0;
           Application.targetFrameRate = 60;
           rb = GetComponent<Rigidbody>();
-          //gameControl.UpdateScore ();
+
+          rotationDirection = rotationDirections[ Random.Range(0, rotationDirections.Length) ];
           maxWidthScreenController = Screen.width/4;
 
           //instancing metheor
@@ -73,23 +77,32 @@ public class PlayerMove : MonoBehaviour
           meteoriteModelFract = charactersList.charactersData[characterIndex].meteoriteModelFract;
           meteorParticles = new GameObject[3];
 
-          meteoriteModel.GetComponent<Renderer>().material = charactersList.charactersData[characterIndex].material;
-          foreach (Transform child in meteoriteModelFract.transform) {
-              child.gameObject.GetComponent<Renderer>().material = charactersList.charactersData[characterIndex].material;
+          if (charactersList.charactersData[characterIndex].overwriteMaterial) {
+              meteoriteModel.GetComponent<Renderer>().material = charactersList.charactersData[characterIndex].material;
+              foreach (Transform child in meteoriteModelFract.transform) {
+                  child.gameObject.GetComponent<Renderer>().material = charactersList.charactersData[characterIndex].material;
+              }
           }
 
-          GameObject meteorP1 = charactersList.charactersData[characterIndex].meteorParticlesPrefab[0];
-          GameObject meteorP2 = charactersList.charactersData[characterIndex].meteorParticlesPrefab[1];
-          GameObject meteorP3 = charactersList.charactersData[characterIndex].meteorParticlesPrefab[2];
-
-          meteorParticles[0] = Instantiate(meteorP1, meteorP1.transform.position, meteorP1.transform.rotation);
+          meteorParticles[0] = Instantiate(meteorParticlesPrefab[0], meteorParticlesPrefab[0].transform.position, meteorParticlesPrefab[0].transform.rotation);
           meteorParticles[0].transform.SetParent(meteoriteModel.transform,false);
 
-          meteorParticles[1] = Instantiate(meteorP2, meteorP2.transform.position, meteorP2.transform.rotation);
+          meteorParticles[1] = Instantiate(meteorParticlesPrefab[1], meteorParticlesPrefab[1].transform.position, meteorParticlesPrefab[1].transform.rotation);
           meteorParticles[1].transform.SetParent(meteoriteModel.transform,false);
 
-          meteorParticles[2] = Instantiate(meteorP3, meteorP3.transform.position, meteorP3.transform.rotation);
+          meteorParticles[2] = Instantiate(meteorParticlesPrefab[2], meteorParticlesPrefab[2].transform.position, meteorParticlesPrefab[2].transform.rotation);
           meteorParticles[2].transform.SetParent(metheorElements.transform,false);
+
+          if (charactersList.charactersData[characterIndex].meteorParticlesColor.Length>=3) {
+              Material mat = meteorParticles[0].GetComponent<Renderer>().material;
+              mat.SetColor( "_BaseColor", charactersList.charactersData[characterIndex].meteorParticlesColor[0] );
+
+              mat = meteorParticles[1].GetComponent<Renderer>().material;
+              mat.SetColor( "_BaseColor", charactersList.charactersData[characterIndex].meteorParticlesColor[1] );
+
+              mat = meteorParticles[2].GetComponent<Renderer>().material;
+              mat.SetColor( "_BaseColor", charactersList.charactersData[characterIndex].meteorParticlesColor[2] );
+          }
     }
 
     void FixedUpdate(){
@@ -109,12 +122,6 @@ public class PlayerMove : MonoBehaviour
                                       x*=speedOfChange;
 
                                       cameraRot = new Vector3(x,0,0);
-
-                                      /*if (touch.position.x < Screen.width/2) {
-                                      cameraRot = new Vector3(-1,0,0);
-                                  }else if (touch.position.x > Screen.width/2) {
-                                  cameraRot = new Vector3(1,0,0);
-                                  }*/
                                   }
                         }
 
@@ -130,8 +137,9 @@ public class PlayerMove : MonoBehaviour
    }
 
     void Update(){
-
-              meteoriteModel.transform.Rotate(  Time.deltaTime * modelRotationSpeed * new Vector3( 0.5f, 0, 1) );
+        if (!isFreezed) {
+            meteoriteModel.transform.Rotate(  Time.deltaTime * modelRotationSpeed * rotationDirection );
+        }
    }
 
     void OnCollisionEnter(Collision collision)
@@ -250,7 +258,7 @@ public class PlayerMove : MonoBehaviour
                                 soundCtrl.StopSound("fire");
                                 soundCtrl.PlaySound("freeze");
                                 if (!isFreezed) {
-                                    StartCoroutine(Congelarse());                                    
+                                    StartCoroutine(Congelarse());
                                 }
                                 StartCoroutine(MasterParent.GetComponent<CollectibleObject>().DestruirObjeto(MasterParent));
                       }else if(objColl.tag == "BlackHole"){
@@ -344,6 +352,7 @@ public class PlayerMove : MonoBehaviour
     }
 
     public void Die(){
+            Destroy(rb);
             soundCtrl.StopSound("fire");
             soundCtrl.PlaySound("hit");
               alive=false;
@@ -354,7 +363,8 @@ public class PlayerMove : MonoBehaviour
               StartCoroutine(DestroyMetheor(objectInstanced));
    }
     public void DieWithoutFracture(){
-        soundCtrl.StopSound("fire");
+            Destroy(rb);
+            soundCtrl.StopSound("fire");
               alive=false;
               StartCoroutine(MostrarExplosion());
               StartCoroutine(gameControl.OnLost() );

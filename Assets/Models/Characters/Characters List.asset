@@ -18,65 +18,101 @@ MonoBehaviour:
       type: 3}
     meteoriteModelFract: {fileID: 6565025020074340081, guid: 6d4bd62ef05ffb74ba8ee5e1006ef009,
       type: 3}
-    meteorParticlesPrefab:
-    - {fileID: 8621024126660374181, guid: 3bce67b92cafbff4295ec02e33318460, type: 3}
-    - {fileID: 1282821292549766106, guid: 3ec2510e699c46143ad6f7d07997c950, type: 3}
-    - {fileID: 3022222728756552536, guid: 57a5c72a2227a744e88ca084c16d6d0c, type: 3}
+    meteorParticlesColor:
+    - {r: 1, g: 0.38039216, b: 0.25882354, a: 1}
+    - {r: 1, g: 0.63529414, b: 0.23921569, a: 1}
+    - {r: 1, g: 0.84313726, b: 0.33333337, a: 1}
+    overwriteMaterial: 1
     material: {fileID: 2100000, guid: f455757ce6819c043820d99c1f21ee21, type: 2}
     price: 12
-    img: {fileID: 21300000, guid: 25f068bdb2404ce4faa2bf06caf702e3, type: 3}
+    img: {fileID: 21300000, guid: 9c71d85046d328742997a229a0fac3ec, type: 3}
   - meteoritePrefab: {fileID: 2613798615094668445, guid: f9e6233211ceb2d49821241c64da6396,
       type: 3}
     meteoriteModelFract: {fileID: 6565025020074340081, guid: 6d4bd62ef05ffb74ba8ee5e1006ef009,
       type: 3}
-    meteorParticlesPrefab:
-    - {fileID: 8621024126660374181, guid: 3bce67b92cafbff4295ec02e33318460, type: 3}
-    - {fileID: 1282821292549766106, guid: 3ec2510e699c46143ad6f7d07997c950, type: 3}
-    - {fileID: 3022222728756552536, guid: 57a5c72a2227a744e88ca084c16d6d0c, type: 3}
+    meteorParticlesColor: []
+    overwriteMaterial: 1
     material: {fileID: 2100000, guid: bce11d5355cd82047a67c610e761d09e, type: 2}
-    price: 23
+    price: 150
     img: {fileID: 21300000, guid: 25f068bdb2404ce4faa2bf06caf702e3, type: 3}
   - meteoritePrefab: {fileID: 2613798615094668445, guid: f9e6233211ceb2d49821241c64da6396,
       type: 3}
     meteoriteModelFract: {fileID: 6565025020074340081, guid: 6d4bd62ef05ffb74ba8ee5e1006ef009,
       type: 3}
-    meteorParticlesPrefab:
-    - {fileID: 8621024126660374181, guid: 3bce67b92cafbff4295ec02e33318460, type: 3}
-    - {fileID: 1282821292549766106, guid: 3ec2510e699c46143ad6f7d07997c950, type: 3}
-    - {fileID: 3022222728756552536, guid: 57a5c72a2227a744e88ca084c16d6d0c, type: 3}
+    meteorParticlesColor: []
+    overwriteMaterial: 1
     material: {fileID: 2100000, guid: a413e4b85799d9940bb15adbebe85866, type: 2}
-    price: 15
+    price: 150
     img: {fileID: 21300000, guid: 25f068bdb2404ce4faa2bf06caf702e3, type: 3}
   - meteoritePrefab: {fileID: 2613798615094668445, guid: f9e6233211ceb2d49821241c64da6396,
       type: 3}
     meteoriteModelFract: {fileID: 6565025020074340081, guid: 6d4bd62ef05ffb74ba8ee5e1006ef009,
       type: 3}
-    meteorParticlesPrefab:
-    - {fileID: 8621024126660374181, guid: 3bce67b92cafbff4295ec02e33318460, type: 3}
-    - {fileID: 1282821292549766106, guid: 3ec2510e699c46143ad6f7d07997c950, type: 3}
-    - {fileID: 3022222728756552536, guid: 57a5c72a2227a744e88ca084c16d6d0c, type: 3}
+    meteorParticlesColor: []
+    overwriteMaterial: 1
     material: {fileID: 2100000, guid: 896b3d30b23edbd4f956e4943c688ee8, type: 2}
-    price: 10
+    price: 250
     img: {fileID: 21300000, guid: 25f068bdb2404ce4faa2bf06caf702e3, type: 3}
   - meteoritePrefab: {fileID: 2613798615094668445, guid: f9e6233211ceb2d49821241c64da6396,
       type: 3}
     meteoriteModelFract: {fileID: 6565025020074340081, guid: 6d4bd62ef05ffb74ba8ee5e1006ef009,
       type: 3}
-    meteorParticlesPrefab:
-    - {fileID: 8621024126660374181, guid: 3bce67b92cafbff4295ec02e33318460, type: 3}
-    - {fileID: 1282821292549766106, guid: 3ec2510e699c46143ad6f7d07997c950, type: 3}
-    - {fileID: 3022222728756552536, guid: 57a5c72a2227a744e88ca084c16d6d0c, type: 3}
+    meteorParticlesColor: []
+    overwriteMaterial: 1
     material: {fileID: 2100000, guid: 4b6725ef9ac8fcc4a8ea82eb75b47a9a, type: 2}
-    price: 18
+    price: 250
     img: {fileID: 21300000, guid: 25f068bdb2404ce4faa2bf06caf702e3, type: 3}
   - meteoritePrefab: {fileID: 2613798615094668445, guid: f9e6233211ceb2d49821241c64da6396,
       type: 3}
     meteoriteModelFract: {fileID: 6565025020074340081, guid: 6d4bd62ef05ffb74ba8ee5e1006ef009,
       type: 3}
-    meteorParticlesPrefab:
-    - {fileID: 8621024126660374181, guid: 3bce67b92cafbff4295ec02e33318460, type: 3}
-    - {fileID: 1282821292549766106, guid: 3ec2510e699c46143ad6f7d07997c950, type: 3}
-    - {fileID: 3022222728756552536, guid: 57a5c72a2227a744e88ca084c16d6d0c, type: 3}
+    meteorParticlesColor: []
+    overwriteMaterial: 1
     material: {fileID: 2100000, guid: dd8a33d590ee556449ef9ba84c435c0b, type: 2}
-    price: 20
+    price: 250
+    img: {fileID: 21300000, guid: 25f068bdb2404ce4faa2bf06caf702e3, type: 3}
+  - meteoritePrefab: {fileID: -927199367670048503, guid: 2079644dcc8272747a4f41835d22cf71,
+      type: 3}
+    meteoriteModelFract: {fileID: 5580885159715904955, guid: 4f5d227845387bb4ab58870b67267d0d,
+      type: 3}
+    meteorParticlesColor:
+    - {r: 0.84313726, g: 0.46666667, b: 0.9490196, a: 1}
+    - {r: 0.3481638, g: 0.18729976, b: 0.5754717, a: 1}
+    - {r: 0.45548433, g: 0.15267888, b: 0.6886792, a: 1}
+    overwriteMaterial: 0
+    material: {fileID: 2100000, guid: 84657e9877d963942ade264548195c4a, type: 2}
+    price: 600
+    img: {fileID: 21300000, guid: 25f068bdb2404ce4faa2bf06caf702e3, type: 3}
+  - meteoritePrefab: {fileID: -927199367670048503, guid: b6738fc85f099c34e8b698e5a73fa9a9,
+      type: 3}
+    meteoriteModelFract: {fileID: 5961341237523511290, guid: 228836271b87bc049b911f2d4f5d0787,
+      type: 3}
+    meteorParticlesColor: []
+    overwriteMaterial: 0
+    material: {fileID: 2100000, guid: caf53d36732f0f84e8c02de3cc111a15, type: 2}
+    price: 650
+    img: {fileID: 21300000, guid: 25f068bdb2404ce4faa2bf06caf702e3, type: 3}
+  - meteoritePrefab: {fileID: -927199367670048503, guid: 12ee29bdaef4d574e87c536839031f2c,
+      type: 3}
+    meteoriteModelFract: {fileID: 7682940655002880982, guid: b1f43f206d5db63459a849b9d30288eb,
+      type: 3}
+    meteorParticlesColor:
+    - {r: 0.80784315, g: 0.9098039, b: 0.9490196, a: 1}
+    - {r: 0.4669811, g: 0.7946166, b: 1, a: 1}
+    - {r: 0, g: 0.51738906, b: 0.8396226, a: 1}
+    overwriteMaterial: 0
+    material: {fileID: 2100000, guid: 1e49796f8c231bf439fea9e58a325ba5, type: 2}
+    price: 650
+    img: {fileID: 21300000, guid: 25f068bdb2404ce4faa2bf06caf702e3, type: 3}
+  - meteoritePrefab: {fileID: -927199367670048503, guid: 728fb609a8c35da48b31be40b46d0ec2,
+      type: 3}
+    meteoriteModelFract: {fileID: 5473581032945772598, guid: eb8185fbcbec2fa48b0f55262d3f8801,
+      type: 3}
+    meteorParticlesColor:
+    - {r: 0.57254905, g: 0.7490196, b: 1, a: 1}
+    - {r: 0.6666667, g: 0.61960787, b: 1, a: 1}
+    - {r: 0.8833738, g: 0.6367924, b: 1, a: 1}
+    overwriteMaterial: 0
+    material: {fileID: 2100000, guid: 1e49796f8c231bf439fea9e58a325ba5, type: 2}
+    price: 800
     img: {fileID: 21300000, guid: 25f068bdb2404ce4faa2bf06caf702e3, type: 3}

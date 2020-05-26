@@ -20,6 +20,7 @@ public class AdManager : MonoBehaviour
 
     void Start()
     {
+
         //Debug.Log("id: "+SystemInfo.deviceUniqueIdentifier);
         MobileAds.Initialize(initStatus => { });
 
@@ -32,8 +33,16 @@ public class AdManager : MonoBehaviour
         #else
                 string adUnitId = "unexpected_platform";
         #endif*/
-        if (interstitialAd == null) {
-            interstitialAd = RequestAndLoadInterstitialAd("ca-app-pub-3940256099942544/1033173712");
+        if (Purchaser.adsPersistance != null) {
+            if (!Purchaser.adsPersistance.getAdsRemoved()) {
+                if (interstitialAd == null) {
+                    interstitialAd = RequestAndLoadInterstitialAd("ca-app-pub-3940256099942544/1033173712");
+                }
+            }
+        }else{
+            if (interstitialAd == null) {
+                interstitialAd = RequestAndLoadInterstitialAd("ca-app-pub-3940256099942544/1033173712");
+            }            
         }
         if (doubleCoinAd == null) {
             doubleCoinAd = RequestAndLoadRewardedAd("ca-app-pub-3940256099942544/5224354917", "DoubleCoins");

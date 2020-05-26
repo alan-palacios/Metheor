@@ -23,16 +23,19 @@ public class GeneralGameControl : MonoBehaviour
           public GameObject showExtraLifeAdBtn;
           public GameObject doubleCoinsAdBtn;
 
-
-          private bool paused=true;
+          public InputField playerScoreIF;
+          public Toggle enemyToggle;
 
           [SerializeField]
           private static bool haveLost=false;
           private static bool passLevel=false;
           private static bool extraLife=false;
 
+          private static bool enemyActive = true;
+
           static bool extraLifeGived = false;
           static bool doubleCoinsGived = false;
+          private bool paused=true;
 
           [Header("GameObjects Scene")]
           public GameObject GameElements;
@@ -65,22 +68,26 @@ public class GeneralGameControl : MonoBehaviour
 
     void Start()
     {
+
               if (haveLost) {
                         PlayGame();
              }else{
                        StartCoroutine(ShowMenu());
              }
-
     }
 
     void Update(){
         if (Input.GetKey("up")) {
                   PauseGame();
         }
+        if (Input.GetKey("down")) {
+                  RestartGame();
+        }
 
     }
 
     public IEnumerator ShowMenu(){
+
               soundCtrl.PlaySound("menu");
               Time.timeScale = 1;
               solarSystemInstanced = GameObject.Instantiate(solarSystemParent, Vector3.zero  , Quaternion.identity, transform ) as GameObject;
@@ -128,10 +135,13 @@ public class GeneralGameControl : MonoBehaviour
 
                         playerElements.SetActive(true);
                         mapGenerator.SetActive(true);
-                        meteorEnemy.SetActive(true);
+
+                        meteorEnemy.SetActive(enemyActive);
+
                         MenuElements.SetActive(false);
                         soundCtrl.PlaySound("bgMusic");
-                        soundCtrl.PlaySound("fire");
+
+                        //soundCtrl.PlaySound("fire");
               }else{
                         Time.timeScale = 0;
                         tutorial.Show(true);
@@ -180,7 +190,10 @@ public class GeneralGameControl : MonoBehaviour
     }
 
     public IEnumerator OnLost(){
-            adManager.ShowInterstitialAd();
+                if (!Purchaser.adsPersistance.getAdsRemoved()) {
+                    adManager.ShowInterstitialAd();
+                }
+
               Time.timeScale =0.8f;
               yield return new WaitForSeconds(timeAfterLose);
               Time.timeScale = 0;
@@ -224,7 +237,7 @@ public class GeneralGameControl : MonoBehaviour
 
 // input button calls
     public void PauseGame(){
-            soundCtrl.StopSound("fire");
+            //soundCtrl.StopSound("fire");
               Time.timeScale = paused?1:0;
               paused = !paused;
               onPauseMenu.SetActive(!onPauseMenu.activeSelf);
@@ -280,17 +293,30 @@ public class GeneralGameControl : MonoBehaviour
              playerData.Reiniciar();
    }
 
-   public void BorrarDatos(){
-             playerData = new PlayerData(0,0,false);
-             SaveSystem.SaveData<PlayerData>( playerData , "player.dta");
-             highScore.text = SaveSystem.LoadData<PlayerData>("player.dta").getScore().ToString();
-             totalCoins.text = SaveSystem.LoadData<PlayerData>("player.dta").getCoins().ToString();
-             totalCoinShop.text = totalCoins.text;
-             //SaveSystem.DeleteFile("C:/Users/AlanPalacios/AppData/LocalLow/AlanPalacios/Metheor\\characters.dta");
-   }
    public void SaveTutorial(){
              playerData.setTutorialViewed(true);
              SaveActualData();
    }
 
+   public void BorrarDatos(){
+       playerData = new PlayerData(0,0,false);
+       SaveSystem.SaveData<PlayerData>( playerData , "player.dta");
+       highScore.text = SaveSystem.LoadData<PlayerData>("player.dta").getScore().ToString();
+       totalCoins.text = SaveSystem.LoadData<PlayerData>("player.dta").getCoins().ToString();
+       totalCoinShop.text = totalCoins.text;
+       
+       Purchaser.adsPersistance.setAdsRemoved(false);
+       SaveSystem.SaveData<AdsPersistance>(Purchaser.adsPersistance ,"adsPersistance.dta");
+       //SaveSystem.DeleteFile("C:/Users/AlanPalacios/AppData/LocalLow/AlanPalacios/Metheor\\characters.dta");
+   }
+
+   public void SetPlayerScore(){
+       PlayerMove.score = int.Parse(playerScoreIF.text);
+       playerData = new PlayerData(PlayerMove.score,0,SaveSystem.LoadData<PlayerData>("player.dta").getTutorialViewed());
+       ObjectGenerator.modifyAllPlacementValues(playerMove.objPlacingList, PlayerMove.score);
+   }
+
+   public void SetEnemyActive(){
+       enemyActive = enemyToggle.isOn;
+   }
 }

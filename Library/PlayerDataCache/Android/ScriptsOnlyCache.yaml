@@ -27,6 +27,10 @@ ScriptsOnlyBuild:
     - GoogleMobileAds.Editor.GoogleMobileAdsSettings
     GoogleMobileAds.dll:
     - GoogleMobileAds.Common.MobileAdsEventExecutor
+    Polyglot.Scripts.dll:
+    - Polyglot.Localization
+    - Polyglot.LocalizedText
+    - Polyglot.SaveLanguagePreference
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
@@ -83,6 +87,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.HorizontalLayoutGroup
     - UnityEngine.UI.Image
+    - UnityEngine.UI.InputField
     - UnityEngine.UI.LayoutElement
     - UnityEngine.UI.Mask
     - UnityEngine.UI.ScrollRect
@@ -135,131 +140,139 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11616}
     - Class: 114
-      Script: {instanceID: 11776}
+      Script: {instanceID: 11698}
     - Class: 114
-      Script: {instanceID: 11922}
+      Script: {instanceID: 11778}
     - Class: 114
-      Script: {instanceID: 11952}
+      Script: {instanceID: 11928}
     - Class: 114
-      Script: {instanceID: 12032}
+      Script: {instanceID: 11958}
     - Class: 114
       Script: {instanceID: 12038}
     - Class: 114
-      Script: {instanceID: 12076}
+      Script: {instanceID: 12044}
     - Class: 114
       Script: {instanceID: 12082}
     - Class: 114
-      Script: {instanceID: 12170}
+      Script: {instanceID: 12088}
     - Class: 114
-      Script: {instanceID: 12192}
+      Script: {instanceID: 12176}
     - Class: 114
-      Script: {instanceID: 12210}
+      Script: {instanceID: 12198}
     - Class: 114
-      Script: {instanceID: 12236}
+      Script: {instanceID: 12216}
     - Class: 114
-      Script: {instanceID: 12432}
+      Script: {instanceID: 12242}
     - Class: 114
-      Script: {instanceID: 12476}
+      Script: {instanceID: 12440}
     - Class: 114
-      Script: {instanceID: 12672}
+      Script: {instanceID: 12484}
     - Class: 114
-      Script: {instanceID: 12886}
+      Script: {instanceID: 12682}
     - Class: 114
-      Script: {instanceID: 12890}
+      Script: {instanceID: 12898}
     - Class: 114
-      Script: {instanceID: 12938}
+      Script: {instanceID: 12902}
     - Class: 114
-      Script: {instanceID: 13016}
+      Script: {instanceID: 12952}
     - Class: 114
-      Script: {instanceID: 13174}
+      Script: {instanceID: 13030}
     - Class: 114
-      Script: {instanceID: 13178}
+      Script: {instanceID: 13188}
     - Class: 114
-      Script: {instanceID: 13284}
+      Script: {instanceID: 13192}
     - Class: 114
-      Script: {instanceID: 13316}
+      Script: {instanceID: 13300}
     - Class: 114
-      Script: {instanceID: 13462}
+      Script: {instanceID: 13332}
     - Class: 114
-      Script: {instanceID: 13610}
+      Script: {instanceID: 13480}
     - Class: 114
-      Script: {instanceID: 13664}
+      Script: {instanceID: 13628}
     - Class: 114
-      Script: {instanceID: 13752}
+      Script: {instanceID: 13684}
     - Class: 114
-      Script: {instanceID: 13890}
+      Script: {instanceID: 13772}
     - Class: 114
-      Script: {instanceID: 13922}
+      Script: {instanceID: 13916}
     - Class: 114
-      Script: {instanceID: 14184}
+      Script: {instanceID: 13948}
     - Class: 114
-      Script: {instanceID: 14274}
+      Script: {instanceID: 14216}
     - Class: 114
-      Script: {instanceID: 14296}
+      Script: {instanceID: 14306}
     - Class: 114
-      Script: {instanceID: 14304}
+      Script: {instanceID: 14328}
     - Class: 114
-      Script: {instanceID: 14350}
+      Script: {instanceID: 14336}
     - Class: 114
-      Script: {instanceID: 14474}
+      Script: {instanceID: 14382}
     - Class: 114
-      Script: {instanceID: 14664}
+      Script: {instanceID: 14512}
     - Class: 114
-      Script: {instanceID: 14738}
+      Script: {instanceID: 14702}
     - Class: 114
-      Script: {instanceID: 14762}
+      Script: {instanceID: 14724}
     - Class: 114
-      Script: {instanceID: 14792}
+      Script: {instanceID: 14742}
+    - Class: 114
+      Script: {instanceID: 14778}
     - Class: 114
       Script: {instanceID: 14802}
     - Class: 114
-      Script: {instanceID: 14896}
+      Script: {instanceID: 14824}
     - Class: 114
-      Script: {instanceID: 14940}
+      Script: {instanceID: 14836}
     - Class: 114
-      Script: {instanceID: 14980}
+      Script: {instanceID: 14846}
     - Class: 114
-      Script: {instanceID: 14988}
+      Script: {instanceID: 14942}
     - Class: 114
-      Script: {instanceID: 15374}
+      Script: {instanceID: 14986}
     - Class: 114
-      Script: {instanceID: 15394}
+      Script: {instanceID: 15026}
     - Class: 114
-      Script: {instanceID: 15470}
+      Script: {instanceID: 15034}
     - Class: 114
-      Script: {instanceID: 15774}
+      Script: {instanceID: 15422}
     - Class: 114
-      Script: {instanceID: 15916}
+      Script: {instanceID: 15444}
     - Class: 114
-      Script: {instanceID: 16004}
+      Script: {instanceID: 15522}
     - Class: 114
-      Script: {instanceID: 16064}
+      Script: {instanceID: 15828}
     - Class: 114
-      Script: {instanceID: 16150}
+      Script: {instanceID: 15970}
     - Class: 114
-      Script: {instanceID: 16334}
+      Script: {instanceID: 16058}
     - Class: 114
-      Script: {instanceID: 16338}
+      Script: {instanceID: 16118}
     - Class: 114
-      Script: {instanceID: 16340}
+      Script: {instanceID: 16210}
     - Class: 114
-      Script: {instanceID: 16384}
+      Script: {instanceID: 16394}
     - Class: 114
-      Script: {instanceID: 16392}
+      Script: {instanceID: 16398}
     - Class: 114
-      Script: {instanceID: 16414}
+      Script: {instanceID: 16400}
     - Class: 114
-      Script: {instanceID: 16420}
+      Script: {instanceID: 16444}
     - Class: 114
-      Script: {instanceID: 16422}
+      Script: {instanceID: 16452}
     - Class: 114
-      Script: {instanceID: 16560}
+      Script: {instanceID: 16474}
     - Class: 114
-      Script: {instanceID: 16562}
+      Script: {instanceID: 16480}
     - Class: 114
-      Script: {instanceID: 16570}
+      Script: {instanceID: 16482}
     - Class: 114
-      Script: {instanceID: 16584}
+      Script: {instanceID: 16622}
+    - Class: 114
+      Script: {instanceID: 16624}
+    - Class: 114
+      Script: {instanceID: 16632}
+    - Class: 114
+      Script: {instanceID: 16648}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -343,6 +356,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SelectionCaret
+  - hash:
+      serializedVersion: 2
+      Hash: 76bfe759173f8f0f2b99222e2ff98f85
+    assemblyName: Polyglot.Scripts.dll
+    namespaceName: Polyglot
+    className: SaveLanguagePreference
   - hash:
       serializedVersion: 2
       Hash: 8c328a0ffa03c1bcb9332bb39f4f8453
@@ -453,13 +472,13 @@ ScriptsOnlyBuild:
     className: ActivationTrack
   - hash:
       serializedVersion: 2
-      Hash: 49978b01c9a369cffadb1aacade4b0f5
+      Hash: 249b028d139129e43dfb94da461a7082
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SoundControl
   - hash:
       serializedVersion: 2
-      Hash: 6651a9588c1a9076d3dc5b0af74722b6
+      Hash: c3bef83a33da45ce5873bb88a91c3a99
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Shop
@@ -717,6 +736,12 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
+      Hash: 615491b16150af55ff5269051122216a
+    assemblyName: Polyglot.Scripts.dll
+    namespaceName: Polyglot
+    className: LocalizedTextMesh
+  - hash:
+      serializedVersion: 2
       Hash: eb229c6d50b852c329bee0df4153ef20
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Rendering.Universal
@@ -729,7 +754,7 @@ ScriptsOnlyBuild:
     className: UniversalAdditionalCameraData
   - hash:
       serializedVersion: 2
-      Hash: b42c0882be3f83fe4c5fea53e1817b3d
+      Hash: c923ded10b4cef5f846eedf608c59396
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CharactersList
@@ -789,7 +814,7 @@ ScriptsOnlyBuild:
     className: EventSystem
   - hash:
       serializedVersion: 2
-      Hash: ab6a012d1d17b52852924f9e06802d3e
+      Hash: 271e5304d93585ade30d6d4b60cc764d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GeneralGameControl
@@ -807,7 +832,7 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAsset
   - hash:
       serializedVersion: 2
-      Hash: e3a9957cc9856d3e7aca0af2e18ca42f
+      Hash: 387024293660560277194a57217b41e6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerMove
@@ -871,6 +896,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering.UI
     className: DebugUIHandlerIndirectToggle
+  - hash:
+      serializedVersion: 2
+      Hash: 3afc815aa01947ad84681577814eb6a2
+    assemblyName: Polyglot.Scripts.dll
+    namespaceName: Polyglot
+    className: LanguageDropdown
   - hash:
       serializedVersion: 2
       Hash: 51b05e403ce1da1805851f42af02f4bb
@@ -1095,6 +1126,12 @@ ScriptsOnlyBuild:
     className: SignalReceiver
   - hash:
       serializedVersion: 2
+      Hash: dda7bb380a6e20d8bd12676c81f46215
+    assemblyName: Polyglot.Scripts.dll
+    namespaceName: Polyglot
+    className: LocalizedText
+  - hash:
+      serializedVersion: 2
       Hash: 5ad4aa237d47ac2bab17bacb672edf7a
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -1131,7 +1168,13 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 26b1a179122c0826c7082906638fd7ae
+    assemblyName: Polyglot.Scripts.dll
+    namespaceName: Polyglot
+    className: Localization
+  - hash:
+      serializedVersion: 2
+      Hash: 8546d2568b7bbaa3ecee73077f88c8d9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Purchaser
@@ -1267,6 +1310,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering.UI
     className: DebugUIHandlerVector2
+  - hash:
+      serializedVersion: 2
+      Hash: 1886cb98b8cf95014f09374a1b6c8270
+    assemblyName: Polyglot.Scripts.dll
+    namespaceName: Polyglot
+    className: DownloadPolyglotSheetButton
   - hash:
       serializedVersion: 2
       Hash: ae83e830e7a90c0aff918c4c2e520825
@@ -1606,4 +1655,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/MainScene.unity
-  playerPath: C:/Users/AlanPalacios/UnityProyects/Metheor/Metheor.aab
+  playerPath: C:/Users/AlanPalacios/UnityProyects/Metheor/Metheor.apk

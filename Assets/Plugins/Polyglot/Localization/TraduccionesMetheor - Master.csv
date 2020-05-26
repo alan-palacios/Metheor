@@ -1,0 +1,15 @@
+STRING ID,DESCRIPTION,ENGLISH,FRENCH / FRANÇAIS,SPANISH / ESPAÑOL,GERMAN / DEUTSCH,ITALIAN / ITALIANO,PORTUGUESE / PORTUGUÊS (BR),PORTUGUESE / PORTUGUÊS (PT),RUSSIAN / РУССКИЙ,GREEK / ΕΛΛΗΝΙΚΑ,TURKISH / TÜRKÇE,DANISH / DANSK,NORWEGIAN (NB) / NORSK BOKMÅL,SWEDISH / SVENSKA,DUTCH / NEDERLANDS,POLISH / POLSKI,FINNISH / SUOMI,JAPANESE / 日本語,SIMPLIFIED CHINESE / 简体中文,TRADITIONAL CHINESE / 繁体中文,KOREAN / 한국어,CZECH / ČEŠTINA,HUNGARIAN / MAGYAR,ROMANIAN / ROMÂNĂ,THAI / ภาษาไทย,BULGARIAN / БЪЛГАРСКИ,עברית / HEBREW, العربية / ARABIC,BOSNIAN
+LANGUAGE_CODE,IETF language tag(s) without dash,enUS enGB,frFR,esES esAR esMX,deDE deCH deAT,itIT itCH,ptBR,ptPT,ruRU,elGR,trTR,daDK,noNB,svSE,nlNL,plPL,fiFI,jaJP,zhCN zhSG,zhTW zhHK zhMO,koKR,csCZ,huHU,roRO,thTH,bgBG,heIL,ar001,bsBS
+LANGUAGE_EN,[LanguageName] in english,English,French,Spanish,German,Italian ,Portuguese (Brazil),Portuguese,Russian,Greek,Turkish,Danish,Norwegian,Swedish,Dutch,Polish,Finnish,Japanese,Simplified Chinese,Traditional Chinese,Korean,Czech,Hungarian,Romanian,Thai,Bulgarian,Hebrew,Arabic,Bosnian
+LANGUAGE_DIRECTION,ltr or rtl (text direction used by game code),ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,ltr,rtl,rtl,ltr
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Polyglot,100,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+TUTORIAL,tutorial,tutorial,Didacticiel,tutorial,,,,,,,,,,,,,,チュートリアル,教程,,,,,,,,,الدورة التعليمية,
+SHOP,shop,shop,boutique,tienda,,,,,,,,,,,,,,ショップ,店,,,,,,,,,متجر,
+QUIT_AD,quit ads,remove ads,Supprimez la pub,quitar anuncios,,,,,,,,,,,,,,広告を削除,移除广告,,,,,,,,,ازالة الاعلانات,
+MENU_LABEL_CREDITS,Authors list,Credits,Remerciements,Créditos,,,,,,,,,,,,,,クレジット,致谢,,,,,,,,,القائمون على اللعبة,
+CREDITS_DEVELOPED_BY,,Developed by,Développé par,Desarrollado por,,,,,,,,,,,,,,開発,游戏开发由  ,,,,,,,,,صنعت من قبل,
+CREDITS_ART,,Art,Art,Arte,,,,,,,,,,,,,,アート,美术,,,,,,,,,فن,
+CREDITS_SFX,,Sound Effects,Effets sonores,Efectos de sonido,,,,,,,,,,,,,,音響効果,音响效果 ,,,,,,,,,مؤثرات صوتية,
+MENU_LABEL_MUSIC,,Music,Musique,Música,,,,,,,,,,,,,,音楽,音乐,,,,,,,,,الموسيقى,
+CREDITS_POLYGLOT,,Translated by the Polyglot Project.,Traduit par le Polyglot Projet.,Traducido por el proyecto Polyglot.,,,,,,,,,,,,,,翻訳提供：Polyglotプロジェクト,Polyglot 项目提供翻译,,,,,,,,,ترجمت من قبل مشروع بوليغوت,
